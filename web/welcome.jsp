@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title>Welcome Page</title>
 </head>
 
 <body>
@@ -13,8 +13,6 @@
     <p align="right">
     <button type="submit">Sign in</button>
     </p>
-</form>
-<p style="color: red;">${errorString}</p>
 </form>
 </body>
 </html>
