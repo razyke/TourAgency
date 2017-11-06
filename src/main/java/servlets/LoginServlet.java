@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
         if (userName == null || password == null
                 || userName.length() == 0 || password.length() == 0) {
             hasError = true;
-            errorString = "Error: username and password is required";
+            errorString = "Error: username and password are required";
         } else {
             try {
                 user = dao.findUser(userName, getSha256Hash(password));
