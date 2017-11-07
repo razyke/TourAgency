@@ -9,7 +9,7 @@
 <body>
 <h3 align="right">Login</h3>
 
-<p style="color: red;">${errorString}</p>
+<p align="right" style="color: red">${errorString}</p>
 
 <form method="POST" action="login">
     <table border="0" align="right">
