@@ -3,6 +3,8 @@ package dao;
 import model.User;
 
 public class UserDao {
+
+
     public User findUser(String loginName, String password) {
         if (loginName.equals("User1") && password.equals("5e884898da2847151d0e56f8dc6292773603dd6aabbdd62a11ef721d1542d8")) {
             User user = new User();
