@@ -9,10 +9,19 @@
 
 <body>
 <h3 align="center">Welcome</h3>
-<form action="login.jsp">
+<% if (request.getSession().isNew()) { %>
+<form action=/login>
     <p align="right">
-    <button type="submit">Sign in</button>
+        <button type="submit" value="login">Sign in</button>
     </p>
 </form>
+<% } else {%>
+<p align="center"> Hello, user! </p>
+<form method="post" action="/signOut">
+    <p align="right">
+        <button type = submit value="signOut"> Sign out </button>
+    </p>
+</form>
+<% } %>
 </body>
 </html>

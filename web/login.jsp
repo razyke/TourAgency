@@ -9,7 +9,7 @@
 <body>
 <h3 align="right">Login</h3>
 
-<p style="color: red;">${errorString}</p>
+<p align="right" style="color: red">${errorString}</p>
 
 <form method="POST" action="login">
     <table border="0" align="right">
@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <td>password</td>
-            <td><input type="text" name="password" value= "${user.password}" /> </td>
+            <td><input type="password" name="password" value= "${user.password}" /> </td>
         </tr>
         <tr>
             <td colspan ="1">
