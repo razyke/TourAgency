@@ -70,15 +70,15 @@ public class LoginServlet extends HttpServlet {
         } else {
             HttpSession session = request.getSession(true);
             session.setAttribute("userName", user.getLoginName());
+            RequestDispatcher view;
             if (user.isAdmin()) {
                 session.setAttribute("role", "admin");
-                RequestDispatcher view = request.getRequestDispatcher(Constants.ADMIN_PAGE);
-                view.forward(request, response);
+                view = request.getRequestDispatcher(Constants.ADMIN_PAGE);
             } else {
                 session.setAttribute("role", "user");
-                RequestDispatcher view = request.getRequestDispatcher(Constants.WELCOME_PAGE);
-                view.forward(request, response);
+                view = request.getRequestDispatcher(Constants.WELCOME_PAGE);
             }
+            view.forward(request, response);
         }
     }
     private String getSha256Hash(String source) {
