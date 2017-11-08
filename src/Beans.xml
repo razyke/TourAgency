@@ -8,9 +8,9 @@
     <bean id="dataSource"
           class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name = "driverClassName" value = "com.mysql.jdbc.Driver"/>
-        <property name = "url" value = "jdbc:mysql://localhost:3306/touragencydb"/>
-        <property name = "username" value = "root"/>
-        <property name = "password" value = "123456"/>
+        <property name = "url" value = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11203717"/>
+        <property name = "username" value = "sql11203717"/>
+        <property name = "password" value = "UDUCVRcm7r"/>
     </bean>
 
     <!-- Definition for studentJDBCTemplate bean -->

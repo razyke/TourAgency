@@ -4,13 +4,9 @@ import model.Tour;
 import model.User;
 import model.UserMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 
 public class DaoImpl implements Dao {
     private DataSource dataSource;
@@ -36,7 +32,7 @@ public class DaoImpl implements Dao {
 
     public void deleteUser(int id) {
         String SQL = "DELETE FROM users WHERE id = ?";
-        jdbcTemplate.update(SQL, new Object[]{id});
+        jdbcTemplate.update(SQL, id);
     }
 
     public void updateUser(User user) {
