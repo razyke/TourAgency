@@ -7,6 +7,16 @@
     <title>Login Page</title>
 </head>
 <body>
+<a href="welcome.jsp"> To main page </a>
+<% if (request.getSession().getAttribute("role")!=null) { %>
+<p align="center"> Hello, ${userName}! </p>
+<p align="center"> You signed as  ${role}. </p>
+<form method="post" action="signOut">
+    <p align="right">
+        <button type = "submit" value="signOut"> Sign out </button>
+    </p>
+</form>
+<% } else {%>
 <h3 align="right">Login</h3>
 
 <p align="right" style="color: red">${errorString}</p>
@@ -23,10 +33,11 @@
         </tr>
         <tr>
             <td colspan ="1">
-                <input type="submit" value= "Login" />
+                <input type="submit"  value= "Login" />
             </td>
         </tr>
     </table>
 </form>
+<% } %>
 </body>
 </html>

@@ -2,7 +2,7 @@ package servlets;
 
 import dao.UserDao;
 import model.User;
-import util.Constants;
+import util.Utils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher view = request.getRequestDispatcher(Constants.LOGIN_PAGE);
+        RequestDispatcher view = request.getRequestDispatcher(Utils.LOGIN_PAGE);
         view.forward(request, response);
     }
 
@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("errorString", errorString);
             request.setAttribute("user", user);
 
-            RequestDispatcher view = request.getRequestDispatcher(Constants.LOGIN_PAGE);
+            RequestDispatcher view = request.getRequestDispatcher(Utils.LOGIN_PAGE);
             view.forward(request, response);
         } else {
             HttpSession session = request.getSession(true);
@@ -73,10 +73,10 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher view;
             if (user.isAdmin()) {
                 session.setAttribute("role", "admin");
-                view = request.getRequestDispatcher(Constants.ADMIN_PAGE);
+                view = request.getRequestDispatcher(Utils.ADMIN_PAGE);
             } else {
                 session.setAttribute("role", "user");
-                view = request.getRequestDispatcher(Constants.WELCOME_PAGE);
+                view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
             }
             view.forward(request, response);
         }

@@ -3,22 +3,21 @@
 <head>
     <title>Admin Page</title>
 </head>
+
 <body>
 <h3 align="center">Admin Page</h3>
-<% if (request.getSession().getAttribute("role")==null) { %>
-<form action=/login>
-    <p align="right">
-        <button type="submit" value="login">Sign in</button>
-    </p>
-</form>
-<% } else if(request.getSession().getAttribute("role").equals("admin")){%>
+<a href="welcome.jsp"> To main page </a>
+
+<% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <p align="center"> Hello, admin! </p>
-<form action="/signOut">
+<form method="post" action="signOut">
     <p align="right">
         <button type = submit value="signOut"> Sign out </button>
     </p>
 </form>
-<% } %>
 
+<% }  else {%>
+<p> Please sign in as administrator </p>
+<% } %>
 </body>
 </html>
