@@ -28,6 +28,11 @@ public class DaoImpl implements Dao {
     }
 
     public void createUser(User user) {
+        String SQL = "INSERT INTO user (login, password, first_name, middle_name, last_name, is_admin, " +
+                "phone, address, last_order_date) VALUES (?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(SQL, user.getLoginName(), user.getPassword(), user.getFirstName(),
+                user.getMiddleName(), user.getLastName(), user.isAdmin(), user.getPhone(),
+                user.getAddress(), user.getLastOrderDate());
     }
 
     public void deleteUser(int id) {
@@ -36,6 +41,11 @@ public class DaoImpl implements Dao {
     }
 
     public void updateUser(User user) {
+        String SQL = "UPDATE user SET login = ?, password = ?, first_name = ?, middle_name = ?, last_name = ?, is_admin = ?, " +
+                "phone = ?, address = ?, last_order_date = ?) WHERE id = ?";
+        jdbcTemplate.update(SQL, user.getLoginName(), user.getPassword(), user.getFirstName(),
+                user.getMiddleName(), user.getLastName(), user.isAdmin(), user.getPhone(),
+                user.getAddress(), user.getLastOrderDate(), user.getId());
     }
 
     public Tour getTour(int id) {
