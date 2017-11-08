@@ -2,6 +2,7 @@ package servlets;
 
 import dao.UserDao;
 import model.User;
+import services.AuthService;
 import util.Utils;
 
 import javax.servlet.RequestDispatcher;
@@ -11,15 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 
 public class LoginServlet extends HttpServlet {
 
     private UserDao dao;
 
     public LoginServlet() {
-        super();
         dao = new UserDao();
     }
 
@@ -47,7 +46,7 @@ public class LoginServlet extends HttpServlet {
             errorString = "Error: username and password are required";
         } else {
             try {
-                user = dao.findUser(userName, getSha256Hash(password));
+                user = dao.findUser(userName, AuthService.getSha256Hash(password));
                 if (user == null) {
                     hasError = true;
                     errorString = "Error: Incorrect username or password";
@@ -80,22 +79,6 @@ public class LoginServlet extends HttpServlet {
             }
             view.forward(request, response);
         }
-    }
-    private String getSha256Hash(String source) {
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        byte[] sourceBytes = source.getBytes();
-        md.update(sourceBytes);
-        byte[] resultBytes = md.digest();
-        StringBuffer hexString = new StringBuffer();
-        for (byte current: resultBytes) {
-            hexString.append(Integer.toHexString(0xFF & current));
-        }
-        return hexString.toString();
     }
 
 }

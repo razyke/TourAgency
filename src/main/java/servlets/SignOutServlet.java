@@ -13,7 +13,6 @@ public class SignOutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //TODO Figure out why after admin login we submit button "sing out" and received doGET method, after second try we go in doPost method.
         RequestDispatcher view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
         view.forward(request, response);
     }

@@ -34,7 +34,7 @@
     </p>
 </form>
 <% } else {%>
-<a href="adminPage.jsp"> To admin page </a>
+<a href="admin"> To admin page </a>
 <p align="center"> Hello, ${userName}! </p>
 <p align="center"> You signed as  ${role}. </p>
 <form method="post" action="signOut">
