@@ -31,11 +31,22 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String  errorString = "";
+        boolean hasError = false;
+        if (!(request.getParameter("password").equals(request.getParameter("password2")))) {
+            errorString = "passwords are not equal, please type again";
+            hasError = true;
+        }
+
         User user = new User();
         user.setLoginName(request.getParameter("userName"));
         user.setPassword(request.getParameter("password"));
         dao.createUser(user);
-
+        if (hasError) {
+            request.setAttribute("errorString", errorString);
+            RequestDispatcher view = request.getRequestDispatcher(Utils.REGISTER_PAGE);
+            view.forward(request, response);
+        }
 
     }
 }
