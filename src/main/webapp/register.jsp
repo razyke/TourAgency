@@ -11,13 +11,13 @@
     <% if (request.getSession().getAttribute("role")!=null) { %>
     <p align="center"> Hello, ${userName}! </p>
     <p align="center"> You signed as  ${role}. </p>
-    <form method="post" action="/signOut">
+    <form method="post" action="signOut">
         <p align="right">
             <button type = "submit" value="signOut"> Sign out </button>
         </p>
     </form>
     <% } else {%>
-        <form method="post" action="registration.jsp">
+        <form method="post" action="register">
             <center>
             <table border="1" width="30%" cellpadding="5">
                 <thead>

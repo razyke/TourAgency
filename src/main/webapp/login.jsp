@@ -11,7 +11,7 @@
 <% if (request.getSession().getAttribute("role")!=null) { %>
 <p align="center"> Hello, ${userName}! </p>
 <p align="center"> You signed as  ${role}. </p>
-<form method="post" action="/signOut">
+<form method="post" action="signOut">
     <p align="right">
         <button type = "submit" value="signOut"> Sign out </button>
     </p>

@@ -23,12 +23,12 @@
     </tr>
 </table>
 <% if (request.getSession().getAttribute("role")==null) { %>
-<form form action=/login>
+<form form action=login>
     <p align="right">
         <button type="submit" value="login">Sign in</button>
     </p>
 </form>
-<form form action=/register>
+<form form action=register>
     <p align="right">
         <button type="submit" value="register">Register</button>
     </p>
@@ -37,7 +37,7 @@
 <a href="adminPage.jsp"> To admin page </a>
 <p align="center"> Hello, ${userName}! </p>
 <p align="center"> You signed as  ${role}. </p>
-<form method="post" action="/signOut">
+<form method="post" action="signOut">
     <p align="right">
         <button type = "submit" value="signOut"> Sign out </button>
     </p>
