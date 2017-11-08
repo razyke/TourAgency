@@ -14,7 +14,7 @@
     </bean>
 
     <!-- Definition for studentJDBCTemplate bean -->
-    <bean id = "daoImpl"
+    <bean id = "Dao"
           class = "dao.DaoImpl">
         <property name = "dataSource" ref = "dataSource" />
     </bean>

@@ -4,9 +4,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class DaoFactory {
+
+    private static final ApplicationContext CONTEXT = new ClassPathXmlApplicationContext("Beans.xml");
+
     public static Dao getDao() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-        return (Dao) context.getBean("daoImpl");
+        return (Dao) CONTEXT.getBean("Dao");
     }
 
 }
