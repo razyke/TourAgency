@@ -3,6 +3,7 @@ package model;
 import java.sql.Date;
 
 public class User {
+
     private int id;
     private String loginName;
     private String password;
@@ -14,6 +15,7 @@ public class User {
     private String email;
     private Date lastOrderDate;
     private boolean isAdmin;
+    //TODO add field Language!
 
     public int getId() {
         return id;
