@@ -55,14 +55,14 @@ public class DaoImpl implements Dao {
     }
 
     public Tour getTour(int id, String language) {
-        String SQL = "SELECT tours.id, is_hot, title, type, city, description, language " +
+        String SQL = "SELECT tours.id, is_hot, title, type, city, description, language, cost_seven, cost_ten " +
                 "FROM tours JOIN tour_details ON tours.id = tour_details.tour_id " +
                 "WHERE tours.id = ? AND language = ?";
         return jdbcTemplate.queryForObject(SQL, new TourMapper(), id, language);
     }
 
     public Collection<Tour> getAllTours(String language) {
-        String SQL = "SELECT tours.id, is_hot, title, type, city, description, language " +
+        String SQL = "SELECT tours.id, is_hot, title, type, city, description, language, cost_seven, cost_ten " +
                 "FROM tours JOIN tour_details ON tours.id = tour_details.tour_id " +
                 "WHERE language = ?";
         return jdbcTemplate.query(SQL, new TourMapper(), language);
@@ -71,9 +71,10 @@ public class DaoImpl implements Dao {
     public void createTour(Tour tour) {
         String SQL = "INSERT INTO tours (is_hot) VALUES(?)";
         jdbcTemplate.update(SQL, tour.isHot());
-        SQL = "INSERT INTO tour_details (tour_id, title, description, language, type, city) VALUES(?,?,?,?,?,?)";
+        SQL = "INSERT INTO tour_details (tour_id, title, description, language, type, city, cost_seven, cost_ten) " +
+                "VALUES(?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(SQL, tour.getId(), tour.getTitle(), tour.getDescription(), tour.getLanguage(),
-                tour.getType(), tour.getCity());
+                tour.getType(), tour.getCity(), tour.getCostSevenDays(), tour.getCostTenDays());
     }
 
     public void deleteTour(int id) {
@@ -82,8 +83,8 @@ public class DaoImpl implements Dao {
     }
 
     public void updateTour(Tour tour) {
-        String SQL = "UPDATE tours SET is_hot = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, tour.isHot(), tour.getId());
+        String SQL = "UPDATE tours SET is_hot = ?, cost_seven = ?, cost_ten = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, tour.isHot(), tour.getCostSevenDays(), tour.getCostTenDays(), tour.getId());
         SQL = "UPDATE tour_details SET title = ?, description = ?, type = ?, city = ? " +
                 "WHERE tour_id = ? AND language = ?";
         jdbcTemplate.update(SQL, tour.getTitle(), tour.getDescription(),tour.getType(), tour.getCity(),

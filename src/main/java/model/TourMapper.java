@@ -16,6 +16,8 @@ public class TourMapper implements RowMapper<Tour> {
         tour.setCity(resultSet.getString("city"));
         tour.setDescription(resultSet.getString("description"));
         tour.setLanguage(resultSet.getString("language"));
+        tour.setCostSevenDays(resultSet.getInt("cost_seven"));
+        tour.setCostTenDays(resultSet.getInt("cost_ten"));
         return tour;
     }
 }

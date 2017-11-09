@@ -8,6 +8,24 @@ public class Tour {
     private String city;
     private String description;
     private String language;
+    private int costSevenDays;
+    private int costTenDays;
+
+    public int getCostSevenDays() {
+        return costSevenDays;
+    }
+
+    public void setCostSevenDays(int costSevenDays) {
+        this.costSevenDays = costSevenDays;
+    }
+
+    public int getCostTenDays() {
+        return costTenDays;
+    }
+
+    public void setCostTenDays(int costTenDays) {
+        this.costTenDays = costTenDays;
+    }
 
     public String getTitle() {
         return title;
