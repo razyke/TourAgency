@@ -1,7 +1,7 @@
 package servlets;
 
 import dao.Dao;
-import dao.DaoFactory;
+import dao.BeanFactory;
 import model.User;
 import util.Utils;
 
@@ -17,7 +17,7 @@ public class RegisterServlet extends HttpServlet {
     private Dao dao;
 
     public RegisterServlet() {
-        dao = DaoFactory.getDao();
+        dao = BeanFactory.getDao();
     }
 
     @Override
