@@ -1,4 +1,8 @@
-
+### IntelliJ IDEA ###
 .idea/
-.target/
-TourAgency.iml
+*.iws
+*.iml
+*.ipr
+
+# Target directory #
+target/

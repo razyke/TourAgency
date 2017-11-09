@@ -3,14 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-    <!--<welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>!-->
-
-    <servlet>
-        <servlet-name>Testing</servlet-name>
-        <servlet-class>servlets.TestServlet</servlet-class>
-    </servlet>
 
     <servlet>
         <servlet-name>Login</servlet-name>
@@ -27,10 +19,20 @@
         <servlet-class>servlets.WelcomeServlet</servlet-class>
     </servlet>
 
-    <servlet-mapping>
-        <servlet-name>Testing</servlet-name>
-        <url-pattern>/testing</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>servlets.RegisterServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Admin</servlet-name>
+        <servlet-class>servlets.AdminServlet</servlet-class>
+    </servlet>
+
+    <filter>
+        <filter-name>LogFilter</filter-name>
+        <filter-class>servlets.FilterServlet</filter-class>
+    </filter>
 
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -46,5 +48,20 @@
         <servlet-name>Welcome</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Admin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    
+    <filter-mapping>
+        <filter-name>LogFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>
