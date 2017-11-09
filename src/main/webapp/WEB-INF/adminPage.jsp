@@ -46,6 +46,7 @@
             <td> <a href="DetailsServlet?action=detail&idOrder=<c:out value="${order.idOrder}"/>"> Details </a> </td>
  <!-- Thread to create  details-->
         </tr>
+   </c:forEach>
 </tbody>
 
 </table>

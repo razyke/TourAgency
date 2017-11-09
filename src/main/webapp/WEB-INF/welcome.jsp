@@ -9,8 +9,15 @@
 
 <body>
 
+<p align = "center" style = "color: green" > <c: out "$registration"> </p>
+
 <h3 align="center">Welcome</h3>
 <h3 align="center"> Select Tour </h3>
+
+<c:forEach items="${tours}" var="tour">
+<a href = "OrderServlet?action=order&tourId=<c:out value="${tour.tourId}"/>"> <c:out "$tour.toutName"> </a>
+</c:forEach>
+<!--
 <table align="center">
     <tr>
         <td> Paradise islands</td>
@@ -22,6 +29,8 @@
         <td> Delight of the seaside</td>
     </tr>
 </table>
+-->
+
 <% if (request.getSession().getAttribute("role")==null) { %>
 <form form action=login>
     <p align="right">
