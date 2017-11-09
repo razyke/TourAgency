@@ -7,7 +7,7 @@
     <title>Login Page</title>
 </head>
 <body>
-<a href="welcome.jsp"> To main page </a>
+<a href="/TourAgency/"> To main page </a>
 <% if (request.getSession().getAttribute("role")!=null) { %>
 <p align="center"> Hello, ${userName}! </p>
 <p align="center"> You signed as  ${role}. </p>

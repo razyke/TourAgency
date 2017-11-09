@@ -6,7 +6,7 @@
 
 <body>
 <h3 align="center">Admin Page</h3>
-<a href="welcome.jsp"> To main page </a>
+<a href="/TourAgency/"> To main page </a>
 
 <% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <p align="center"> Hello, admin! </p>

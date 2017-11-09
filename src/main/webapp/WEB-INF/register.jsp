@@ -7,7 +7,7 @@
         <title>Registration</title>
     </head>
     <body>
-    <a href="welcome.jsp"> To main page </a>
+    <a href="/TourAgency/"> To main page </a>
     <% if (request.getSession().getAttribute("role")!=null) { %>
     <p align="center"> Hello, ${userName}! </p>
     <p align="center"> You signed as  ${role}. </p>
@@ -17,9 +17,9 @@
         </p>
     </form>
     <% } else {%>
+    <p align="right" style="color: red">${errorString}</p>
         <form method="post" action="register">
-            <center>
-            <table border="1" width="30%" cellpadding="5">
+            <table border="1" width="30%" cellpadding="5" align="center">
                 <thead>
                     <tr>
                         <th colspan="2">Enter Information Here</th>
@@ -47,15 +47,18 @@
                         <td><input type="password" name="password" value="${user.password}" /></td>
                     </tr>
                     <tr>
+                        <td>Repeat Password</td>
+                        <td><input type="password" name="password2" value="${user.password}" /></td>
+                    </tr>
+                    <tr>
                         <td><input type="submit" value="Submit" /></td>
                         <td><input type="reset" value="Reset" /></td>
                     </tr>
                     <tr>
-                        <td colspan="2">Already registered!! <a href="login.jsp">Login Here</a></td>
+                        <td colspan="2">Already registered? sign in <a href="login.jsp">here</a></td>
                     </tr>
                 </tbody>
             </table>
-            </center>
         </form>
     <% } %>
     </body>
