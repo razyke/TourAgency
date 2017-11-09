@@ -50,6 +50,14 @@ public interface Dao {
     void updateUser(User user);
 
     /**
+     * Check if the user with a given value of given field
+     * @param columnName is name of field
+     * @param value is value to check
+     * @return
+     */
+    boolean isExist(String columnName, String value);
+
+    /**
      * Get Tour by <code>id</code> from DB.
      * @param id - key of Tour.
      * @param language - selected language of page.
