@@ -38,6 +38,9 @@
         </tr>
     </table>
 </form>
+<p align="right">
+<a href="register"> Register </a>
+</p>
 <% } %>
 </body>
 </html>

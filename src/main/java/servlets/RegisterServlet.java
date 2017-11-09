@@ -41,7 +41,7 @@ public class RegisterServlet extends HttpServlet {
         User user = new User();
         user.setLoginName(request.getParameter("userName"));
         user.setPassword(request.getParameter("password"));
-        dao.createUser(user);
+        //dao.createUser(user);
         if (hasError) {
             request.setAttribute("errorString", errorString);
             RequestDispatcher view = request.getRequestDispatcher(Utils.REGISTER_PAGE);
