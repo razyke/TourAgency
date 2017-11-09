@@ -45,15 +45,17 @@ public interface Dao {
     /**
      * Get Tour by <code>id</code> from DB.
      * @param id - key of Tour.
+     * @param language - selected language of page.
      * @return tour by id from DB.
      */
-    Tour getTour(int id);
+    Tour getTour(int id, String language);
 
     /**
      * Get all tours from DB.
+     * @param language - selected language of page.
      * @return collection of tours.
      */
-    Collection<Tour> getAllTours();
+    Collection<Tour> getAllTours(String language);
 
     /**
      * Creating tour in DB.

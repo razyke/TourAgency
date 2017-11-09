@@ -11,6 +11,11 @@ public class TourMapper implements RowMapper<Tour> {
         Tour tour = new Tour();
         tour.setId(resultSet.getInt("id"));
         tour.setHot(resultSet.getBoolean("is_hot"));
-        return null;
+        tour.setTitle(resultSet.getString("title"));
+        tour.setType(resultSet.getString("type"));
+        tour.setCity(resultSet.getString("city"));
+        tour.setDescription(resultSet.getString("description"));
+        tour.setLanguage(resultSet.getString("language"));
+        return tour;
     }
 }
