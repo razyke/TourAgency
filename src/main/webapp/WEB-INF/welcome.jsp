@@ -1,23 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 <head>
+
     <meta charset="UTF-8">
     <title>Welcome Page</title>
+
 </head>
 
 <body>
 
-<p align = "center" style = "color: green" > <c: out "$registration"> </p>
+<p align = "center" style = "color: green" > ${registration} </p>
 
 <h3 align="center">Welcome</h3>
 <h3 align="center"> Select Tour </h3>
 
 <c:forEach items="${tours}" var="tour">
-<a href = "OrderServlet?action=order&tourId=<c:out value="${tour.tourId}"/>"> <c:out "$tour.toutName"> </a>
+<a href = "OrderServlet?action=order&tourId=<c:out value="${tour.tourId}"/>"> <c:out "${tour.toutName}"/> </a>
 </c:forEach>
-<!--
+
 <table align="center">
     <tr>
         <td> Paradise islands</td>
@@ -29,7 +32,6 @@
         <td> Delight of the seaside</td>
     </tr>
 </table>
--->
 
 <% if (request.getSession().getAttribute("role")==null) { %>
 <form form action=login>
@@ -37,10 +39,12 @@
         <button type="submit" value="login">Sign in</button>
     </p>
 </form>
+
 <form form action=register>
     <p align="right">
         <button type="submit" value="register">Register</button>
     </p>
+
 </form>
 <% } else {%>
 <a href="admin"> To admin page </a>
