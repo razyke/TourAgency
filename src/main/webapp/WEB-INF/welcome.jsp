@@ -9,7 +9,7 @@
 
 <body>
 
-<p align = "center" style = "color: green" > <c: out "$registration"> </p>
+<p align = "center" style = "color: green" > ${registration} </p>
 
 <h3 align="center">Welcome</h3>
 <h3 align="center"> Select Tour </h3>

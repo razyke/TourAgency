@@ -17,6 +17,21 @@ public class User {
     private boolean isAdmin;
     //TODO add field Language!
 
+
+    public User() {
+    }
+
+    public User(String loginName, String password, String firstName, String lastName, String middleName, String phone, String address, String email) {
+        this.loginName = loginName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+    }
+
     public int getId() {
         return id;
     }

@@ -33,19 +33,21 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String[] userStrings = new String[10];
-        userStrings[0] = request.getParameter("firstName").trim();
-        userStrings[1] = request.getParameter("middleName").trim();
-        userStrings[2] = request.getParameter("lastName").trim();
-        userStrings[3] = request.getParameter("email").trim();
-        userStrings[4] = request.getParameter("phone").trim();
-        userStrings[5] = request.getParameter("address").trim();
-        userStrings[6] = request.getParameter("userName").trim();
-        userStrings[7] = request.getParameter("password");
-        userStrings[8] = request.getParameter("password2");
-        //userStrings[9] = request.getParameter("language");
+        User user = new User(
+                request.getParameter("userName").trim(),
+                request.getParameter("password"),
+                request.getParameter("firstName").trim(),
+                request.getParameter("lastName").trim(),
+                request.getParameter("middleName").trim(),
+                request.getParameter("phone").trim(),
+                request.getParameter("address").trim(),
+                request.getParameter("email").trim()
+                );
+        //language add
 
-        List<String> errorStrings = new RegistrationService().ValidateAndSend(userStrings);
+        List<String> errorStrings = new RegistrationService().ValidateAndSend(
+                user, request.getParameter("password2"));
+        //FIXME:get RegistrationService via beanFactory
         if (errorStrings == null) {
             RequestDispatcher view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
             request.setAttribute("registration", "Registration success!");
