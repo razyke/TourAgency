@@ -30,15 +30,15 @@ public class DaoImpl implements Dao {
 
     public void createUser(User user) {
         String SQL = "INSERT INTO users (login, password, first_name, middle_name, last_name, is_admin, " +
-                "phone, address, last_order_date) VALUES (?,?,?,?,?,?,?,?,?)";
+                "phone, address, last_order_date, email) VALUES (?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(SQL, user.getLoginName(), user.getPassword(), user.getFirstName(),
                 user.getMiddleName(), user.getLastName(), user.isAdmin(), user.getPhone(),
-                user.getAddress(), user.getLastOrderDate());
+                user.getAddress(), user.getLastOrderDate(), user.getEmail());
     }
 
     public User findUser(String loginName) {
         String SQL = "SELECT * FROM users WHERE login = ?";
-        return jdbcTemplate.queryForObject(SQL, new Object[]{loginName}, new UserMapper());
+        return jdbcTemplate.queryForObject(SQL, new UserMapper(), loginName);
     }
 
     public void deleteUser(int id) {
@@ -48,10 +48,10 @@ public class DaoImpl implements Dao {
 
     public void updateUser(User user) {
         String SQL = "UPDATE users SET login = ?, password = ?, first_name = ?, middle_name = ?, last_name = ?, " +
-                "is_admin = ?, phone = ?, address = ?, last_order_date = ?) WHERE id = ?";
+                "is_admin = ?, phone = ?, address = ?, last_order_date = ?, email = ?) WHERE id = ?";
         jdbcTemplate.update(SQL, user.getLoginName(), user.getPassword(), user.getFirstName(),
                 user.getMiddleName(), user.getLastName(), user.isAdmin(), user.getPhone(),
-                user.getAddress(), user.getLastOrderDate(), user.getId());
+                user.getAddress(), user.getLastOrderDate(), user.getEmail(), user.getId());
     }
 
     public Tour getTour(int id, String language) {

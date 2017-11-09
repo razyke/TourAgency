@@ -11,6 +11,7 @@ public class User {
     private String middleName;
     private String phone;
     private String address;
+    private String email;
     private Date lastOrderDate;
     private boolean isAdmin;
 
@@ -92,5 +93,13 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
