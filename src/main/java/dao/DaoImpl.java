@@ -36,6 +36,11 @@ public class DaoImpl implements Dao {
                 user.getAddress(), user.getLastOrderDate());
     }
 
+    //TODO please implement this method.
+    public User findUser(String loginName) {
+        return null;
+    }
+
     public void deleteUser(int id) {
         String SQL = "DELETE FROM users WHERE id = ?";
         jdbcTemplate.update(SQL, id);

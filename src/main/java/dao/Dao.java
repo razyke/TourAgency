@@ -31,6 +31,13 @@ public interface Dao {
     void createUser(User user);
 
     /**
+     * This method return User with set fields user.login and user.password
+     * @param loginName - parameter that we will try to find in DB
+     * @return User with fields user.
+     */
+    User findUser(String loginName);
+
+    /**
      * Delete user by <code>id</code>.
      * @param id - key of user.
      */
