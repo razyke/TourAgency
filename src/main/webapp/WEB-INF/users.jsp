@@ -8,7 +8,9 @@
 
 <body>
 <h3 align="center">Users</h3>
+
 <a href="/TourAgency/"> To main page </a>
+
 <table border=1>
 
     <thead>
@@ -26,6 +28,7 @@
     </tr>
     </thead>
 <tbody>
+
     <c:forEach items="${users}" var="user">
         <tr>
             <td><c:out value="${user.idUser}" /></td>
@@ -45,7 +48,8 @@
             </c:choose>
             </td>
  </table>
- <a href="admin?action="
 
+ <a href="admin?action=delete"> delete user </a>
+ <a href="admin"> Back </a>
 </body>
 </html>
