@@ -1,9 +1,8 @@
 package servlets;
 
-import dao.BeanFactory;
 import dao.Dao;
 import model.User;
-import services.AuthService;
+import spring.StaticContextProvider;
 import util.Utils;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +19,7 @@ public class LoginServlet extends HttpServlet {
     private Dao dao;
 
     public LoginServlet() {
-        dao = BeanFactory.getDao();
+        dao = StaticContextProvider.getDao();
     }
 
     @Override

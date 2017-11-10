@@ -18,7 +18,7 @@ public class RegistrationService {
      * @return List of errors, or <code>null</code> if there is no errors.
      */
     public List<String> ValidateAndSend(User user, String password2) {
-
+        //TODO: separate validation from saving to database
         ArrayList<String> errors = new ArrayList<String>();
         boolean error = false;
 
@@ -93,6 +93,10 @@ public class RegistrationService {
         return errors;
     }
 
+    /**
+     * This is set via Beans.xml configuration
+     * @param dao
+     */
     public void setDao(Dao dao) {
         this.dao = dao;
     }

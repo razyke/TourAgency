@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Definition for Dao bean -->
+    <bean id = "Dao"
+          class = "dao.MockDaoImpl">
+    </bean>
+
+    <!-- Definition for RegistrationService bean-->
+    <bean id = "RegistrationService"
+          class="services.RegistrationService">
+        <property name="dao" ref="Dao"/>
+    </bean>
+
+</beans>
