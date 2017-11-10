@@ -20,8 +20,8 @@
     </bean>
 
     <!-- Definition for RegistrationService bean-->
-    <bean id = "RegistrationService"
-          class="services.RegistrationService">
+    <bean id = "authService"
+          class="services.AuthService">
         <property name="dao" ref="Dao"/>
     </bean>
 

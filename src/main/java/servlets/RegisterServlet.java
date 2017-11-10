@@ -2,7 +2,7 @@ package servlets;
 
 import dao.BeanFactory;
 import model.User;
-import services.RegistrationService;
+import services.AuthService;
 import util.Utils;
 
 import javax.servlet.RequestDispatcher;
@@ -38,9 +38,9 @@ public class RegisterServlet extends HttpServlet {
                 );
         //language add.
 
-        RegistrationService registrationService = BeanFactory.getRegistrationService();
+        AuthService authService = BeanFactory.getAuthService();
 
-        List<String> errorStrings = registrationService.ValidateAndSend(
+        List<String> errorStrings = authService.ValidateAndSend(
                 user, request.getParameter("password2"));
 
         if (errorStrings == null) {
