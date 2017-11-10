@@ -1,13 +1,12 @@
 package dao;
 
-import model.Tour;
-import model.TourMapper;
-import model.User;
-import model.UserMapper;
+import model.*;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.Collection;
+import java.util.List;
 
 public class DaoImpl implements Dao {
     private DataSource dataSource;
@@ -30,10 +29,10 @@ public class DaoImpl implements Dao {
 
     public void createUser(User user) {
         String SQL = "INSERT INTO users (login, password, first_name, middle_name, last_name, is_admin, " +
-                "phone, address, last_order_date, email) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                "phone, address, last_order_date, email, language) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(SQL, user.getLoginName(), user.getPassword(), user.getFirstName(),
                 user.getMiddleName(), user.getLastName(), user.isAdmin(), user.getPhone(),
-                user.getAddress(), user.getLastOrderDate(), user.getEmail());
+                user.getAddress(), user.getLastOrderDate(), user.getEmail(), user.getLanguage());
     }
 
     public User findUser(String loginName) {
@@ -48,10 +47,15 @@ public class DaoImpl implements Dao {
 
     public void updateUser(User user) {
         String SQL = "UPDATE users SET login = ?, password = ?, first_name = ?, middle_name = ?, last_name = ?, " +
-                "is_admin = ?, phone = ?, address = ?, last_order_date = ?, email = ?) WHERE id = ?";
-        jdbcTemplate.update(SQL, user.getLoginName(), user.getPassword(), user.getFirstName(),
-                user.getMiddleName(), user.getLastName(), user.isAdmin(), user.getPhone(),
-                user.getAddress(), user.getLastOrderDate(), user.getEmail(), user.getId());
+                "is_admin = ?, phone = ?, address = ?, last_order_date = ?, email = ?, language = ?) WHERE id = ?";
+        jdbcTemplate.update(SQL, user.getLoginName(), user.getPassword(), user.getFirstName(), user.getMiddleName(),
+                user.getLastName(), user.isAdmin(), user.getPhone(),user.getAddress(), user.getLastOrderDate(),
+                user.getEmail(), user.getLanguage(), user.getId());
+    }
+
+    public boolean isExist(String columnName, String value) {
+        String SQL = "SELECT count(id)>0 FROM users WHERE " + columnName + " = ?";
+        return jdbcTemplate.queryForObject(SQL, boolean.class, value);
     }
 
     public Tour getTour(int id, String language) {
@@ -89,5 +93,39 @@ public class DaoImpl implements Dao {
                 "WHERE tour_id = ? AND language = ?";
         jdbcTemplate.update(SQL, tour.getTitle(), tour.getDescription(),tour.getType(), tour.getCity(),
                 tour.getId(), tour.getLanguage());
+    }
+
+    public void createOrder(Order order) {
+        String SQL = "INSERT INTO orders (tour_id, user_id, price, days, is_activ) VALUES(?,?,?,?)";
+        jdbcTemplate.update(SQL, order.getTour().getId(), order.getUser().getId(),
+                order.getPrice(), order.getDays(), order.isActiv());
+    }
+
+    public Order getOrder(int id) {
+        String SQL = "SELECT * FROM orders WHERE id = ?";
+        Order order = jdbcTemplate.queryForObject(SQL, new OrderMapper(), id);
+        order.setUser(getUser(order.getUser().getId()));
+        order.setTour(getTour(order.getTour().getId(), order.getUser().getLanguage()));
+        return order;
+    }
+
+    public Collection<Order> getAllOrders() {
+        String SQL = "SELECT * FROM orders";
+        List<Order> orders = jdbcTemplate.query(SQL, new OrderMapper());
+        for (Order order : orders) {
+            order.setUser(getUser(order.getUser().getId()));
+            order.setTour(getTour(order.getTour().getId(), order.getUser().getLanguage()));
+        }
+        return orders;
+    }
+
+    public void updateOrder(Order order) {
+        String SQL = "UPDATE orders SET days = ?, price = ?, is_activ = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, order.getDays(), order.getPrice(), order.isActiv(), order.getId());
+    }
+
+    public void deleteOrder(int id) {
+        String SQL = "DELETE FROM orders WHERE id = ?";
+        jdbcTemplate.update(SQL, id);
     }
 }

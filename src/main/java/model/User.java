@@ -13,6 +13,7 @@ public class User {
     private String phone;
     private String address;
     private String email;
+    private String language;
     private Date lastOrderDate;
     private boolean isAdmin;
     //TODO add field Language!
@@ -119,4 +120,13 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 }
+

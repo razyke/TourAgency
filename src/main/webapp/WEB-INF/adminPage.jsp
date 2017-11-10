@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
     <title>Admin Page</title>
@@ -22,7 +23,7 @@
 
 <table align = "center" border = "1">
 
- <thead>
+    <thead>
     <tr>
         <th> Id</th>
         <th> Tour </th>
@@ -33,8 +34,9 @@
         <th> Details </th>
     </tr>
     </thead>
-
- <tbody>
+<!--
+    <tbody>
+    <%--
     <c:forEach items="${orders}" var="order">
         <tr>
             <td> <c:out value="${order.idOrder}" /> </td>
@@ -44,10 +46,12 @@
             <td> <c:out value="${order.user.firstName  ${order.user.lastName}}" /> </td>
             <td> <c:out value="${order.user.phone}" /></td>
             <td> <a href="DetailsServlet?action=detail&idOrder=<c:out value="${order.idOrder}"/>"> Details </a> </td>
- <!-- Thread to create  details-->
+            <!-- Thread to create  details-->
         </tr>
-   </c:forEach>
-</tbody>
+    </c:forEach>
+    --%>
+    </tbody>
+    !-->
 
 </table>
 

@@ -1,6 +1,5 @@
 package servlets;
 
-import dao.Dao;
 import dao.BeanFactory;
 import model.User;
 import services.RegistrationService;
@@ -15,12 +14,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class RegisterServlet extends HttpServlet {
-
-    private Dao dao;
-
-    public RegisterServlet() {
-        dao = BeanFactory.getDao();
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,11 +36,13 @@ public class RegisterServlet extends HttpServlet {
                 request.getParameter("address").trim(),
                 request.getParameter("email").trim()
                 );
-        //language add
+        //language add.
 
-        List<String> errorStrings = new RegistrationService().ValidateAndSend(
+        RegistrationService registrationService = BeanFactory.getRegistrationService();
+
+        List<String> errorStrings = registrationService.ValidateAndSend(
                 user, request.getParameter("password2"));
-        //FIXME:get RegistrationService via beanFactory
+
         if (errorStrings == null) {
             RequestDispatcher view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
             request.setAttribute("registration", "Registration success!");
@@ -57,6 +52,5 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("registration", errorStrings);
             view.forward(request, response);
         }
-
     }
 }
