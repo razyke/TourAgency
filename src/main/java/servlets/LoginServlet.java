@@ -1,8 +1,8 @@
 package servlets;
 
-import dao.BeanFactory;
 import model.User;
 import services.AuthService;
+import spring.StaticContextProvider;
 import util.Utils;
 
 import javax.servlet.RequestDispatcher;
@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        AuthService authService = BeanFactory.getAuthService();
+        AuthService authService = StaticContextProvider.getAuthService();
 
         User user = new User(request.getParameter("userName"), request.getParameter("password"));
         User authUser = authService.authUser(user);
@@ -48,7 +48,6 @@ public class LoginServlet extends HttpServlet {
                 view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
             }
         }
-
         view.forward(request, response);
     }
 }

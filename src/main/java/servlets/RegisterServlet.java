@@ -1,8 +1,8 @@
 package servlets;
 
-import dao.BeanFactory;
 import model.User;
 import services.AuthService;
+import spring.StaticContextProvider;
 import util.Utils;
 
 import javax.servlet.RequestDispatcher;
@@ -38,7 +38,7 @@ public class RegisterServlet extends HttpServlet {
                 );
         //language add.
 
-        AuthService authService = BeanFactory.getAuthService();
+        AuthService authService = StaticContextProvider.getAuthService();
 
         List<String> errorStrings = authService.ValidateAndSend(
                 user, request.getParameter("password2"));

@@ -15,11 +15,8 @@
 
 <p align="center"> Hello, admin! </p>
 
-<form method="post" action="signOut">
-    <p align="right">
-        <button type = submit value="signOut"> Sign out </button>
-    </p>
-</form>
+<a href="welcome?action=signOut"> sign out </a>
+
 <a href="admin?action=tours"> Tours </a>
 <a href="admin?action=users"> Users </a>
 <table align = "center" border = "1">
@@ -46,7 +43,7 @@
             <td> <c:out value="${order.user.firstName  ${order.user.lastName}}" /> </td>
             <td> <c:out value="${order.user.phone}" /></td>
             <td> <a href="admin?action=detail&idOrder=<c:out value="${order.idOrder}"/>"> Details </a> </td>
- <%-- Thread to create  details--%>
+ <%-- Thread to create  detail
         </tr>
    </c:forEach
 </tbody>
