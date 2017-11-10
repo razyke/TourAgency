@@ -34,7 +34,7 @@
             <td><c:out value="${user.lastName}" /></td>
             <td><c:out value="${user.email}" /></td>
             <td><c:out value="${user.address}" /></td>
-            <td><c:out value="${user.email}" /></td>
+            <td>
             <c:choose>
                 <c:when test="${user.isAdmin eq ('true')}">
                     <td><c:out value="Yes"/></td>
@@ -43,6 +43,9 @@
                     <td><c:out value="No"/></td>
                 </c:otherwise>
             </c:choose>
+            </td>
  </table>
+ <a href="admin?action="
+
 </body>
 </html>
