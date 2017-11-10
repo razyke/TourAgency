@@ -47,7 +47,7 @@ public class RegisterServlet extends HttpServlet {
 
         List<String> errorStrings = new RegistrationService().ValidateAndSend(
                 user, request.getParameter("password2"));
-        //FIXME:get RegistrationService via beanFactory
+        //FI7XME:get RegistrationService via beanFactory
         if (errorStrings == null) {
             RequestDispatcher view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
             request.setAttribute("registration", "Registration success!");
