@@ -24,8 +24,8 @@
 
     <% } else {%>
 
-<c:forEach items="${errorStrings}" var="errorString">
-    <p align="right" style="color: red">${errorString}</p>
+<c:forEach items="${registration}" var="reg">
+    <p align="right" style="color: red">${registration}</p>
  </c:forEach>
 
         <form method="post" action="register">
