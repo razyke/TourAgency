@@ -1,6 +1,7 @@
 package servlets;
 
-import dao.UserDao;
+import dao.BeanFactory;
+import dao.Dao;
 import model.User;
 import services.AuthService;
 import util.Utils;
@@ -16,10 +17,10 @@ import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
 
-    private UserDao dao;
+    private Dao dao;
 
     public LoginServlet() {
-        dao = new UserDao();
+        dao = BeanFactory.getDao();
     }
 
     @Override
@@ -46,7 +47,8 @@ public class LoginServlet extends HttpServlet {
             errorString = "Error: username and password are required";
         } else {
             try {
-                user = dao.findUser(userName, AuthService.getSha256Hash(password));
+
+                //user = dao.findUser(userName, AuthService.getSha256Hash(password));
                 if (user == null) {
                     hasError = true;
                     errorString = "Error: Incorrect username or password";
