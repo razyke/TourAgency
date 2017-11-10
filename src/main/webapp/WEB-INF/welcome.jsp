@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<%@ page  contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 
@@ -17,7 +17,7 @@
 <h3 align="center"> Select Tour </h3>
 
 <c:forEach items="${tours}" var="tour">
-<a href = "OrderServlet?action=order&tourId=<c:out value="${tour.tourId}"/>"> <c:out "${tour.toutName}"/> </a>
+<a href = "OrderServlet?action=order&tourId=<c:out value="${tour.tourId}"/>"> <c:out value = "${tour.toutName}"/> </a>
 </c:forEach>
 
 <table align="center">
