@@ -15,8 +15,10 @@ public class WelcomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //By default will be open on english language.
         String language = "EN";
 
+        //Before user sing out, we will save information about what language he see.
         if (request.getParameter("action") != null) {
             if (request.getParameter("action").equals("signOut")) {
                 HttpSession session = request.getSession();

@@ -16,20 +16,20 @@ public class MockDaoImpl implements Dao  {
         users = new HashMap<Integer, User>();
         users.put(1, new User("User1",
                         "5e884898da2847151d0e56f8dc6292773603dd6aabbdd62a11ef721d1542d8",
-                        "User 1 First name",
-                        "User 1 Last name",
-                        "User 1 Middle name",
-                        "User 1 phone",
-                        "User 1 address",
-                        "User 1 email"));
+                        "Kip",
+                        "Lip",
+                        "Mop",
+                        "3231321",
+                        "Street of feet",
+                        "KLP@epam.com"));
         users.put(2, new User("razyke",
                         "8d969eef6ecad3c29a3a629280e686cfc3f5d5a86aff3ca122c923adc6c92",
-                        "razyke First name",
-                        "razyke Last name",
-                        "razyke Middle name",
-                        "razyke phone",
-                        "razyke address",
-                        "razyke email"));
+                        "Daniil",
+                        "Smirnov",
+                        "Victorovich",
+                        "711133",
+                        "Zastavskaya 22",
+                        "ds@epam.com"));
     }
 
     @Override
@@ -70,6 +70,25 @@ public class MockDaoImpl implements Dao  {
 
     @Override
     public boolean isExist(String columnName, String value) {
+        if (columnName.equals("login")) {
+            for (User u : users.values()) {
+                if (u.getLoginName().equals(value)) {
+                    return true;
+                }
+            }
+        } else if (columnName.equals("phone")) {
+            for (User u : users.values()) {
+                if (u.getPhone().equals(value)) {
+                    return true;
+                }
+            }
+        } else if (columnName.equals("email")) {
+            for (User u : users.values()) {
+                if (u.getEmail().equals(value)) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 

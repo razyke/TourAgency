@@ -10,51 +10,79 @@ import static org.junit.Assert.*;
 
 public class AuthServiceTest {
 
-   /* @Test
+    @Test
     public void addAdmin() throws Exception {
-        AuthService authService = BeanFactory.getAuthService();
+
+        AuthService authService = StaticContextProvider.getAuthService();
+
         User user = new User();
-        user.setLoginName("razyke");
-        user.setFirstName("Daniil");
-        user.setLastName("Smirnov");
-        user.setMiddleName("Victorovich");
+        user.setLoginName("admin");
+        user.setFirstName("Ivan");
+        user.setLastName("Urievich");
+        user.setMiddleName("Dobruh");
         user.setPassword("123456");
-        user.setEmail("ds@epam.com");
-        user.setPhone("1122333"); //here error of casting
+        user.setEmail("IUD@epam.com");
+        user.setPhone("11112");
         user.setAdmin(true);
-        //Empty 3 fields
+
         List<String> strings = authService.ValidateAndSend(user,"123456");
         assertEquals(null,strings);
-    }*/
+    }
 
     @Test
     public void validateAndSend() throws Exception {
 
-        /*AuthService authService = StaticContextProvider.getAuthService();
+        AuthService authService = StaticContextProvider.getAuthService();
 
         User user = new User();
         user.setLoginName("");
-        user.setFirstName("Daniil");
-        user.setLastName("Smirnov");
+        user.setFirstName("Eric");
+        user.setLastName("Cartman");
         user.setPassword("123");
         user.setEmail("");
-        user.setPhone("erwerwer"); //here error of casting
-        //Empty 3 fields
-        List<String> strings = authService.ValidateAndSend(user,"123");
+        user.setPhone("suckmywalls"); //here error of casting
+        List<String> errorStrings = authService.ValidateAndSend(user,"123");
 
-        assertEquals(3,strings.size());*/
+        assertEquals(3,errorStrings.size());
     }
 
     @Test
-    public void getSha256Hash() throws Exception {
+    public void validateAndSend2() throws Exception {
+
+        AuthService authService = StaticContextProvider.getAuthService();
+
+        User user = new User();
+
+        user.setLoginName("virmaster");
+        user.setFirstName("Valentain");
+        user.setMiddleName("Pamaunt");
+        user.setLastName("Vimpelman");
+        user.setPassword("iamcool777");
+        user.setEmail("vpv@emam.com");
+        user.setPhone("5523232");
+
+        List<String> errorStrings = authService.ValidateAndSend(user, "iamcool777");
+
+        assertEquals(null, errorStrings);
+    }
+
+    @Test
+    public void login() throws Exception {
 
         AuthService service = StaticContextProvider.getAuthService();
 
-        String testPassword1 = "5e884898da2847151d0e56f8dc6292773603dd6aabbdd62a11ef721d1542d8";
-        String testPassword2 = "8d969eef6ecad3c29a3a629280e686cfc3f5d5a86aff3ca122c923adc6c92";
+        User user1 = new User("razyke","123456");
+        User user2 = new User("User1", "password");
 
-        assertEquals(testPassword1,service.getSha256Hash("password"));
-        assertEquals(testPassword2,service.getSha256Hash("123456"));
+        User authUser1 = service.authUser(user1);
+        User authUser2 = service.authUser(user2);
+        boolean error = true;
+
+        if (authUser1 != null && authUser2 != null) {
+            error = false;
+        }
+
+        assertTrue(!error);
     }
 
 }

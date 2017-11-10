@@ -24,7 +24,7 @@ public class AuthService {
         ArrayList<String> errors = new ArrayList<String>();
         boolean error = false;
 
-        //check for empty fields, exception middle name and address
+        //check for empty fields, exception - middle name and address.
 
         if (user.getLoginName().isEmpty() || user.getLoginName().equals("")) {
             error = true;
@@ -55,12 +55,10 @@ public class AuthService {
 
         }
         try {
-            int x;
-            x = Integer.parseInt(user.getPhone());
+            Integer.parseInt(user.getPhone());
         } catch (Exception e) {
             error = true;
             errors.add("Phone contain illegal symbols");
-            System.out.println(e.getMessage() + " Cast to int failed.");
         }
         if (user.getEmail().isEmpty() || user.getEmail().equals("")) {
             error = true;
@@ -71,7 +69,7 @@ public class AuthService {
         }
 
         if (!error) {
-            //Check on unique values in DB
+            //Check on unique values in DB.
             if (dao.isExist("login", user.getLoginName())) {
                 error = true;
                 errors.add("This login already used");
@@ -85,17 +83,20 @@ public class AuthService {
                 errors.add("This phone already used");
             }
             if (!error) {
-                //TODO REMOVE AFTER LANGUAGE
-                user.setLanguage("EN");
+                user.setLanguage("EN"); //TODO: When internationalization service will be completed remove this.
                 dao.createUser(user);
                 return null;
             }
         }
-
         return errors;
     }
 
-    public String getSha256Hash(String source) {
+    /**
+     * This method encrypting user/admin password.
+     * @param source - not encrypted pass.
+     * @return - encrypted pass;
+     */
+    private String getSha256Hash(String source) {
         MessageDigest md = null;
         try {
             md = MessageDigest.getInstance("SHA-256");
@@ -112,6 +113,11 @@ public class AuthService {
         return hexString.toString();
     }
 
+    /**
+     * Trying to find login user and check password.
+     * @param userFromJSP - <code>User</code> with sett pass and login name.
+     * @return null if not found or incorrect password / <code>User</code> if all correct.
+     */
     public User authUser(User userFromJSP) {
 
         if (userFromJSP.getPassword().isEmpty() ||
@@ -121,17 +127,24 @@ public class AuthService {
             return null;
         }
 
-        User user = dao.findUser(userFromJSP.getLoginName());
-        if (user == null) {
-            return null;
-        } else {
-            if (user.getPassword().equals(getSha256Hash(userFromJSP.getPassword()))) {
-                return user;
+        if (dao.isExist("login", userFromJSP.getLoginName())) {
+            User user = dao.findUser(userFromJSP.getLoginName());
+            if (user == null) {
+                return null;
+            } else {
+                if (user.getPassword().equals(getSha256Hash(userFromJSP.getPassword()))) {
+                    return user;
+                }
+                return null;
             }
-            return null;
         }
+        return null;
     }
 
+    /**
+     * For spring mapping.
+     * @param dao
+     */
     public void setDao(Dao dao) {
         this.dao = dao;
     }
