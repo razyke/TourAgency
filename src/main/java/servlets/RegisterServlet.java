@@ -1,8 +1,9 @@
 package servlets;
 
 import dao.Dao;
-import dao.DaoFactory;
+import dao.BeanFactory;
 import model.User;
+import services.RegistrationService;
 import util.Utils;
 
 import javax.servlet.RequestDispatcher;
@@ -11,13 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 public class RegisterServlet extends HttpServlet {
 
     private Dao dao;
 
     public RegisterServlet() {
-        dao = DaoFactory.getDao();
+        dao = BeanFactory.getDao();
     }
 
     @Override
@@ -31,20 +33,28 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String  errorString = "";
-        boolean hasError = false;
-        if (!(request.getParameter("password").equals(request.getParameter("password2")))) {
-            errorString = "passwords are not equal, please type again";
-            hasError = true;
-        }
+        User user = new User(
+                request.getParameter("userName").trim(),
+                request.getParameter("password"),
+                request.getParameter("firstName").trim(),
+                request.getParameter("lastName").trim(),
+                request.getParameter("middleName").trim(),
+                request.getParameter("phone").trim(),
+                request.getParameter("address").trim(),
+                request.getParameter("email").trim()
+                );
+        //language add
 
-        User user = new User();
-        user.setLoginName(request.getParameter("userName"));
-        user.setPassword(request.getParameter("password"));
-        dao.createUser(user);
-        if (hasError) {
-            request.setAttribute("errorString", errorString);
+        List<String> errorStrings = new RegistrationService().ValidateAndSend(
+                user, request.getParameter("password2"));
+        //FIXME:get RegistrationService via beanFactory
+        if (errorStrings == null) {
+            RequestDispatcher view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
+            request.setAttribute("registration", "Registration success!");
+            view.forward(request, response);
+        } else {
             RequestDispatcher view = request.getRequestDispatcher(Utils.REGISTER_PAGE);
+            request.setAttribute("registration", errorStrings);
             view.forward(request, response);
         }
 

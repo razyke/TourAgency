@@ -22,6 +22,7 @@
 <p align="right" style="color: red">${errorString}</p>
 
 <form method="POST" action="login">
+
     <table border="0" align="right">
         <tr>
             <td>login</td>
@@ -38,6 +39,9 @@
         </tr>
     </table>
 </form>
+<p align="right">
+<a href="register"> Register </a>
+</p>
 <% } %>
 </body>
 </html>

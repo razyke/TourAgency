@@ -18,6 +18,8 @@ public class UserMapper implements RowMapper<User> {
         user.setAddress(resultSet.getString("address"));
         user.setAdmin(resultSet.getBoolean("is_admin"));
         user.setLastOrderDate(resultSet.getDate("last_order_date"));
+        user.setEmail(resultSet.getString("email"));
+        user.setLanguage(resultSet.getString("language"));
         return user;
 
     }
