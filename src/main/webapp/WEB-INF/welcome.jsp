@@ -17,7 +17,7 @@
 <h3 align="center"> Select Tour </h3>
 
 <c:forEach items="${tours}" var="tour">
-<a href = "OrderServlet?action=order&tourId=<c:out value="${tour.tourId}"/>"> <c:out value = "${tour.toutName}"/> </a>
+<a href = "OrderServlet?action=order&tourId=<c:out value="${tour.id}"/>"> <c:out value = "${tour.title}"/> </a>
 </c:forEach>
 
 <table align="center">

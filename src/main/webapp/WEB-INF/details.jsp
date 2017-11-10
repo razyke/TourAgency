@@ -29,12 +29,12 @@
 
      <tr>
                 <td> Last name  <c:out value="{$order.user.lastName}" /> </td>
-                <td> Tour  <c:out value="{$order.tourName}" /> </td>
+                <td> Tour  <c:out value="{$order.tour.title}" /> </td>
      </tr>
 
      <tr>
                 <td> Middle name  <c:out value="{$order.user.middleName}" /> </td>
-                <td> Description  <c:out value="{$order.tourDescription}" /> </td>
+                <td> Description  <c:out value="{$order.tour.description}" /> </td>
      </tr>
 
      <tr>
