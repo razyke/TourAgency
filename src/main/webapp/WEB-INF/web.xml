@@ -29,11 +29,6 @@
         <servlet-class>servlets.AdminServlet</servlet-class>
     </servlet>
 
-    <filter>
-        <filter-name>LogFilter</filter-name>
-        <filter-class>servlets.FilterServlet</filter-class>
-    </filter>
-
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -58,10 +53,5 @@
         <servlet-name>Admin</servlet-name>
         <url-pattern>/admin</url-pattern>
     </servlet-mapping>
-    
-    <filter-mapping>
-        <filter-name>LogFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
 
 </web-app>

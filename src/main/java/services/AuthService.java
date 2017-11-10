@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class AuthService {
+
     public static String getSha256Hash(String source) {
         MessageDigest md = null;
         try {
