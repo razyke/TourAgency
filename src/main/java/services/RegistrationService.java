@@ -1,6 +1,5 @@
 package services;
 
-import dao.BeanFactory;
 import dao.Dao;
 import model.User;
 
@@ -9,12 +8,7 @@ import java.util.List;
 
 public class RegistrationService {
 
-    //private final Dao dao;
-
-    public RegistrationService() {
-        //dao = BeanFactory.getDao();
-        //TODO get factory bean of service
-    }
+    private Dao dao;
 
     /**
      * This method take user that we received from .jsp form
@@ -23,12 +17,13 @@ public class RegistrationService {
      * @param password2 - to check correct input of password
      * @return List of errors, or <code>null</code> if there is no errors.
      */
-    public List<String> ValidateAndSend(User user, String password2){
+    public List<String> ValidateAndSend(User user, String password2) {
 
         ArrayList<String> errors = new ArrayList<String>();
         boolean error = false;
 
         //check for empty fields, exception middle name and address
+
         if (user.getLoginName().isEmpty() || user.getLoginName().equals("")) {
             error = true;
             errors.add("Empty Login Name");
@@ -41,6 +36,8 @@ public class RegistrationService {
         if (!user.getPassword().equals(password2)) {
             error = true;
             errors.add("Passwords does not repeat");
+        } else {
+            user.setPassword(AuthService.getSha256Hash(user.getPassword()));
         }
         if (user.getFirstName().isEmpty() || user.getFirstName().equals("")) {
             error = true;
@@ -53,7 +50,15 @@ public class RegistrationService {
         if (user.getPhone().isEmpty() || user.getPhone().equals("")) {
             error = true;
             errors.add("Empty Phone");
-            //TODO check on parse int
+
+        }
+        try {
+            int x;
+            x = Integer.parseInt(user.getPhone());
+        } catch (Exception e) {
+            error = true;
+            errors.add("Phone contain illegal symbols");
+            System.out.println(e.getMessage() + " Cast to int failed.");
         }
         if (user.getEmail().isEmpty() || user.getEmail().equals("")) {
             error = true;
@@ -63,15 +68,32 @@ public class RegistrationService {
             errors.add("Wrong naming email");
         }
 
-        //TODO Add check on unique fields LOGIN NAME, PHONE, EMAIL + add language in User
-
         if (!error) {
-            //For test commented this 2 lines.
-            //dao.createUser(user);
-            return null;
-        } else {
-            return errors;
+            //Check on unique values in DB
+            if (dao.isExist("login", user.getLoginName())) {
+                error = true;
+                errors.add("This login already used");
+            }
+            if (dao.isExist("email", user.getEmail())) {
+                error = true;
+                errors.add("This email already used");
+            }
+            if (dao.isExist("phone", user.getPhone())) {
+                error = true;
+                errors.add("This phone already used");
+            }
+            if (!error) {
+                //TODO REMOVE AFTER LANGUAGE
+                user.setLanguage("EN");
+                dao.createUser(user);
+                return null;
+            }
         }
+
+        return errors;
     }
 
+    public void setDao(Dao dao) {
+        this.dao = dao;
+    }
 }
