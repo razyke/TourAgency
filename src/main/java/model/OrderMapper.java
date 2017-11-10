@@ -12,6 +12,11 @@ public class OrderMapper implements RowMapper<Order> {
         order.setPrice(resultSet.getInt("price"));
         order.setDays(resultSet.getInt("days"));
         order.setActiv(resultSet.getBoolean("is_activ"));
+        order.setUser(new User());
+        order.getUser().setId(resultSet.getInt("user_id"));
+        order.setTour(new Tour());
+        order.getTour().setId(resultSet.getInt("tour_id"));
+
         return order;
     }
 }
