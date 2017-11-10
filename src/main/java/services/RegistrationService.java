@@ -70,15 +70,15 @@ public class RegistrationService {
 
         if (!error) {
             //Check on unique values in DB
-            if (dao.isExist("login", user.getLoginName())) {
+            if (dao.isExist("users","login", user.getLoginName())) {
                 error = true;
                 errors.add("This login already used");
             }
-            if (dao.isExist("email", user.getEmail())) {
+            if (dao.isExist("users","email", user.getEmail())) {
                 error = true;
                 errors.add("This email already used");
             }
-            if (dao.isExist("phone", user.getPhone())) {
+            if (dao.isExist("users","phone", user.getPhone())) {
                 error = true;
                 errors.add("This phone already used");
             }

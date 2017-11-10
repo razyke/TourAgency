@@ -53,12 +53,13 @@ public interface Dao {
     void updateUser(User user);
 
     /**
-     * Check if the user with a given value of given field
+     * Check is there row in a given table with a given value of given field
+     * @param table is title of table
      * @param columnName is name of field
      * @param value is value to check
      * @return if exist user with a given value of given field
      */
-    boolean isExist(String columnName, String value);
+    boolean isExist(String table, String columnName, String value);
 
     /**
      * Get Tour by <code>id</code> from DB.

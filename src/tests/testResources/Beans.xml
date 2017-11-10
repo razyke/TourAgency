@@ -8,9 +8,9 @@
     <bean id="dataSource"
           class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name = "driverClassName" value = "com.mysql.jdbc.Driver"/>
-        <property name = "url" value = "jdbc:mysql://db4free.net:3306/touragencytest"/>
-        <property name = "username" value = "touragencytest"/>
-        <property name = "password" value = "12345-6"/>
+        <property name = "url" value = "jdbc:mysql://localhost:3306/"/>
+        <property name = "username" value = ""/>
+        <property name = "password" value = ""/>
     </bean>
 
     <!-- Definition for Dao bean -->
@@ -19,13 +19,7 @@
         <property name = "dataSource" ref = "dataSource" />
     </bean>
 
-    <!-- Definition for TourService bean -->
-    <bean id = "TourService"
-          class = "services.TourService">
-        <property name="dao" ref="Dao"/>
-    </bean>
-
-    <!-- Definition for RegistrationService bean -->
+    <!-- Definition for RegistrationService bean-->
     <bean id = "RegistrationService"
           class="services.RegistrationService">
         <property name="dao" ref="Dao"/>

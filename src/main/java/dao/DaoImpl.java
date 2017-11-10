@@ -53,9 +53,13 @@ public class DaoImpl implements Dao {
                 user.getEmail(), user.getLanguage(), user.getId());
     }
 
-    public boolean isExist(String columnName, String value) {
-        String SQL = "SELECT count(id)>0 FROM users WHERE " + columnName + " = ?";
+    public boolean isExist(String from, String columnName, String value) {
+        String SQL = "SELECT count(id)>0 FROM" + from +" WHERE " + columnName + " = ?";
         return jdbcTemplate.queryForObject(SQL, boolean.class, value);
+    }
+
+    public boolean isExist(String columnName, String value) {
+        return isExist("users", columnName, value);
     }
 
     public Tour getTour(int id, String language) {

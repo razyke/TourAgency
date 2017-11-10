@@ -16,7 +16,6 @@ public class User {
     private String language;
     private Date lastOrderDate;
     private boolean isAdmin;
-    //TODO add field Language!
 
 
     public User() {
