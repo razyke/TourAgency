@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
     <title>Orders</title>
@@ -13,9 +14,15 @@
 <c:out value="${tour.tourDescription}" />
 </p>
 
+<p> Choose number of days </p>
+
 <form method = "post" name="days">
+
 <input type="radio" name="days" value="7"> </input>
 <input type="radio" name="days" value="10"> </input>
+<input type="submit" value="order ${tourId}"> </input>
+
 </form>
+
 </body>
 </html>
