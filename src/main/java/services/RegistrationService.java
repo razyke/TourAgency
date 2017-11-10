@@ -9,11 +9,10 @@ import java.util.List;
 
 public class RegistrationService {
 
-    //private final Dao dao;
+    private Dao dao;
 
     public RegistrationService() {
         //dao = BeanFactory.getDao();
-        //TODO get factory bean of service
     }
 
     /**
