@@ -12,6 +12,10 @@ public class DaoImpl implements Dao {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
+    /**
+     * This is set via Beans.xml configuration
+     * @param dataSource
+     */
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
         jdbcTemplate = new JdbcTemplate(dataSource);

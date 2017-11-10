@@ -1,6 +1,6 @@
 package services;
 
-import dao.BeanFactory;
+import spring.StaticContextProvider;
 import model.User;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class RegistrationServiceTest {
     @Test
     public void addAdmin() throws Exception {
 
-        RegistrationService registrationService = BeanFactory.getRegistrationService();
+        RegistrationService registrationService = StaticContextProvider.getRegistrationService();
 
         User user = new User();
         user.setLoginName("razyke");
@@ -32,7 +32,7 @@ public class RegistrationServiceTest {
     @Test
     public void validateAndSend() throws Exception {
 
-        RegistrationService registrationService = BeanFactory.getRegistrationService();
+        RegistrationService registrationService = StaticContextProvider.getRegistrationService();
 
         User user = new User();
         user.setLoginName("");
