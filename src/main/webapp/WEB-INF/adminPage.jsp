@@ -21,6 +21,7 @@
     </p>
 </form>
 
+<a href="login?action=users"> Users </a>
 <table align = "center" border = "1">
 
  <thead>
@@ -34,7 +35,7 @@
         <th> Details </th>
     </tr>
     </thead>
-
+<%--
  <tbody>
     <c:forEach items="${orders}" var="order">
         <tr>
@@ -44,12 +45,12 @@
             <td> <c:out value="${order.user.language}"/> </td>
             <td> <c:out value="${order.user.firstName  ${order.user.lastName}}" /> </td>
             <td> <c:out value="${order.user.phone}" /></td>
-            <td> <a href="DetailsServlet?action=detail&idOrder=<c:out value="${order.idOrder}"/>"> Details </a> </td>
+            <td> <a href="AdminServlet?action=detail&idOrder=<c:out value="${order.idOrder}"/>"> Details </a> </td>
  <!-- Thread to create  details-->
         </tr>
-   </c:forEach>
+   </c:forEach
 </tbody>
-
+--%>
 </table>
 
 <% }  else {%>
