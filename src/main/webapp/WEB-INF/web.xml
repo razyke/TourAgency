@@ -10,11 +10,6 @@
     </servlet>
 
     <servlet>
-        <servlet-name>SignOut</servlet-name>
-        <servlet-class>servlets.SignOutServlet</servlet-class>
-    </servlet>
-
-    <servlet>
         <servlet-name>Welcome</servlet-name>
         <servlet-class>servlets.WelcomeServlet</servlet-class>
     </servlet>
@@ -32,11 +27,6 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>SignOut</servlet-name>
-        <url-pattern>/signOut</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

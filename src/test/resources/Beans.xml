@@ -4,19 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- Initialization for data source -->
-    <bean id="dataSource"
-          class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name = "driverClassName" value = "com.mysql.jdbc.Driver"/>
-        <property name = "url" value = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11203717"/>
-        <property name = "username" value = "sql11203717"/>
-        <property name = "password" value = "UDUCVRcm7r"/>
-    </bean>
-
     <!-- Definition for Dao bean -->
     <bean id = "Dao"
-          class = "dao.DaoImpl">
-        <property name = "dataSource" ref = "dataSource" />
+          class = "dao.MockDaoImpl">
     </bean>
 
     <!-- Definition for RegistrationService bean-->

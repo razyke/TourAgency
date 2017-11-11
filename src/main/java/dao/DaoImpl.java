@@ -2,7 +2,6 @@ package dao;
 
 import model.*;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.Collection;
@@ -12,6 +11,10 @@ public class DaoImpl implements Dao {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
+    /**
+     * This is set via Beans.xml configuration
+     * @param dataSource
+     */
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
         jdbcTemplate = new JdbcTemplate(dataSource);

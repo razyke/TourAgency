@@ -1,4 +1,4 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page  contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
@@ -15,15 +15,13 @@
 
 <p align="center"> Hello, admin! </p>
 
-<form method="post" action="signOut">
-    <p align="right">
-        <button type = submit value="signOut"> Sign out </button>
-    </p>
-</form>
+<a href="welcome?action=signOut"> sign out </a>
 
+<a href="admin?action=tours"> Tours </a>
+<a href="admin?action=users"> Users </a>
 <table align = "center" border = "1">
 
-    <thead>
+ <thead>
     <tr>
         <th> Id</th>
         <th> Tour </th>
@@ -34,25 +32,22 @@
         <th> Details </th>
     </tr>
     </thead>
-<!--
-    <tbody>
-    <%--
+<%--
+ <tbody>
     <c:forEach items="${orders}" var="order">
         <tr>
-            <td> <c:out value="${order.idOrder}" /> </td>
-            <td> <c:out value="${order.tourName}" /> </td>
+            <td> <c:out value="${order.id}" /> </td>
+            <td> <c:out value="${order.tour.title}" /> </td>
             <td> <c:out value="${order.price}" /> </td>
             <td> <c:out value="${order.user.language}"/> </td>
             <td> <c:out value="${order.user.firstName  ${order.user.lastName}}" /> </td>
             <td> <c:out value="${order.user.phone}" /></td>
-            <td> <a href="DetailsServlet?action=detail&idOrder=<c:out value="${order.idOrder}"/>"> Details </a> </td>
-            <!-- Thread to create  details-->
+            <td> <a href="admin?action=detail&idOrder=<c:out value="${order.idOrder}"/>"> Details </a> </td>
+ <%-- Thread to create  detail
         </tr>
-    </c:forEach>
-    --%>
-    </tbody>
-    !-->
-
+   </c:forEach
+</tbody>
+--%>
 </table>
 
 <% }  else {%>

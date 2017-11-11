@@ -1,10 +1,8 @@
 package dao;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import model.Order;
 import model.Tour;
 import model.User;
-import org.omg.PortableInterceptor.ObjectReferenceFactory;
 
 import java.util.Collection;
 
