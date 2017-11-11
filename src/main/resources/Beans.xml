@@ -34,7 +34,7 @@
     <!-- Definition for TourService bean-->
     <bean id = "tourService"
           class="services.TourService">
-        <property name="dao" ref="Tour  Dao"/>
+        <property name="dao" ref="TourDao"/>
     </bean>
 
 </beans>
