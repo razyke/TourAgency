@@ -1,6 +1,7 @@
 package spring;
 
-import dao.Dao;
+import dao.TourDao;
+import dao.UserDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import services.AuthService;
@@ -12,8 +13,12 @@ import services.AuthService;
 public class StaticContextProvider {
     private static final ApplicationContext CONTEXT = new ClassPathXmlApplicationContext("Beans.xml");
 
-    public static Dao getDao() {
-        return (Dao) CONTEXT.getBean("Dao");
+    public static UserDao getUserDao() {
+        return (UserDao) CONTEXT.getBean("UserDao");
+    }
+
+    public static TourDao getTourDao() {
+        return (TourDao) CONTEXT.getBean("TourDao");
     }
 
     public static AuthService getAuthService() {

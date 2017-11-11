@@ -4,12 +4,13 @@ import model.Order;
 import model.Tour;
 import model.User;
 
+import javax.sql.DataSource;
 import java.util.*;
 
 /**
- * Mock dao for tests
+ * Mock UserDao for tests
  */
-public class MockDaoImpl implements Dao  {
+public class MockUserDaoImpl implements UserDao  {
     private final static Map<Integer, User> users;
 
     static {
@@ -30,6 +31,11 @@ public class MockDaoImpl implements Dao  {
                         "711133",
                         "Zastavskaya 22",
                         "ds@epam.com"));
+    }
+
+    @Override
+    public void setDataSource(DataSource dataSource) {
+
     }
 
     @Override
@@ -66,79 +72,33 @@ public class MockDaoImpl implements Dao  {
         users.put(user.getId(), user);
     }
 
-    //TODO: the rest
-
     @Override
-    public boolean isExist(String columnName, String value) {
-        if (columnName.equals("login")) {
-            for (User u : users.values()) {
-                if (u.getLoginName().equals(value)) {
-                    return true;
-                }
-            }
-        } else if (columnName.equals("phone")) {
-            for (User u : users.values()) {
-                if (u.getPhone().equals(value)) {
-                    return true;
-                }
-            }
-        } else if (columnName.equals("email")) {
-            for (User u : users.values()) {
-                if (u.getEmail().equals(value)) {
-                    return true;
-                }
+    public boolean isLoginUsed(String login) {
+        for (User u : users.values()) {
+            if (u.getLoginName().equals(login)) {
+                return true;
             }
         }
         return false;
     }
 
     @Override
-    public Tour getTour(int id, String language) {
-        return null;
+    public boolean isEmailUsed(String email) {
+        for (User u : users.values()) {
+            if (u.getEmail().equals(email)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public Collection<Tour> getAllTours(String language) {
-        return null;
-    }
-
-    @Override
-    public void createTour(Tour tour) {
-
-    }
-
-    @Override
-    public void deleteTour(int id) {
-
-    }
-
-    @Override
-    public void updateTour(Tour tour) {
-
-    }
-
-    @Override
-    public void createOrder(Order order) {
-
-    }
-
-    @Override
-    public Order getOrder(int id) {
-        return null;
-    }
-
-    @Override
-    public Collection<Order> getAllOrders() {
-        return null;
-    }
-
-    @Override
-    public void updateOrder(Order order) {
-
-    }
-
-    @Override
-    public void deleteOrder(int id) {
-
+    public boolean isPhoneUsed(String phone) {
+        for (User u : users.values()) {
+            if (u.getPhone().equals(phone)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

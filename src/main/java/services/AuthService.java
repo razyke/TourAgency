@@ -1,6 +1,6 @@
 package services;
 
-import dao.Dao;
+import dao.UserDao;
 import model.User;
 
 import java.security.MessageDigest;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AuthService {
 
-    private Dao dao;
+    private UserDao dao;
 
     /**
      * This method take user that we received from .jsp form
@@ -70,15 +70,15 @@ public class AuthService {
 
         if (!error) {
             //Check on unique values in DB.
-            if (dao.isExist("login", user.getLoginName())) {
+            if (dao.isLoginUsed(user.getLoginName())) {
                 error = true;
                 errors.add("This login already used");
             }
-            if (dao.isExist("email", user.getEmail())) {
+            if (dao.isEmailUsed(user.getEmail())) {
                 error = true;
                 errors.add("This email already used");
             }
-            if (dao.isExist("phone", user.getPhone())) {
+            if (dao.isPhoneUsed(user.getPhone())) {
                 error = true;
                 errors.add("This phone already used");
             }
@@ -127,7 +127,7 @@ public class AuthService {
             return null;
         }
 
-        if (dao.isExist("login", userFromJSP.getLoginName())) {
+        if (dao.isLoginUsed(userFromJSP.getLoginName())) {
             User user = dao.findUser(userFromJSP.getLoginName());
             if (user == null) {
                 return null;
@@ -145,7 +145,7 @@ public class AuthService {
      * For spring mapping.
      * @param dao
      */
-    public void setDao(Dao dao) {
+    public void setDao(UserDao dao) {
         this.dao = dao;
     }
 }
