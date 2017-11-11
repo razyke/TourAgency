@@ -28,7 +28,13 @@
     <!-- Definition for AuthService bean-->
     <bean id = "authService"
           class="services.AuthService">
-        <property name="dao" ref="Dao"/>
+        <property name="dao" ref="UserDao"/>
+    </bean>
+
+    <!-- Definition for TourService bean-->
+    <bean id = "tourService"
+          class="services.TourService">
+        <property name="dao" ref="Tour  Dao"/>
     </bean>
 
 </beans>
