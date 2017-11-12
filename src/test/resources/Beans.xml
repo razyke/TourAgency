@@ -4,15 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- Definition for Dao bean -->
-    <bean id = "Dao"
-          class = "dao.MockDaoImpl">
+    <!-- Definition for UserDao bean -->
+    <bean id = "UserDao"
+          class = "dao.MockUserDaoImpl">
     </bean>
 
     <!-- Definition for RegistrationService bean-->
     <bean id = "authService"
           class="services.AuthService">
-        <property name="dao" ref="Dao"/>
+        <property name="dao" ref="UserDao"/>
     </bean>
 
 </beans>
