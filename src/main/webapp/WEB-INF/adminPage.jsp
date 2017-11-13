@@ -13,12 +13,13 @@
 
 <% if (request.getSession().getAttribute("role").equals("admin")) { %>
 
-<p align="center"> Hello, admin! </p>
+<p align="center"> Hello, admin, it's time to WORK! </p>
 
 <p align="right">
 <a href="welcome?action=signOut"> sign out </a>
 </p>
 <a href="admin?action=tours"> Tours </a>
+</br>
 <a href="admin?action=users"> Users </a>
 <table align = "center" border = "1">
 
@@ -41,9 +42,9 @@
             <td> <c:out value="${order.tour.title}" /> </td>
             <td> <c:out value="${order.price}" /> </td>
             <td> <c:out value="${order.user.language}"/> </td>
-            <td> <c:out value="${order.user.firstName}  ${order.user.lastName}}" /> </td>
+            <td> <c:out value="${order.user.firstName}" />  <c:out value="${order.user.lastName}" /> </td>
             <td> <c:out value="${order.user.phone}" /></td>
-            <td> <a href="admin?action=detail&idOrder=<c:out value="${order.idOrder}"/>"> Details </a> </td>
+            <td> <a href="admin?action=detail&idOrder=<c:out value="${order.id}"/>"> Details </a> </td>
         </tr>
    </c:forEach>
 </tbody>

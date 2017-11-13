@@ -28,7 +28,8 @@
 
 <p> Choose number of days </p>
 
-<p> <c:out value="${language}" />" </p>
+<!-- I don't think that wee need part of code below !-->
+<%--<p> <c:out value="${language}" /> </p>--%>
 
 <form method = "post" action = "order">
 
@@ -39,8 +40,16 @@
 <input type="radio" name="days" value="seven"> Price for 7 days: ${tour.costSevenDays}<br> </input>
 <br>
 <input type="radio" name="days" value="ten"> Price for 10 days: ${tour.costTenDays} <br> </input>
+    <% if (request.getSession().getAttribute("role") != null) {%>
+    </br>
 <input type="submit" value="order"> </input>
 <br>
+    <% } else { %>
+    </br>
+    To order please login or register.</br></br>
+    <a href="login"> Login </a> </br></br>
+    <a href="register"> Registration </a> </br>
+    <% } %>
 </form>
 
 </body>

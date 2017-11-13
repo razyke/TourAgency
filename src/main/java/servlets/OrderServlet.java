@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class OrderServlet extends HttpServlet {
 
@@ -38,19 +41,33 @@ public class OrderServlet extends HttpServlet {
 
         if (req.getParameter("action") != null) {
             if (req.getParameter("action").equals("order")) {
-                OrderService orderService = StaticContextProvider.getOrderService();
-                AuthService authService = StaticContextProvider.getAuthService();
-                String userName = String.valueOf(req.getSession().getAttribute("userName"));
-                //authService.authUser(userName);
 
-                req.getParameter("tourId");
+                boolean error = false;
+
+                OrderService orderService = StaticContextProvider.getOrderService();
 
                 Order order = new Order();
-               /* order.setUser();
-                order.setTour();*/
 
-                orderService.createOrder(order);
-                //order.setDays();
+                // bad think how make better.
+                int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
+                //order.setUserId(idUser);
+                int tourId = Integer.parseInt(req.getParameter("tourId"));
+                //order.setTourId(tourId);
+                try {
+                    Date flyDate = new SimpleDateFormat("MM/dd/yyyy").parse(req.getParameter("Date"));
+                    order.setOrderDate(flyDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    error = true;
+                }
+                order.setPrice(Integer.parseInt(req.getParameter("A TYT NADO PEREDATI NORMALINO")));
+                order.setDays(Integer.parseInt(req.getParameter("I TYT TOJE DNI")));
+                //Are we need is_activ ?
+                if (!error) {
+                    orderService.createOrder(order);
+                } else {
+                    System.out.println("Something bad happened =( ");
+                }
             }
         }
 

@@ -11,7 +11,6 @@
 <a href="/"> To main page </a>
 
 <table align = "center" border = "1">
-
  <thead>
     <tr>
         <th> Client info </th>
@@ -21,42 +20,41 @@
     </thead>
 
     <tbody>
-
     <tr>
             <td> First name
-            <c:out value="{$order.user.firstName}" /> </td>
-            <td> Id  <c:out value="{$order.id}" />  </td>
+            <c:out value="${order.user.firstName}" /> </td>
+            <td> Id  <c:out value="${order.id}" />  </td>
     </tr>
 
      <tr>
-                <td> Last name  <c:out value="{$order.user.lastName}" /> </td>
-                <td> Tour  <c:out value="{$order.tour.title}" /> </td>
+                <td> Last name  <c:out value="${order.user.lastName}" /> </td>
+                <td> Tour  <c:out value="${order.tour.title}" /> </td>
      </tr>
 
      <tr>
-                <td> Middle name  <c:out value="{$order.user.middleName}" /> </td>
-                <td> Description  <c:out value="{$order.tour.description}" /> </td>
+                <td> Middle name  <c:out value="${order.user.middleName}" /> </td>
+                <td> Description  <c:out value="${order.tour.description}" /> </td>
      </tr>
 
      <tr>
-                     <td> Phone  <c:out value="{$order.user.phone}" /> </td>
+                     <td> Phone  <c:out value="${order.user.phone}" /> </td>
                      <td> Status
-                     <c:when test="${order.tour.isHot eq ('true')}">
+                   <%--  <c:when test="${order.tour.isHot eq ('true')}">
                      Hot
-                      </c:when>
+                      </c:when>--%>
                      </td>
      </tr>
      <tr>
-                <td> Email  <c:out value="{$order.user.email}" /> </td>
-                <td> Number of days  <c:out value="{$order.days}" /> </td>
+                <td> Email  <c:out value="${order.user.email}" /> </td>
+                <td> Number of days  <c:out value="${order.days}" /> </td>
      </tr>
      <tr>
-                     <td> Address  <c:out value="{$order.user.address}" /> </td>
-                     <td> City  <c:out value="{$order.tour.city}" /> </td>
+                     <td> Address  <c:out value="${order.user.address}" /> </td>
+                     <td> City  <c:out value="${order.tour.city}" /> </td>
      </tr>
      <tr>
-                          <td> Language  <c:out value="{$order.user.language}" /> </td>
-                          <td> Price  <c:out value="{$order.price}" /> </td>
+                          <td> Language  <c:out value="${order.user.language}" /> </td>
+                          <td> Price  <c:out value="${order.price}" /> </td>
           </tr>
      <tr>
                                <td> Is admin
@@ -69,11 +67,11 @@
                                                </c:otherwise>
                                            </c:choose>
                                </td>
-                               <td> Number of days  <c:out value="{$order.days}" /> </td>
+                               <td> Number of days  <c:out value="${order.days}" /> </td>
      </tr>
      <tr>
                                <td>  </td>
-                               <td> Type  <c:out value="{$order.type}" /> </td>
+                               <td> Type  NOT PREPARED<%--<c:out value="${order.type}"--%> /> </td>
      </tr>
     </tbody>
     </table>

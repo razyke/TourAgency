@@ -18,16 +18,30 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        if (request.getParameter("action") != null) {
+            if (request.getParameter("action").equals("detail")) {
+                OrderService orderService = StaticContextProvider.getOrderService();
+                Order order = orderService.getOrder(Integer.parseInt(request.getParameter("idOrder")));
+                request.setAttribute("ord", order);
+                RequestDispatcher view = request.getRequestDispatcher(Utils.DETAIL_PAGE);
+                view.forward(request, response);
+            }
 
-        OrderService orderService = StaticContextProvider.getOrderService();
-        Collection<Order> allOrders = orderService.getAllOrders();
-        request.setAttribute("orders", allOrders);
-        RequestDispatcher view = request.getRequestDispatcher(Utils.ADMIN_PAGE);
-        view.forward(request, response);
+        } else {
+            OrderService orderService = StaticContextProvider.getOrderService();
+            Collection<Order> allOrders = orderService.getAllOrders();
+            System.out.println(allOrders);
+            request.setAttribute("orders", allOrders);
+
+            RequestDispatcher view = request.getRequestDispatcher(Utils.ADMIN_PAGE);
+            view.forward(request, response);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
         RequestDispatcher view = request.getRequestDispatcher(Utils.ADMIN_PAGE);
         view.forward(request, response);
     }
