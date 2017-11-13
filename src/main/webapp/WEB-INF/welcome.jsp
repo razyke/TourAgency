@@ -15,24 +15,12 @@
 
 <h3 align="center">Welcome</h3>
 <h3 align="center"> Select Tour </h3>
-<%--
+
 <c:forEach items="${tours}" var="tour">
-<a href = "OrderServlet?action=order&tourId=<c:out value="${tour.id}"/>"> <c:out value = "${tour.title}"/> </a>
+<a href = "order?action=order&tourId=<c:out value="${tour.id}"/>"></br></br>
+    <c:out value = "${tour.title}"/> </a>
 </c:forEach>
---%>
-<%--
-<table align="center">
-    <tr>
-        <td> Paradise islands</td>
-        <td> Country of castles</td>
-        <td> Mountain paths</td>
-    </tr>
-    <tr>
-        <td> Heights of heaven</td>
-        <td> Delight of the seaside</td>
-    </tr>
-</table>
---%>
+
 <% if (request.getSession().getAttribute("role")==null) { %>
 <form form action=login>
     <p align="right">
@@ -50,9 +38,8 @@
 <a href="admin"> To admin page </a>
 <p align="center"> Hello, ${userName}! </p>
 <p align="center"> You signed as  ${role}. </p>
-<p align="right">
 <a href="welcome?action=signOut"> sign out </a>
-</p>
+
 <% } %>
 </body>
 </html>

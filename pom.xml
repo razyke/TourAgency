@@ -72,6 +72,11 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>3.0.1</version>
+        </dependency>
 
     </dependencies>
 
@@ -90,12 +95,9 @@
             </plugin>
 
             <plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
-                 <artifactId>maven-checkstyle-plugin</artifactId>
-                 <version>2.17</version>
-                 <configuration>
-                     <configLocation>google_checks.xml</configLocation>
-                 </configuration>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.3</version>
             </plugin>
 
             <plugin>

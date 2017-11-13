@@ -21,6 +21,10 @@ public class TourService {
         }
     }
 
+    public Tour getTour(int id, String language) {
+        return dao.getTour(id,language);
+    }
+
     /**
      * This is set via Beans.xml configuration
      * @param dao is dao

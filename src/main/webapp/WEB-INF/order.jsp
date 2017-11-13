@@ -32,7 +32,7 @@
 
 <input type="radio" name="days" value="7"> </input>
 <input type="radio" name="days" value="10"> </input>
-<input type="submit" value="order ${tourId}"> </input>
+<input type="submit" value="order ${tour.id}"> </input>
 
 </form>
 
