@@ -18,13 +18,12 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //TODO: Uncommented when order service will be fixed.
 
-        /*OrderService orderService = StaticContextProvider.getOrderService();
+        OrderService orderService = StaticContextProvider.getOrderService();
         Collection<Order> allOrders = orderService.getAllOrders();
         request.setAttribute("orders", allOrders);
         RequestDispatcher view = request.getRequestDispatcher(Utils.ADMIN_PAGE);
-        view.forward(request, response);*/
+        view.forward(request, response);
     }
 
     @Override

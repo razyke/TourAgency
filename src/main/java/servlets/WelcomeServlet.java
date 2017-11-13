@@ -19,30 +19,25 @@ public class WelcomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-        String language;
-
         //By default will be open on english language.
         if (request.getSession().getAttribute("language") == null) {
-            language = "RU";
-        } else {
-            language = String.valueOf(request.getSession().getAttribute("language"));
+            HttpSession session = request.getSession();
+            session.setAttribute("language", "EN");
         }
 
         //Before user sing out, we will save information about what language he see.
         if (request.getParameter("action") != null) {
             if (request.getParameter("action").equals("signOut")) {
                 HttpSession session = request.getSession();
-                language = (String) session.getAttribute("language");
+                String language = (String) session.getAttribute("language");
                 session.invalidate();
+                HttpSession newSession = request.getSession();
+                newSession.setAttribute("language", language);
             }
         }
 
-
-        HttpSession session = request.getSession();
-        session.setAttribute("language", language);
         TourService tourService = StaticContextProvider.getTourService();
-        Collection<Tour> tours = tourService.getAllTours(language);
+        Collection<Tour> tours = tourService.getAllTours(String.valueOf(request.getSession().getAttribute("language")));
         request.setAttribute("tours", tours);
         RequestDispatcher view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
         view.forward(request, response);

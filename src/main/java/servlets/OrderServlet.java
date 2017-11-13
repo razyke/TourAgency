@@ -2,6 +2,8 @@ package servlets;
 
 import model.Order;
 import model.Tour;
+import services.AuthService;
+import services.OrderService;
 import services.TourService;
 import spring.StaticContextProvider;
 import util.Utils;
@@ -36,7 +38,18 @@ public class OrderServlet extends HttpServlet {
 
         if (req.getParameter("action") != null) {
             if (req.getParameter("action").equals("order")) {
+                OrderService orderService = StaticContextProvider.getOrderService();
+                AuthService authService = StaticContextProvider.getAuthService();
+                String userName = String.valueOf(req.getSession().getAttribute("userName"));
+                //authService.authUser(userName);
+
+                req.getParameter("tourId");
+
                 Order order = new Order();
+               /* order.setUser();
+                order.setTour();*/
+
+                orderService.createOrder(order);
                 //order.setDays();
             }
         }

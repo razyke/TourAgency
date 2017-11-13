@@ -9,7 +9,7 @@
 <body>
 <h3 align="center">Users</h3>
 
-<a href="/TourAgency/"> To main page </a>
+<a href="/"> To main page </a>
 
 <table border=1>
 
@@ -47,9 +47,12 @@
                 </c:otherwise>
             </c:choose>
             </td>
+        </tr>
+    </c:forEach>
  </table>
 
  <a href="admin?action=delete"> delete user </a>
  <a href="admin"> Back </a>
+
 </body>
 </html>

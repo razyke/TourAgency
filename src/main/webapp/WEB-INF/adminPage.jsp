@@ -9,7 +9,7 @@
 
 <h3 align="center">Admin Page</h3>
 
-<a href="/TourAgency/"> To main page </a>
+<a href="/"> To main page </a>
 
 <% if (request.getSession().getAttribute("role").equals("admin")) { %>
 

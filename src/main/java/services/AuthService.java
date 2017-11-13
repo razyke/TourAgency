@@ -142,17 +142,24 @@ public class AuthService {
     }
 
     /**
-     * Updating user.
+     * Updating user in DB.
      * @param updatedUser - updated info from .jsp page.
      */
     public void updateUser(User updatedUser) {
         dao.updateUser(updatedUser);
+    }
 
+    /**
+     * Delete user in DB.
+     * @param id - id of user in DB.
+     */
+    public void deleteUser(int id) {
+        dao.deleteUser(id);
     }
 
     /**
      * For spring mapping.
-     * @param dao
+     * @param dao - from Bean.xml
      */
     public void setDao(UserDao dao) {
         this.dao = dao;

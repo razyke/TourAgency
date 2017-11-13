@@ -8,7 +8,7 @@
 
     <body>
 
-    <a href="/TourAgency/"> To main page </a>
+    <a href="/"> To main page </a>
 
     <% if (request.getSession().getAttribute("role")!=null) { %>
 

@@ -8,7 +8,7 @@
 
 <body>
 <h3 align="center">Orders</h3>
-<a href="/TourAgency/"> To main page </a>
+<a href="/"> To main page </a>
 
 <table align = "center" border = "1">
 
