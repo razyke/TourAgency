@@ -142,6 +142,15 @@ public class AuthService {
     }
 
     /**
+     * Updating user.
+     * @param updatedUser - updated info from .jsp page.
+     */
+    public void updateUser(User updatedUser) {
+        dao.updateUser(updatedUser);
+
+    }
+
+    /**
      * For spring mapping.
      * @param dao
      */
