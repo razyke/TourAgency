@@ -10,7 +10,10 @@
 
 <h3 align="center"> <c:out value="tour.title"> </h3>
 <form method="post" action="admin">
-<input type="text" value = "<c:out value="tour.title">"> </input>
+<p> Tour title <br> </p>
+<input type="text" value = "${tour.title}"> </input>
+<p> Tour description <br> </p>
+<input type="text" value = "${tour.description}"> </input>
 </form>
 </body>
 </html>

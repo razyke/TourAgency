@@ -33,11 +33,14 @@
             <td colspan ="1">
                 <input type="submit"  value= "Login" />
             </td>
+            <td colspan ="1">
+                            <a href="register"> Register </a>
+                        </td>
         </tr>
     </table>
 </form>
 <p align="right">
-<a href="register"> Register </a>
+
 </p>
 <% } %>
 </body>

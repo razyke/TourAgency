@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="text" />
 <!DOCTYPE html>
 
 <html>
@@ -12,8 +14,13 @@
 <body>
 
 <p align = "center" style = "color: green" > ${registration} </p>
-
-<h3 align="center">Welcome</h3>
+        <form>
+            <select id="language" name="language" onchange="submit()">
+                <option value="EN" ${language == 'EN' ? 'selected' : ''}>English</option>
+                <option value="RU" ${language == 'RU' ? 'selected' : ''}>Русский</option>
+            </select>
+        </form>
+<h3 align="center"><fmt:message key="label.greeting" /></h3>
 <h3 align="center"> Select Tour </h3>
 
 <c:forEach items="${tours}" var="tour">
