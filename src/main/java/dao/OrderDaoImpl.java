@@ -13,6 +13,9 @@ public class OrderDaoImpl implements OrderDao {
     private UserDao userDao;
     private TourDao tourDao;
 
+
+    //TODO: need mapper for userDao and tourDao
+    //TODO: in Beans.xml has commented, when start fix this part, remove comments.
     @Override
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;

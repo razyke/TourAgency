@@ -29,7 +29,7 @@
     <bean id = "OrderDao"
           class = "dao.OrderDaoImpl">
         <property name = "dataSource" ref = "dataSource" />
-     <!--   <property name = "userDao" ref="UserDao"/>
+       <!-- <property name = "userDao" ref="UserDao"/>
         <property name = "tourDao" ref="TourDao"/> -->
     </bean>
 

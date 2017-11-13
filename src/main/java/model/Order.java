@@ -1,12 +1,17 @@
 package model;
 
+import java.util.Date;
+
 public class Order {
+
     private int id;
     private User user;
     private Tour tour;
     private int price;
     private int days;
     private boolean isActiv;
+    private Date orderDate;
+
 
     public int getId() {
         return id;
@@ -54,6 +59,14 @@ public class Order {
 
     public void setActiv(boolean activ) {
         isActiv = activ;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
     }
 
     @Override

@@ -32,7 +32,7 @@
         <th> Details </th>
     </tr>
     </thead>
-<%--
+
  <tbody>
     <c:forEach items="${orders}" var="order">
         <tr>
@@ -40,14 +40,12 @@
             <td> <c:out value="${order.tour.title}" /> </td>
             <td> <c:out value="${order.price}" /> </td>
             <td> <c:out value="${order.user.language}"/> </td>
-            <td> <c:out value="${order.user.firstName  ${order.user.lastName}}" /> </td>
+            <td> <c:out value="${order.user.firstName}  ${order.user.lastName}}" /> </td>
             <td> <c:out value="${order.user.phone}" /></td>
             <td> <a href="admin?action=detail&idOrder=<c:out value="${order.idOrder}"/>"> Details </a> </td>
- <%-- Thread to create  detail
         </tr>
-   </c:forEach
+   </c:forEach>
 </tbody>
---%>
 </table>
 
 <% }  else {%>

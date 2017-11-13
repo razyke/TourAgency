@@ -16,6 +16,7 @@ public class OrderMapper implements RowMapper<Order> {
         order.getUser().setId(resultSet.getInt("user_id"));
         order.setTour(new Tour());
         order.getTour().setId(resultSet.getInt("tour_id"));
+        order.setOrderDate(resultSet.getDate("date"));
 
         return order;
     }

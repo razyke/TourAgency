@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class OrderService {
+
     OrderDao dao;
     Collection<Order> orders;
 
@@ -42,5 +43,9 @@ public class OrderService {
 
     public void deleteOrder(Order order) {
         dao.deleteOrder(order.getId());
+    }
+
+    public void setDao(OrderDao dao) {
+        this.dao = dao;
     }
 }

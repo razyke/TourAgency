@@ -1,5 +1,6 @@
 package servlets;
 
+import model.Order;
 import model.Tour;
 import services.TourService;
 import spring.StaticContextProvider;
@@ -32,6 +33,13 @@ public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        if (req.getParameter("action") != null) {
+            if (req.getParameter("action").equals("order")) {
+                Order order = new Order();
+                //order.setDays();
+            }
+        }
 
         RequestDispatcher view = req.getRequestDispatcher(Utils.TOUR_PAGE);
         view.forward(req, resp);
