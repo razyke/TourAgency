@@ -41,17 +41,19 @@
         <span class="icon fa-laptop"></span>
         <h2>Hello, ${userName}!</h2>
         <p>You signed as  ${role}. </p>
+
     </header>
     </article>
 
 <% } else {%>
 
 <article id="main">
-    <p align="right" style="color: red">${errorString}</p>
+    <p align="right" ></p>
     <header class="special container">
         <span class="icon fa-laptop"></span>
         <h2>Login</h2>
         <p>Use the form below to sign in </p>
+        <p style="color: red">${errorString} </p>
     </header>
 
     <!-- One -->

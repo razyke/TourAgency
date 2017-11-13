@@ -24,10 +24,14 @@
         <div class="wrapper">
             <nav>
                 <ul>
-                    <li><a href="admin">To admin page </a></li>
+
                     <% if (request.getSession().getAttribute("role")==null) { %>
                     <li><a href="register">Register</a></li>
+                    <% } else {%>
+                    <li><a href="admin">To admin page </a></li>
+                    <% } %>
                 </ul>
+                <% if (request.getSession().getAttribute("role")==null) { %>
                 <a href="login" class="login_btn"> Sign in </a>
                 <% } else {%>
                 <a href="welcome?action=signOut" class="login_btn"> Sign out </a>
@@ -45,14 +49,6 @@
 
     <h2 align= "center" > <strong> Our wonderful tours </strong></h2>
 
-<%-- <form>
-            <select id="language" name="language" onchange="submit()">
-                <option value="EN" ${language == 'EN' ? 'selected' : ''}>English</option>
-                <option value="RU" ${language == 'RU' ? 'selected' : ''}>Русский</option>
-            </select>
-        </form>--%>
-<%--<h3 align="center"><fmt:message key="label.greeting" /></h3>
-<h3 align="center"> Select Tour </h3>--%>
 <c:forEach items="${tours}" var="tour">
 <section class="listings">
     <div class="wrapper">
@@ -72,7 +68,7 @@
                 <a href="order?action=order&tourId=<c:out value="${tour.id}"/>">
                     <img src="img/property_1.jpg" alt="" title="" class="property_img"/>
                 </a>
-                <span class="price"><c:out value = "${tour.costSevenDays}"/></span>
+                <span class="price"><c:out value = "${tour.costSevenDays} $"/></span>
                 <div class="property_details">
                     <h1>
                         <a href="#"><c:out value = "${tour.title}"/></a>
