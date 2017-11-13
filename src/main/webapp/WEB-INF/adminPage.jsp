@@ -15,8 +15,9 @@
 
 <p align="center"> Hello, admin! </p>
 
+<p align="right">
 <a href="welcome?action=signOut"> sign out </a>
-
+</p>
 <a href="admin?action=tours"> Tours </a>
 <a href="admin?action=users"> Users </a>
 <table align = "center" border = "1">

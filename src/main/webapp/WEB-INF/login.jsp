@@ -10,11 +10,9 @@
 <% if (request.getSession().getAttribute("role")!=null) { %>
 <p align="center"> Hello, ${userName}! </p>
 <p align="center"> You signed as  ${role}. </p>
-<form method="post" action="signOut">
-    <p align="right">
-        <button type = "submit" value="signOut"> Sign out </button>
-    </p>
-</form>
+<p align="right">
+<a href="welcome?action=signOut"> sign out </a>
+</p>
 <% } else {%>
 <h3 align="right">Login</h3>
 
@@ -35,11 +33,14 @@
             <td colspan ="1">
                 <input type="submit"  value= "Login" />
             </td>
+            <td colspan ="1">
+                            <a href="register"> Register </a>
+                        </td>
         </tr>
     </table>
 </form>
 <p align="right">
-<a href="register"> Register </a>
+
 </p>
 <% } %>
 </body>
