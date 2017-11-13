@@ -10,6 +10,7 @@ import services.TourService;
  * everywhere else beans should be initialized via Beans.xml
  */
 public class StaticContextProvider {
+
     private static final ApplicationContext CONTEXT = new ClassPathXmlApplicationContext("Beans.xml");
 
     public static AuthService getAuthService() {
