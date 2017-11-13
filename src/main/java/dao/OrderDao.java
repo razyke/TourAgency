@@ -14,12 +14,6 @@ import java.util.Collection;
 public interface OrderDao {
 
     /**
-     * This is set via Beans.xml configuration
-     * @param dataSource is source of data
-     */
-    void setDataSource(DataSource dataSource);
-
-    /**
      * Creating order in DB.
      * @param order get this order class from servlet.
      */
@@ -45,8 +39,26 @@ public interface OrderDao {
     void updateOrder(Order order);
 
     /**
-     * Delete Order from DB by <code>id</code>
+     * Delete Order from DB by <code>id</code>.
      * @param id - key of order.
      */
     void deleteOrder(int id);
+
+    /**
+     * This is set via Beans.xml configuration.
+     * @param dataSource is source of data
+     */
+    void setDataSource(DataSource dataSource);
+
+    /**
+     * This is set via Beans.xml configuration.
+     * @param userDao is UserDao
+     */
+    void setUserDao(UserDao userDao);
+
+    /**
+     * This is set via Beans.xml configuration.
+     * @param tourDao is TourDao
+     */
+    void setTourDao(TourDao tourDao);
 }

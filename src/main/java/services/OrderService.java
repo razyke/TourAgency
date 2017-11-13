@@ -2,16 +2,17 @@ package services;
 
 import dao.OrderDao;
 import model.Order;
+import spring.StaticContextProvider;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class OrderService {
 
-    OrderDao dao;
-    Collection<Order> orders;
+    private OrderDao dao;
+    private Collection<Order> orders;
 
-    public boolean validateOrder(Order order) {
+    private boolean validateOrder(Order order) {
         //TODO: write this method later
         return true;
     }
@@ -21,9 +22,11 @@ public class OrderService {
     }
 
     public Order getOrder(int id) {
-        for (Order order : orders) {
-            if (order.getId() == id) {
-                return order;
+        if (orders != null) {
+            for (Order order : orders) {
+                if (order.getId() == id) {
+                    return order;
+                }
             }
         }
         return dao.getOrder(id);

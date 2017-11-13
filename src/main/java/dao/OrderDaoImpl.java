@@ -13,15 +13,6 @@ public class OrderDaoImpl implements OrderDao {
     private UserDao userDao;
     private TourDao tourDao;
 
-
-    //TODO: need mapper for userDao and tourDao
-    //TODO: in Beans.xml has commented, when start fix this part, remove comments.
-    @Override
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
     public void createOrder(Order order) {
         String SQL = "INSERT INTO orders (tour_id, user_id, price, days, is_activ) VALUES(?,?,?,?)";
         jdbcTemplate.update(SQL, order.getTour().getId(), order.getUser().getId(),
@@ -56,5 +47,21 @@ public class OrderDaoImpl implements OrderDao {
     public void deleteOrder(int id) {
         String SQL = "DELETE FROM orders WHERE id = ?";
         jdbcTemplate.update(SQL, id);
+    }
+
+    @Override
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    @Override
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    @Override
+    public void setTourDao(TourDao tourDao) {
+        this.tourDao = tourDao;
     }
 }

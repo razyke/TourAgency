@@ -29,14 +29,14 @@
     <bean id = "OrderDao"
           class = "dao.OrderDaoImpl">
         <property name = "dataSource" ref = "dataSource" />
-       <!-- <property name = "userDao" ref="UserDao"/>
-        <property name = "tourDao" ref="TourDao"/> -->
+        <property name="userDao" ref="UserDao"/>
+        <property name="tourDao" ref="TourDao"/>
     </bean>
 
     <!-- Definition for AuthService bean-->
     <bean id = "authService"
           class="services.AuthService">
-        <property name ="dao" ref="UserDao"/>
+        <property name="dao" ref="UserDao"/>
     </bean>
 
     <!-- Definition for TourService bean-->
@@ -48,7 +48,6 @@
     <!-- Definition for OrderService bean-->
     <bean id = "orderService"
           class="services.OrderService">
-      <!--  <property name = "dao" ref="OrderDao"/>
-        <property name = "orders" value="java.util.ArrayList"/> -->
+        <property name="dao" ref="OrderDao"/>
     </bean>
 </beans>

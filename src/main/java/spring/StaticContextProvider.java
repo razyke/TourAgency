@@ -3,6 +3,7 @@ package spring;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import services.AuthService;
+import services.OrderService;
 import services.TourService;
 
 /**
@@ -19,5 +20,9 @@ public class StaticContextProvider {
 
     public static TourService getTourService() {
         return (TourService) CONTEXT.getBean("tourService");
+    }
+
+    public static OrderService getOrderService() {
+        return (OrderService) CONTEXT.getBean("orderService");
     }
 }
