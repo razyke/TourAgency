@@ -45,4 +45,10 @@
         <property name="dao" ref="TourDao"/>
     </bean>
 
+    <!-- Definition for OrderService bean-->
+    <bean id = "orderService"
+          class="services.OrderService">
+        <property name="dao" ref="OrderDao"/>
+        <property name="orders" value="java.util.ArrayList"
+    </bean>
 </beans>

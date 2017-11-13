@@ -55,4 +55,16 @@ public class Order {
     public void setActiv(boolean activ) {
         isActiv = activ;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ",\nuser=" + user +
+                ",\ntour=" + tour +
+                ",\nprice=" + price +
+                ",\ndays=" + days +
+                ",\nisActiv=" + isActiv +
+                '}';
+    }
 }
