@@ -41,9 +41,11 @@ public class LoginServlet extends HttpServlet {
         } else {
             session.setAttribute("userName", authUser.getLoginName());
             if (authUser.isAdmin()) {
+                session.setAttribute("idUser", authUser.getId());
                 session.setAttribute("role", "admin");
                 view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
             } else {
+                session.setAttribute("idUser", authUser.getId());
                 session.setAttribute("role", "user");
                 view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
             }
