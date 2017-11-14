@@ -28,7 +28,7 @@ public class OrderServlet extends HttpServlet {
             if (req.getParameter("action").equals("order")) {
                 TourService tourService = StaticContextProvider.getTourService();
                 tourId = Integer.parseInt(req.getParameter("tourId"));
-                Tour tour = tourService.getTour(
+                Tour tour = tourService.getTour(    //TODO: Need to add 'isLoyal' and use getTourWithDiscount(...)
                         tourId,
                         String.valueOf(req.getSession().getAttribute("language"))
                 );
