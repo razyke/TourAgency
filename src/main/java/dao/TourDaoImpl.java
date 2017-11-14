@@ -14,7 +14,7 @@ public class TourDaoImpl implements TourDao {
     @Override
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(this.dataSource);
     }
 
     @Override

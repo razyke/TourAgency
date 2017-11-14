@@ -21,7 +21,7 @@
         <ul>
             <li class="current"><a href="/">To main page </a></li>
             <li class="current"><a href="admin?action=users"> Users </a></li>
-            <li><a href="welcome?action=signOut" class="button special">Sign out</a></li>
+            <li><a href="/?action=signOut" class="button special">Sign out</a></li>
 
         </ul>
     </nav>

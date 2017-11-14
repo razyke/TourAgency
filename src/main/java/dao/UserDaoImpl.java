@@ -74,6 +74,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(this.dataSource);
     }
 }

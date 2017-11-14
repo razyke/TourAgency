@@ -2,6 +2,7 @@ package servlets;
 
 import model.Order;
 import model.Tour;
+import model.User;
 import services.AuthService;
 import services.OrderService;
 import services.TourService;
@@ -53,6 +54,7 @@ public class OrderServlet extends HttpServlet {
                 //order.setUserId(idUser);
                 int tourId = Integer.parseInt(req.getParameter("tourId"));
                 //order.setTourId(tourId);
+
                 try {
                     Date flyDate = new SimpleDateFormat("MM/dd/yyyy").parse(req.getParameter("Date"));
                     order.setOrderDate(flyDate);
@@ -64,7 +66,7 @@ public class OrderServlet extends HttpServlet {
                 order.setDays(Integer.parseInt(req.getParameter("I TYT TOJE DNI")));
                 //Are we need is_activ ?
                 if (!error) {
-                    orderService.createOrder(order);
+                    orderService.createOrder(order, idUser, tourId);
                 } else {
                     System.out.println("Something bad happened =( ");
                 }

@@ -29,8 +29,12 @@
     <bean id = "OrderDao"
           class = "dao.OrderDaoImpl">
         <property name = "dataSource" ref = "dataSource" />
-        <property name="userDao" ref="UserDao"/>
-        <property name="tourDao" ref="TourDao"/>
+    </bean>
+
+    <!-- Definition for DiscountDao bean -->
+    <bean id = "DiscountDao"
+          class = "dao.DiscountDaoImpl">
+        <property name = "dataSource" ref = "dataSource" />
     </bean>
 
     <!-- Definition for AuthService bean-->
@@ -48,6 +52,8 @@
     <!-- Definition for OrderService bean-->
     <bean id = "orderService"
           class="services.OrderService">
-        <property name="dao" ref="OrderDao"/>
+        <property name="orderDao" ref="OrderDao"/>
+        <property name="tourDao" ref="TourDao"/>
+        <property name="userDao" ref="UserDao"/>
     </bean>
 </beans>

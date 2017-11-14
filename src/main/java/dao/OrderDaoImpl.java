@@ -10,8 +10,6 @@ import java.util.List;
 public class OrderDaoImpl implements OrderDao {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
-    private UserDao userDao;
-    private TourDao tourDao;
 
     public void createOrder(Order order) {
         String SQL = "INSERT INTO orders (tour_id, user_id, price, days, is_activ) VALUES(?,?,?,?)";
@@ -21,22 +19,12 @@ public class OrderDaoImpl implements OrderDao {
 
     public Order getOrder(int id) {
         String SQL = "SELECT * FROM orders WHERE id = ?";
-        Order order = jdbcTemplate.queryForObject(SQL, new OrderMapper(), id);
-        //FIXME: How to set user and tour for order? using UserDao & TourDao?
-        order.setUser(userDao.getUser(order.getUser().getId()));
-        order.setTour(tourDao.getTour(order.getTour().getId(), order.getUser().getLanguage()));
-        return order;
+        return jdbcTemplate.queryForObject(SQL, new OrderMapper(), id);
     }
 
     public Collection<Order> getAllOrders() {
         String SQL = "SELECT * FROM orders";
-        List<Order> orders = jdbcTemplate.query(SQL, new OrderMapper());
-        //FIXME: How to set user and tour for order? using UserDao & TourDao?
-        for (Order order : orders) {
-            order.setUser(userDao.getUser(order.getUser().getId()));
-            order.setTour(tourDao.getTour(order.getTour().getId(), order.getUser().getLanguage()));
-        }
-        return orders;
+        return jdbcTemplate.query(SQL, new OrderMapper());
     }
 
     public void updateOrder(Order order) {
@@ -52,16 +40,6 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
-        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
-    @Override
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
-    @Override
-    public void setTourDao(TourDao tourDao) {
-        this.tourDao = tourDao;
+        jdbcTemplate = new JdbcTemplate(this.dataSource);
     }
 }
