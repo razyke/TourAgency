@@ -26,7 +26,7 @@ public class DiscountService {
     public int calculatePrice(int basePrice, boolean isHot, boolean isLoyal) {
         getAllDiscounts();
         int discount = isHot ? hotDiscount : 0;
-        discount = isLoyal ? Math.max(discount, loyalDiscount) : 0;
+        discount = isLoyal ? Math.max(discount, loyalDiscount) : discount;
         return basePrice * (100 - discount) / 100;
     }
 
