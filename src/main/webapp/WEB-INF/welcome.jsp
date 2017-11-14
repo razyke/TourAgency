@@ -1,3 +1,4 @@
+<%@ page import="java.util.ResourceBundle" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -7,6 +8,7 @@
 
 <html>
 <head>
+    <%  ResourceBundle bundle = (ResourceBundle)request.getSession().getAttribute("bundle"); %>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/responsive.css">
     <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />--%>
@@ -14,7 +16,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
     <meta charset="UTF-8">
-    <title>Welcome Page</title>
+
+    <title> Welcome </title>
 
 </head>
 
@@ -50,7 +53,7 @@
     </section>
 </section><!--  end hero section  -->
 
-    <h2 align= "center" > <strong> Our wonderful tours </strong></h2>
+    <h2 align= "center" > <strong> <%out.print(bundle.getString("global.wonderful_message"));%> </strong></h2>
 
 
 <section class="listings">

@@ -51,14 +51,14 @@
         <th>Address</th>
         <th>Login</th>
         <th>Admin</th>
-        <th></th>
+        <th>Manage</th>
     </tr>
     </thead>
 <tbody>
 
     <c:forEach items="${users}" var="user">
         <tr>
-            <td><c:out value="${user.idUser}" /></td>
+            <td><c:out value="${user.id}" /></td>
             <td><c:out value="${user.firstName}" /></td>
             <td><c:out value="${user.middleName}" /></td>
             <td><c:out value="${user.lastName}" /></td>
@@ -66,7 +66,7 @@
             <td><c:out value="${user.address}" /></td>
             <td>
             <c:choose>
-                <c:when test="${user.isAdmin eq ('true')}">
+                <c:when test="${user.admin eq ('true')}">
                     <td><c:out value="Yes"/></td>
                 </c:when>
                 <c:otherwise>
@@ -74,11 +74,10 @@
                 </c:otherwise>
             </c:choose>
             </td>
+            <td><a href="admin?action=delete&userId=<c:out value="${user.id}"/>"> Delete </a></td>
         </tr>
     </c:forEach>
  </table>
-
- <a href="admin?action=delete"> delete user </a>
  </section>
  </article>
  <% }  else {%>
@@ -87,7 +86,7 @@
      <p align="right" ></p>
      <header class="special container">
          <h2>Classified</h2>
-         <p>Please sign as administranor</p>
+         <p>Please sign as administrator</p>
      </header>
 
  <% } %>

@@ -37,7 +37,7 @@
 
         <!-- Content -->
         <div class="content">
-             <form>
+             <form method="post" action="admin">
                 <div class="row 50%">
                  <div class="12u">
                      <p> <strong> Client info </strong></p>
@@ -99,6 +99,7 @@
                      </div>
                      <div class="12u(mobile)">
                          <p> <c:out value="${order.user.loginName}" /> </p>
+                         <input type="hidden" name="userId" value="${order.user.id}">
                      </div>
                  </div>
 
@@ -181,13 +182,14 @@
                  <div class="row 50%">
                      <div class="12u">
                          <p> Description </p>
+                         <input type="hidden" name="orderId" value="${order.id}">
                      </div>
                  </div>
                 <div class="row">
                     <div class="12u">
                         <ul class="buttons">
-                            <li><input type="submit" class="special" value="Approve" /></li>
-                            <li><input type="submit" class="special" value="Disapprove" /></li>
+                            <li><input type="submit" class="special" name="manage" value="Approve" /></li>
+                            <li><input type="submit" class="special" name="manage" value="Disapprove" /></li>
                         </ul>
                     </div>
                 </div>

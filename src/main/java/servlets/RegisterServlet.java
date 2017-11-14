@@ -45,8 +45,10 @@ public class RegisterServlet extends HttpServlet {
 
         if (errorStrings == null) {
             RequestDispatcher view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
-            request.setAttribute("registration", "Registration success!");
-            view.forward(request, response);
+            request.getSession().setAttribute("registration","Registration success!");
+            response.sendRedirect(Utils.WELCOME_SERVLET);
+            /*request.setAttribute("registration", "Registration success!");
+            view.forward(request, response);*/
         } else {
             RequestDispatcher view = request.getRequestDispatcher(Utils.REGISTER_PAGE);
             request.setAttribute("registration", errorStrings);
