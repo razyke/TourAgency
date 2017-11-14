@@ -1,9 +1,9 @@
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="text" />
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value="ru_RU" scope="session" />
+<fmt:setBundle basename="text" scope="session" />
 <!DOCTYPE html>
 
 <html>
@@ -42,6 +42,10 @@
             </nav>
         </div>
     </header><!--  end header section  -->
+
+<!--remove me: resource bundle example-->
+<h2><fmt:message key="button.register" /></h2>
+<!--remove me/-->
 
 <h3 align = "center" style = "color: green" > ${registration} </h3>
 <h3 align = "center" style="color: green"> ${message} </h3>
