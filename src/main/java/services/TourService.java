@@ -42,6 +42,24 @@ public class TourService {
     }
 
     /**
+     * Mark tour as hot.
+     * @param id - of tour in DB.
+     */
+    public void markAsHot(int id) {
+        Tour tour = getTour(id, "EN");
+        tour.setHot(true);
+        updateTour(tour);
+    }
+
+    /**
+     * Update given tour
+     * @param tour for updating
+     */
+    public void updateTour(Tour tour) {
+        dao.updateTour(tour);
+    }
+
+    /**
      * This is set via Beans.xml configuration
      * @param dao is dao
      **/

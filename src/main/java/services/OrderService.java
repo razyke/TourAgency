@@ -76,7 +76,7 @@ public class OrderService {
      * Marks the order inactive.
      * @param id - id of tour
      */
-    void makeNotActive(int id) {
+    public void makeNotActive(int id) {
         Order order = getOrder(id);
         order.setActiv(false);
         updateOrder(order);
