@@ -19,8 +19,11 @@ public class OrderService {
     private Collection<Order> orders;
 
     private boolean validateOrder(Order order) {
-        //TODO: write this method later
-        return true;
+        if (order.getOrderDate().after(new Date()))
+        {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -76,7 +79,7 @@ public class OrderService {
      * Marks the order inactive.
      * @param id - id of tour
      */
-    public void makeNotActive(int id) {
+    public void acceptOrder(int id) {
         Order order = getOrder(id);
         order.setActiv(false);
         updateOrder(order);
