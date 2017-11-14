@@ -34,7 +34,7 @@
                 <% if (request.getSession().getAttribute("role")==null) { %>
                 <a href="login" class="login_btn"> Sign in </a>
                 <% } else {%>
-                <a href="welcome?action=signOut" class="login_btn"> Sign out </a>
+                <a href="/?action=signOut" class="login_btn"> Sign out </a>
                 <% } %>
             </nav>
         </div>

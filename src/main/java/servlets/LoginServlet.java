@@ -38,18 +38,18 @@ public class LoginServlet extends HttpServlet {
         if (authUser == null) {
             request.setAttribute("errorString", "Error!");
             view = request.getRequestDispatcher(Utils.LOGIN_PAGE);
+            view.forward(request, response);
         } else {
             session.setAttribute("userName", authUser.getLoginName());
             if (authUser.isAdmin()) {
                 session.setAttribute("idUser", authUser.getId());
                 session.setAttribute("role", "admin");
-                view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
+                response.sendRedirect(Utils.ADMIN_SERVLET);
             } else {
                 session.setAttribute("idUser", authUser.getId());
                 session.setAttribute("role", "user");
-                view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
+                response.sendRedirect(Utils.WELCOME_SERVLET);
             }
         }
-        view.forward(request, response);
     }
 }
