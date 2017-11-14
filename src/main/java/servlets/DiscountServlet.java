@@ -1,5 +1,8 @@
 package servlets;
 
+import model.Discount;
+import services.DiscountService;
+import spring.StaticContextProvider;
 import util.Utils;
 
 import javax.servlet.RequestDispatcher;
@@ -8,15 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collection;
 
 public class DiscountServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //TODO: When will be created getDiscountService uncommented and use it.
-        /*DiscountService discountsService = StaticContextProvider.getDiscountService();
+        DiscountService discountsService = StaticContextProvider.getDiscountService();
         Collection<Discount> allDiscounts = discountsService.getAllDiscounts();
-        req.setAttribute("discounts", allDiscounts);*/
+        req.setAttribute("discounts", allDiscounts);
         RequestDispatcher view = req.getRequestDispatcher(Utils.DISCOUNT_PAGE);
         view.forward(req,resp);
     }

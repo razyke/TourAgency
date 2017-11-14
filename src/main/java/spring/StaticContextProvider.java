@@ -27,7 +27,7 @@ public class StaticContextProvider {
         return (OrderService) CONTEXT.getBean("orderService");
     }
 
-    public static DiscountService getDiscountsService() {
-        return (DiscountService) CONTEXT.getBean("discountsService");
+    public static DiscountService getDiscountService() {
+        return (DiscountService) CONTEXT.getBean("discountService");
     }
 }
