@@ -30,6 +30,7 @@
             </ul>
         </nav>
     </header>
+
     <% if (request.getSession().getAttribute("role")!=null) { %>
     <article id="main">
         <header class="special container">

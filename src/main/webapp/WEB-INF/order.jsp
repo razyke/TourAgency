@@ -8,6 +8,14 @@
           href="${pageContext.request.contextPath}/css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.18.custom.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
+
+    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.dropotron.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.scrolly.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.scrollgress.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/skel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/util.js"></script>
     <title>Orders</title>
 </head>
 
