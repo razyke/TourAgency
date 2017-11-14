@@ -9,7 +9,7 @@ public class Order {
     private Tour tour;
     private int price;
     private int days;
-    private boolean isActiv;
+    private boolean isActiv = true;
     private Date orderDate;
 
 
@@ -67,6 +67,12 @@ public class Order {
 
     public Date getOrderDate() {
         return orderDate;
+    }
+
+    public Order(int price, int days, Date orderDate) {
+        this.price = price;
+        this.days = days;
+        this.orderDate = orderDate;
     }
 
     @Override

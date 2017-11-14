@@ -12,9 +12,9 @@ public class OrderDaoImpl implements OrderDao {
     private JdbcTemplate jdbcTemplate;
 
     public void createOrder(Order order) {
-        String SQL = "INSERT INTO orders (tour_id, user_id, price, days, is_activ) VALUES(?,?,?,?)";
+        String SQL = "INSERT INTO orders (tour_id, user_id, price, days, is_activ, date) VALUES(?,?,?,?,?,?)";
         jdbcTemplate.update(SQL, order.getTour().getId(), order.getUser().getId(),
-                order.getPrice(), order.getDays(), order.isActiv());
+                order.getPrice(), order.getDays(), order.isActiv(), order.getOrderDate());
     }
 
     public Order getOrder(int id) {
