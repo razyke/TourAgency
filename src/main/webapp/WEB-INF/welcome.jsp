@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="text" />
 <!DOCTYPE html>
@@ -24,7 +25,12 @@
         <div class="wrapper">
             <nav>
                 <ul>
-
+                    <li><form>
+                                    <select id="language" name="language" onchange="submit()">
+                                        <option value="EN" ${language == 'EN' ? 'selected' : ''}>English</option>
+                                        <option value="RU" ${language == 'RU' ? 'selected' : ''}>Русский</option>
+                                    </select>
+                                </form></li>
                     <% if (request.getSession().getAttribute("role")==null) { %>
                     <li><a href="register">Register</a></li>
                     <% } else  if (request.getSession().getAttribute("role").equals("admin")) {%>
