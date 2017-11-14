@@ -74,7 +74,7 @@ public class OrderService {
      * Create order in DB.
      * @param order - that we put in DB.
      */
-    public void createOrder(Order order, int userId, int tourId) {
+    public boolean createOrder(Order order, int userId, int tourId) {
         User user = userDao.getUser(userId);
         Tour tour = new Tour();
         tour.setId(tourId);
@@ -82,8 +82,10 @@ public class OrderService {
         order.setTour(tour);
         if (validateOrder(order)){
             orderDao.createOrder(order);
+            return true;
         } else {
             System.out.println("Invalid order: " + order);
+            return false;
         }
     }
 

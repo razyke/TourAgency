@@ -22,7 +22,8 @@ public class AdminServlet extends HttpServlet {
             if (request.getParameter("action").equals("detail")) {
                 OrderService orderService = StaticContextProvider.getOrderService();
                 Order order = orderService.getOrder(Integer.parseInt(request.getParameter("idOrder")));
-                request.setAttribute("ord", order);
+                request.setAttribute("order", order);
+                System.out.println(order);
                 RequestDispatcher view = request.getRequestDispatcher(Utils.DETAIL_PAGE);
                 view.forward(request, response);
             }
@@ -30,7 +31,7 @@ public class AdminServlet extends HttpServlet {
         } else {
             OrderService orderService = StaticContextProvider.getOrderService();
             Collection<Order> allOrders = orderService.getAllOrders();
-            System.out.println(allOrders);
+
             request.setAttribute("orders", allOrders);
 
             RequestDispatcher view = request.getRequestDispatcher(Utils.ADMIN_PAGE);

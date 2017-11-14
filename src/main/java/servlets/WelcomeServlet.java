@@ -26,6 +26,7 @@ public class WelcomeServlet extends HttpServlet {
         }
 
         //Before user sing out, we will save information about what language he see.
+        //TODO: does not work need fix
         if (request.getParameter("action") != null) {
             if (request.getParameter("action").equals("signOut")) {
                 HttpSession session = request.getSession();
@@ -35,7 +36,7 @@ public class WelcomeServlet extends HttpServlet {
                 newSession.setAttribute("language", language);
             }
         }
-
+//TODO find out why tours don't load when user just've signed in
         TourService tourService = StaticContextProvider.getTourService();
         Collection<Tour> tours = tourService.getAllTours(
                 String.valueOf(request.getSession().getAttribute("language")),
