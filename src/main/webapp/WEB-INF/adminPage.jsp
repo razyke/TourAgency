@@ -45,9 +45,8 @@
 --%>
 <section class="wrapper style3 special container 75%">
 <table align = "center" border = "1">
-
- <thead>
     <tr>
+    <strong>
         <th> Id</th>
         <th> Tour </th>
         <th> Price </th>
@@ -55,10 +54,8 @@
         <th>Client</th>
         <th>Phone</th>
         <th> Details </th>
+    </strong>
     </tr>
-    </thead>
-
- <tbody>
     <c:forEach items="${orders}" var="order">
         <tr>
             <td> <c:out value="${order.id}" /> </td>
@@ -70,7 +67,6 @@
             <td> <a href="admin?action=detail&idOrder=<c:out value="${order.id}"/>"> Details </a> </td>
         </tr>
    </c:forEach>
-</tbody>
 </table>
 </section>
 </article>

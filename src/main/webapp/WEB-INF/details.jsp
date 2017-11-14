@@ -4,7 +4,6 @@
 <html>
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
-
     <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.dropotron.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.scrolly.min.js"></script>
