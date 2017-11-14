@@ -13,7 +13,7 @@
     <title>Orders</title>
 </head>
 
-<body class="contact">
+<body class="no-sidebar">
 
 <script>
     $(function() {
@@ -25,12 +25,13 @@
 <div id="page-wrapper">
 
     <header id="header">
+     <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
             </li>
             <% if (request.getSession().getAttribute("role")!=null) { %>
-            <li><a href="welcome?action=signOut" class="button special">Sign out</a></li>
+            <li><a href="/?action=signOut" class="button special">Sign out</a></li>
             <% } else {%>
             <li><a href="register" class="button special">Register</a></li>
             <li><a href="login" class="button special">Sign in</a></li>
@@ -38,6 +39,12 @@
         </ul>
     </nav>
     </header>
+    <article id="main">
+    <header class="special container">
+    						<span class="icon fa-mobile"></span>
+    						<h2> <strong> <c:out value="${tour.city}" /></strong></h2>
+    						<p> <c:out value="${tour.type}" /> tour </p>
+    					</header>
     <section class="wrapper style4 container">
 
         <!-- Content -->
@@ -78,9 +85,9 @@
                 <div class="12u">
                     <ul class="buttons">
                         <% if (request.getSession().getAttribute("role") != null) {%>
-                        <li><input type="submit" class="special" value="Order" /></li>
+                        <li><input type="submit" class="special" value="order" /></li>
                         <% } else { %>
-                        <li><input type="submit" class="special" value="Sign in" /></li>
+                        <li><a href="login" class="button special"> Sign in </a></li>
                         <% } %>
                     </ul>
                 </div>
@@ -88,5 +95,13 @@
         </form>
     </section>
 </div>
+</article>
+<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollgress.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 </body>
 </html>

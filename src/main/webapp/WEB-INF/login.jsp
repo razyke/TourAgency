@@ -23,12 +23,13 @@
 
     <!-- Header -->
     <header id="header">
+     <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
         <nav id="nav">
             <ul>
                 <li class="current"><a href="/">To main page </a></li>
                 </li>
                 <% if (request.getSession().getAttribute("role")!=null) { %>
-                <li><a href="welcome?action=signOut" class="button special">Sign out</a></li>
+                <li><a href="/?action=signOut" class="button special">Sign out</a></li>
                 <% } else {%>
                 <li><a href="register" class="button special">Register</a></li>
                 <% } %>

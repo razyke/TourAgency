@@ -27,14 +27,14 @@
 
                     <% if (request.getSession().getAttribute("role")==null) { %>
                     <li><a href="register">Register</a></li>
-                    <% } else {%>
+                    <% } else  if (request.getSession().getAttribute("role").equals("admin")) {%>
                     <li><a href="admin">To admin page </a></li>
                     <% } %>
                 </ul>
                 <% if (request.getSession().getAttribute("role")==null) { %>
                 <a href="login" class="login_btn"> Sign in </a>
                 <% } else {%>
-                <a href="welcome?action=signOut" class="login_btn"> Sign out </a>
+                <a href="/?action=signOut" class="login_btn"> Sign out </a>
                 <% } %>
             </nav>
         </div>
@@ -63,6 +63,12 @@
                     <h1>
                         <a href="order?action=order&tourId"><c:out value = "${tour.title}"/></a>
                     </h1>
+                    <h2> <c:choose>
+                       <c:when test="${order.tour.isHot eq ('true')}">
+                           <p style="color: red"><c:out value="Hot!"/></p>
+                       </c:when>
+                     </c:choose>
+                    <c:out value = "${tour.type}"/><span class="property_size"></span></h2>
                 </div>
             </li>
             </c:forEach>
@@ -93,7 +99,7 @@
 <a href="admin"> To admin page </a>
 <p align="center"> Hello, ${userName}! </p>
 <p align="center"> You signed as  ${role}. </p>
-<a href="welcome?action=signOut"> sign out </a>
+<a href="/?action=signOut"> sign out </a>
 --%>
 
 </body>

@@ -16,6 +16,7 @@
 <body>
 
 <header id="header">
+ <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
