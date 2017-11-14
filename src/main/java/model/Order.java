@@ -69,6 +69,12 @@ public class Order {
         return orderDate;
     }
 
+    public Order(int price, int days, Date orderDate) {
+        this.price = price;
+        this.days = days;
+        this.orderDate = orderDate;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
