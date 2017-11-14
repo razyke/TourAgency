@@ -2,12 +2,11 @@ package services;
 
 import dao.TourDao;
 import model.Tour;
-import spring.StaticContextProvider;
 
 import java.util.Collection;
 
 public class TourService {
-    private DiscountService discountService = StaticContextProvider.getDiscountsService();
+    private DiscountService discountService;
     private TourDao dao;
 
     /**
@@ -83,5 +82,13 @@ public class TourService {
      **/
     public void setDao(TourDao dao) {
         this.dao = dao;
+    }
+
+    /**
+     * This is set via Beans.xml configuration
+     * @param discountService is discountService
+     **/
+    public void setDiscountService(DiscountService discountService) {
+        this.discountService = discountService;
     }
 }
