@@ -55,14 +55,6 @@ public class OrderServlet extends HttpServlet {
                 int tourId = Integer.parseInt(req.getParameter("tourId"));
                 //order.setTourId(tourId);
 
-                //another way:
-//                User user = new User();
-//                user.setId(idUser);
-//                Tour tour = new Tour();
-//                tour.setId(tourId);
-//                order.setUser(user);
-//                order.setTour(tour);
-
                 try {
                     Date flyDate = new SimpleDateFormat("MM/dd/yyyy").parse(req.getParameter("Date"));
                     order.setOrderDate(flyDate);
@@ -74,7 +66,7 @@ public class OrderServlet extends HttpServlet {
                 order.setDays(Integer.parseInt(req.getParameter("I TYT TOJE DNI")));
                 //Are we need is_activ ?
                 if (!error) {
-                    orderService.createOrder(order);
+                    orderService.createOrder(order, idUser, tourId);
                 } else {
                     System.out.println("Something bad happened =( ");
                 }

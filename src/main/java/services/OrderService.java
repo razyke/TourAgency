@@ -4,6 +4,8 @@ import dao.OrderDao;
 import dao.TourDao;
 import dao.UserDao;
 import model.Order;
+import model.Tour;
+import model.User;
 
 import java.util.Collection;
 
@@ -56,7 +58,13 @@ public class OrderService {
      * Create order in DB.
      * @param order - that we put in DB.
      */
-    public void createOrder(Order order) {
+    public void createOrder(Order order, int userId, int tourId) {
+        User user = new User();
+        user.setId(userId);
+        Tour tour = new Tour();
+        tour.setId(tourId);
+        order.setUser(user);
+        order.setTour(tour);
         if (validateOrder(order)){
             orderDao.createOrder(order);
         } else {
