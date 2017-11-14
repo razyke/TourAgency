@@ -13,7 +13,7 @@
     <title>Orders</title>
 </head>
 
-<body class="contact">
+<body class="no-sidebar">
 
 <script>
     $(function() {
@@ -25,6 +25,7 @@
 <div id="page-wrapper">
 
     <header id="header">
+     <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
@@ -38,6 +39,12 @@
         </ul>
     </nav>
     </header>
+    <article id="main">
+    <header class="special container">
+    						<span class="icon fa-mobile"></span>
+    						<h2> <strong> <c:out value="${tour.city}" /></strong></h2>
+    						<p> <c:out value="${tour.type}" /> tour </p>
+    					</header>
     <section class="wrapper style4 container">
 
         <!-- Content -->
@@ -67,9 +74,11 @@
             <div class="row 50%">
                 <div class="6u 12u(mobile)">
                     <input type="radio" name="days" value="seven"> Price for 7 days: ${tour.costSevenDays} </input>
+                     <input type="invisible" name="cost7" value="${tour.costSevenDays}"> Price for 7 days: ${tour.costSevenDays} </input>
                 </div>
                 <div class="6u 12u(mobile)">
                     <input type="radio" name="days" value="ten" checked> Price for 10 days: ${tour.costTenDays} </input>
+                    <input type="invisible" name="cost10" value="${tour.costTenDays}"> Price for 7 days: ${tour.costSevenDays} </input>
                 </div>
             </div>
 
@@ -80,7 +89,7 @@
                         <% if (request.getSession().getAttribute("role") != null) {%>
                         <li><input type="submit" class="special" value="Order" /></li>
                         <% } else { %>
-                        <li><a href="login" class="button special">Sign in</a></li>
+                        <li><a href="login" class="button special"> Sign in </a></li>
                         <% } %>
                     </ul>
                 </div>
@@ -88,5 +97,13 @@
         </form>
     </section>
 </div>
+</article>
+<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollgress.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 </body>
 </html>

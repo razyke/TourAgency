@@ -27,8 +27,9 @@
 
                     <% if (request.getSession().getAttribute("role")==null) { %>
                     <li><a href="register">Register</a></li>
-                    <% } else {%>
+                    <% } else  if (request.getSession().getAttribute("role").equals("admin")) {%>
                     <li><a href="admin">To admin page </a></li>
+                    <li><a href="admin?action=addTour"> Add tour </a></li>
                     <% } %>
                 </ul>
                 <% if (request.getSession().getAttribute("role")==null) { %>
@@ -39,15 +40,14 @@
             </nav>
         </div>
     </header><!--  end header section  -->
-<p align = "center" style = "color: green" > ${registration} </p>
 
-    <h3 align="center" style="color:green" > ${registration}</h3>
-    <h3 align="center" style="color:green" > ${message}</h3>
-    <h3 align="center" style="color:red" > ${errorMessage}</h3>
+<h3 align = "center" style = "color: green" > ${registration} </h3>
+<h3 align = "center" style="color: green"> ${message} </h3>
+<h3 align = "center" style="color: red"> ${errorMessage} </h3>
 
     <section class="caption">
         <h2 class="caption">Find You Perfect Trip</h2>
-        <h3 class="properties">Rest - Excursion - shopping</h3>
+        <h3 class="properties">Rest - Excursion - Shopping</h3>
     </section>
 </section><!--  end hero section  -->
 
@@ -59,14 +59,27 @@
         <ul class="properties_list">
             <c:forEach items="${tours}" var="tour">
             <li>
-                <a href="order?action=order&tourId=<c:out value="${tour.id}"/>">
+            <% if (request.getSession().getAttribute("role")==null||request.getSession().getAttribute("role").equals("user")) { %>
+
+               <a href="order?action=order&tourId=<c:out value="${tour.id}"/>">
+                <% }  else {%>
+                 <a href="tour?action=edit&tourId=<c:out value="${tour.id}"/>">
+
+                <% } %>
                     <img src="img/${tour.title}.jpg" alt="" title="" class="property_img"/>
+
                 </a>
                 <span class="price"><c:out value = "${tour.costSevenDays} $"/></span>
                 <div class="property_details">
                     <h1>
-                        <a href="order?action=order&tourId"><c:out value = "${tour.title}"/></a>
+                        <c:out value = "${tour.title}"/>
                     </h1>
+                    <h2> <c:choose>
+                       <c:when test="${order.tour.isHot eq ('true')}">
+                           <p style="color: red"><c:out value="Hot!"/></p>
+                       </c:when>
+                     </c:choose>
+                    <c:out value = "${tour.type}"/><span class="property_size"></span></h2>
                 </div>
             </li>
             </c:forEach>
@@ -76,6 +89,29 @@
         </div>
     </div>
 </section>	<!--  end listing section  -->
+
+
+<%--<a href = "order?action=order&tourId=<c:out value="${tour.id}"/>"></br></br>
+    <c:out value = "${tour.title}"/> </a>--%>
+
+
+
+
+
+
+<%--< form action=register>
+    <p align="right">
+        <button type="submit" value="register">Register</button>
+    </p>--%>
+
+
+<%--<% } else {%>
+</>
+<a href="admin"> To admin page </a>
+<p align="center"> Hello, ${userName}! </p>
+<p align="center"> You signed as  ${role}. </p>
+<a href="/?action=signOut"> sign out </a>
+--%>
 
 </body>
 </html>

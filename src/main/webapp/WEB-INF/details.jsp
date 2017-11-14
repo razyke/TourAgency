@@ -16,6 +16,7 @@
 
 <body>
 <header id="header">
+ <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
@@ -163,7 +164,7 @@
                      </div>
                      <div class="12u(mobile)">
                          <c:choose>
-                             <c:when test="${user.tour.isHot eq ('true')}">
+                             <c:when test="${order.tour.isHot eq ('true')}">
                                  <p><c:out value="Yes"/></p>
                              </c:when>
                              <c:otherwise>
