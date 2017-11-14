@@ -2,6 +2,7 @@ package servlets;
 
 import model.Order;
 import model.Tour;
+import model.User;
 import services.AuthService;
 import services.OrderService;
 import services.TourService;
@@ -53,6 +54,15 @@ public class OrderServlet extends HttpServlet {
                 //order.setUserId(idUser);
                 int tourId = Integer.parseInt(req.getParameter("tourId"));
                 //order.setTourId(tourId);
+
+                //another way:
+//                User user = new User();
+//                user.setId(idUser);
+//                Tour tour = new Tour();
+//                tour.setId(tourId);
+//                order.setUser(user);
+//                order.setTour(tour);
+
                 try {
                     Date flyDate = new SimpleDateFormat("MM/dd/yyyy").parse(req.getParameter("Date"));
                     order.setOrderDate(flyDate);

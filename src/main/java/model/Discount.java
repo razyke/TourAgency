@@ -7,8 +7,8 @@ public class Discount {
     private int id;
     private String name;
     private int value;
-    private int author_id;
-    private Date last_update;
+    private int authorId;
+    private Date lastUpdate;
 
     public int getId() {
         return id;
@@ -34,19 +34,19 @@ public class Discount {
         this.value = value;
     }
 
-    public int getAuthor_id() {
-        return author_id;
+    public int getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor_id(int author_id) {
-        this.author_id = author_id;
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 
-    public Date getLast_update() {
-        return last_update;
+    public Date getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setLast_update(Date last_update) {
-        this.last_update = last_update;
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 }

@@ -1,16 +1,27 @@
 package services;
 
 import dao.OrderDao;
+import dao.TourDao;
+import dao.UserDao;
 import model.Order;
 import spring.StaticContextProvider;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class OrderService {
 
-    private OrderDao dao;
+    private OrderDao orderDao;
+    private TourDao tourDao;
+    private UserDao userDao;
+
     private Collection<Order> orders;
+
+    public static void main(String[] args) {
+        OrderService orderService = StaticContextProvider.getOrderService();
+        orderService.getAllOrders();
+        System.out.println();
+
+    }
 
     private boolean validateOrder(Order order) {
         //TODO: write this method later
@@ -22,7 +33,11 @@ public class OrderService {
      * @return return orders from DB.
      */
     public Collection<Order> getAllOrders() {
-        orders = dao.getAllOrders();
+        orders = orderDao.getAllOrders();
+        for (Order order : orders) {
+            order.setUser(userDao.getUser(order.getUser().getId()));
+            order.setTour(tourDao.getTour(order.getTour().getId(), order.getUser().getLanguage()));
+        }
         return orders;
     }
 
@@ -39,7 +54,10 @@ public class OrderService {
                 }
             }
         }
-        return dao.getOrder(id);
+        Order order = orderDao.getOrder(id);
+        order.setUser(userDao.getUser(order.getUser().getId()));
+        order.setTour(tourDao.getTour(order.getTour().getId(), order.getUser().getLanguage()));
+        return order;
     }
 
     /**
@@ -48,7 +66,7 @@ public class OrderService {
      */
     public void createOrder(Order order) {
         if (validateOrder(order)){
-            dao.createOrder(order);
+            orderDao.createOrder(order);
         } else {
             System.out.println("Invalid order: " + order);
         }
@@ -59,7 +77,7 @@ public class OrderService {
      * @param order that we change.
      */
     public void updateOrder(Order order) {
-        dao.updateOrder(order);
+        orderDao.updateOrder(order);
     }
 
     /**
@@ -67,14 +85,30 @@ public class OrderService {
      * @param id - id of order in DB.
      */
     public void deleteOrder(int id) {
-        dao.deleteOrder(id);
+        orderDao.deleteOrder(id);
     }
 
     /**
      * For spring mapping
-     * @param dao - from Bean.xml
+     * @param orderDao - from Bean.xml
      */
-    public void setDao(OrderDao dao) {
-        this.dao = dao;
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
+
+    /**
+     * For spring mapping
+     * @param tourDao - from Bean.xml
+     */
+    public void setTourDao(TourDao tourDao) {
+        this.tourDao = tourDao;
+    }
+
+    /**
+     * For spring mapping
+     * @param userDao - from Bean.xml
+     */
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 }

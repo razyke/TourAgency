@@ -23,8 +23,8 @@ public class OrderDaoImpl implements OrderDao {
         String SQL = "SELECT * FROM orders WHERE id = ?";
         Order order = jdbcTemplate.queryForObject(SQL, new OrderMapper(), id);
         //FIXME: How to set user and tour for order? using UserDao & TourDao?
-        order.setUser(userDao.getUser(order.getUser().getId()));
-        order.setTour(tourDao.getTour(order.getTour().getId(), order.getUser().getLanguage()));
+//        order.setUser(userDao.getUser(order.getUser().getId()));
+//        order.setTour(tourDao.getTour(order.getTour().getId(), order.getUser().getLanguage()));
         return order;
     }
 
@@ -32,10 +32,10 @@ public class OrderDaoImpl implements OrderDao {
         String SQL = "SELECT * FROM orders";
         List<Order> orders = jdbcTemplate.query(SQL, new OrderMapper());
         //FIXME: How to set user and tour for order? using UserDao & TourDao?
-        for (Order order : orders) {
-            order.setUser(userDao.getUser(order.getUser().getId()));
-            order.setTour(tourDao.getTour(order.getTour().getId(), order.getUser().getLanguage()));
-        }
+//        for (Order order : orders) {
+//            order.setUser(userDao.getUser(order.getUser().getId()));
+//            order.setTour(tourDao.getTour(order.getTour().getId(), order.getUser().getLanguage()));
+//        }
         return orders;
     }
 
@@ -52,7 +52,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(this.dataSource);
     }
 
     @Override
