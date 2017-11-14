@@ -37,7 +37,10 @@ public class WelcomeServlet extends HttpServlet {
         }
 
         TourService tourService = StaticContextProvider.getTourService();
-        Collection<Tour> tours = tourService.getAllTours(String.valueOf(request.getSession().getAttribute("language")));
+        Collection<Tour> tours = tourService.getAllTours(
+                String.valueOf(request.getSession().getAttribute("language")),
+                false //FIXME: enter boolean parameter isLoyal
+        );
         request.setAttribute("tours", tours);
         RequestDispatcher view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
         view.forward(request, response);

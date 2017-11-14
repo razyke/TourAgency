@@ -2,11 +2,12 @@ package services;
 
 import dao.TourDao;
 import model.Tour;
+import spring.StaticContextProvider;
 
 import java.util.Collection;
 
 public class TourService {
-
+    private DiscountService discountService = StaticContextProvider.getDiscountsService();
     private TourDao dao;
 
     /**
@@ -14,11 +15,28 @@ public class TourService {
      * @param language - that we need.
      * @return collection of tours on selected language.
      */
-    public Collection<Tour> getAllTours(String language) {
+    public Collection<Tour> getAllTours(String language, boolean isLoyal) {
         if ((!"RU".equals(language)) && (!"EN".equals(language))) {
             language = "EN";
         }
-        return dao.getAllTours(language);
+        Collection<Tour> tours = dao.getAllTours(language);
+        for (Tour tour : tours) {
+            tour.setCostSevenDays(
+                    discountService.calculatePrice(
+                            tour.getCostSevenDays(),
+                            tour.isHot(),
+                            isLoyal
+                    )
+            );
+            tour.setCostTenDays(
+                    discountService.calculatePrice(
+                            tour.getCostTenDays(),
+                            tour.isHot(),
+                            isLoyal
+                    )
+            );
+        }
+        return tours;
     }
 
     /**

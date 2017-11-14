@@ -62,7 +62,7 @@ public class OrderServlet extends HttpServlet {
                     e.printStackTrace();
                     error = true;
                 }
-                order.setPrice(Integer.parseInt(req.getParameter("A TYT NADO PEREDATI NORMALINO")));
+                order.setPrice(Integer.parseInt(req.getParameter("A TYT NADO PEREDATI NORMALINO"))); //TODO: delete it
                 order.setDays(Integer.parseInt(req.getParameter("I TYT TOJE DNI")));
                 //Are we need is_activ ?
                 if (!error) {
