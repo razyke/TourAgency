@@ -7,6 +7,7 @@ import model.Order;
 import model.Tour;
 import model.User;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -37,6 +38,17 @@ public class OrderService {
             order.setTour(tourDao.getTour(order.getTour().getId(), order.getUser().getLanguage()));
         }
         return orders;
+    }
+
+    public Collection<Order> getAllOrders(int userId) {
+        getAllOrders();
+        Collection<Order> ordersFromUser = new ArrayList<Order>();
+        for (Order order : orders) {
+            if (order.getUser().getId() == userId) {
+                ordersFromUser.add(order);
+            }
+        }
+        return ordersFromUser;
     }
 
     /**
