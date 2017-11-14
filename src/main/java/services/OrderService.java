@@ -8,6 +8,7 @@ import model.Tour;
 import model.User;
 
 import java.util.Collection;
+import java.util.Date;
 
 public class OrderService {
 
@@ -59,8 +60,7 @@ public class OrderService {
      * @param order - that we put in DB.
      */
     public void createOrder(Order order, int userId, int tourId) {
-        User user = new User();
-        user.setId(userId);
+        User user = userDao.getUser(userId);
         Tour tour = new Tour();
         tour.setId(tourId);
         order.setUser(user);
@@ -80,6 +80,8 @@ public class OrderService {
         Order order = getOrder(id);
         order.setActiv(false);
         updateOrder(order);
+        order.getUser().setLastOrderDate(new Date());
+        userDao.updateUser(order.getUser());
     }
 
     /**
