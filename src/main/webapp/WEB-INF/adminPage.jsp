@@ -3,25 +3,47 @@
 <html>
 <head>
     <title>Admin Page</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
 
+    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.dropotron.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.scrolly.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.scrollgress.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/skel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/util.js"></script>
 </head>
 
 <body>
 
-<h3 align="center">Admin Page</h3>
+<header id="header">
+    <nav id="nav">
+        <ul>
+            <li class="current"><a href="/">To main page </a></li>
+            <li class="current"><a href="admin?action=users"> Users </a></li>
+            <li><a href="welcome?action=signOut" class="button special">Sign out</a></li>
 
-<a href="/"> To main page </a>
+        </ul>
+    </nav>
+</header>
 
 <% if (request.getSession().getAttribute("role").equals("admin")) { %>
+<article id="main">
+    <header class="special container">
+        <span class="icon fa-laptop"></span>
+        <h2>Hello, admin, </h2>
+        <p>it's time to WORK! </p>
 
-<p align="center"> Hello, admin, it's time to WORK! </p>
+    </header>
 
+<%--
 <p align="right">
 <a href="welcome?action=signOut"> sign out </a>
 </p>
 <a href="admin?action=tours"> Tours </a>
 </br>
 <a href="admin?action=users"> Users </a>
+--%>
+<section class="wrapper style3 special container 75%">
 <table align = "center" border = "1">
 
  <thead>
@@ -50,10 +72,16 @@
    </c:forEach>
 </tbody>
 </table>
-
+</section>
+</article>
 <% }  else {%>
 
-<p> Please sign in as administrator </p>
+<article id="main">
+    <p align="right" ></p>
+    <header class="special container">
+        <h2>Classified</h2>
+        <p>Please sign as administranor</p>
+    </header>
 
 <% } %>
 

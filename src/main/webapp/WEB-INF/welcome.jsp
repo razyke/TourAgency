@@ -49,47 +49,30 @@
 
     <h2 align= "center" > <strong> Our wonderful tours </strong></h2>
 
-<c:forEach items="${tours}" var="tour">
+
 <section class="listings">
     <div class="wrapper">
         <ul class="properties_list">
+            <c:forEach items="${tours}" var="tour">
             <li>
                 <a href="order?action=order&tourId=<c:out value="${tour.id}"/>">
-                    <img src="img/property_1.jpg" alt="" title="" class="property_img"/>
-                </a>
-                <span class="price"><c:out value = "${tour.costSevenDays}"/></span>
-                <div class="property_details">
-                    <h1>
-                        <a href="#"><c:out value = "${tour.title}"/></a>
-                    </h1>
-                </div>
-            </li>
-            <li>
-                <a href="order?action=order&tourId=<c:out value="${tour.id}"/>">
-                    <img src="img/property_1.jpg" alt="" title="" class="property_img"/>
+                    <img src="img/${tour.title}.jpg" alt="" title="" class="property_img"/>
                 </a>
                 <span class="price"><c:out value = "${tour.costSevenDays} $"/></span>
                 <div class="property_details">
                     <h1>
-                        <a href="#"><c:out value = "${tour.title}"/></a>
+                        <a href="order?action=order&tourId"><c:out value = "${tour.title}"/></a>
                     </h1>
                 </div>
             </li>
-            <li>
-                <a href="order?action=order&tourId=<c:out value="${tour.id}"/>">
-                    <img src="img/property_3.jpg" alt="" title="" class="property_img"/>
-                </a>
-                <span class="price"><c:out value = "${tour.costSevenDays}"/></span>
-                <div class="property_details">
-                    <h1>
-                        <a href="#"><c:out value = "${tour.title}"/></a>
-                    </h1>
-                </div>
-            </li>
+            </c:forEach>
         </ul>
+        <div class="more_listing">
+            <a href="#" class="more_listing_btn">View More Tours</a>
+        </div>
     </div>
 </section>	<!--  end listing section  -->
-</c:forEach>
+
 
 <%--<a href = "order?action=order&tourId=<c:out value="${tour.id}"/>"></br></br>
     <c:out value = "${tour.title}"/> </a>--%>

@@ -20,7 +20,7 @@
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
-            <li class="current"><a href="/">To admin page </a></li>
+            <li class="current"><a href="admin">To admin page </a></li>
             <li><a href="welcome?action=signOut" class="button special">Sign out</a></li>
 
         </ul>
