@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.Collection;
-import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
     private DataSource dataSource;
@@ -14,7 +13,7 @@ public class OrderDaoImpl implements OrderDao {
     public void createOrder(Order order) {
         String SQL = "INSERT INTO orders (tour_id, user_id, price, days, is_activ, date) VALUES(?,?,?,?,?,?)";
         jdbcTemplate.update(SQL, order.getTour().getId(), order.getUser().getId(),
-                order.getPrice(), order.getDays(), order.isActiv(), order.getOrderDate());
+                order.getPrice(), order.getDays(), order.isActive(), order.getOrderDate());
     }
 
     public Order getOrder(int id) {
@@ -29,7 +28,7 @@ public class OrderDaoImpl implements OrderDao {
 
     public void updateOrder(Order order) {
         String SQL = "UPDATE orders SET days = ?, price = ?, is_activ = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, order.getDays(), order.getPrice(), order.isActiv(), order.getId());
+        jdbcTemplate.update(SQL, order.getDays(), order.getPrice(), order.isActive(), order.getId());
     }
 
     public void deleteOrder(int id) {

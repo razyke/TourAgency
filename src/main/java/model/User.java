@@ -15,7 +15,7 @@ public class User {
     private String email;
     private String language;
     private Date lastOrderDate;
-    private boolean isAdmin;
+    private boolean admin;
 
 
     public User() {
@@ -86,11 +86,11 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     public void setLoginName(String loginName) {

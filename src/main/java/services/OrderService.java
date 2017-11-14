@@ -93,7 +93,7 @@ public class OrderService {
      */
     public void acceptOrder(int id) {
         Order order = getOrder(id);
-        order.setActiv(false);
+        order.setActive(false);
         updateOrder(order);
         order.getUser().setLastOrderDate(new Date());
         userDao.updateUser(order.getUser());

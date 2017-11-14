@@ -9,7 +9,7 @@ public class Order {
     private Tour tour;
     private int price;
     private int days;
-    private boolean isActiv = true;
+    private boolean active = true;
     private Date orderDate;
 
 
@@ -53,12 +53,12 @@ public class Order {
         this.days = days;
     }
 
-    public boolean isActiv() {
-        return isActiv;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setActiv(boolean activ) {
-        isActiv = activ;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public void setOrderDate(Date orderDate) {
@@ -86,7 +86,7 @@ public class Order {
                 ",\ntour=" + tour +
                 ",\nprice=" + price +
                 ",\ndays=" + days +
-                ",\nisActiv=" + isActiv +
+                ",\nactive=" + active +
                 '}';
     }
 }
