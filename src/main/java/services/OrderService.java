@@ -4,7 +4,6 @@ import dao.OrderDao;
 import dao.TourDao;
 import dao.UserDao;
 import model.Order;
-import spring.StaticContextProvider;
 
 import java.util.Collection;
 
@@ -15,13 +14,6 @@ public class OrderService {
     private UserDao userDao;
 
     private Collection<Order> orders;
-
-    public static void main(String[] args) {
-        OrderService orderService = StaticContextProvider.getOrderService();
-        orderService.getAllOrders();
-        System.out.println();
-
-    }
 
     private boolean validateOrder(Order order) {
         //TODO: write this method later

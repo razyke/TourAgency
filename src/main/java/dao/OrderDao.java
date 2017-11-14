@@ -49,16 +49,4 @@ public interface OrderDao {
      * @param dataSource is source of data
      */
     void setDataSource(DataSource dataSource);
-
-    /**
-     * This is set via Beans.xml configuration.
-     * @param userDao is UserDao
-     */
-    void setUserDao(UserDao userDao);
-
-    /**
-     * This is set via Beans.xml configuration.
-     * @param tourDao is TourDao
-     */
-    void setTourDao(TourDao tourDao);
 }
