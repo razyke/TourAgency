@@ -164,7 +164,7 @@
                      </div>
                      <div class="12u(mobile)">
                          <c:choose>
-                             <c:when test="${order.tour.isHot eq ('true')}">
+                             <c:when test="${order.tour.hot eq ('true')}">
                                  <p><c:out value="Yes"/></p>
                              </c:when>
                              <c:otherwise>

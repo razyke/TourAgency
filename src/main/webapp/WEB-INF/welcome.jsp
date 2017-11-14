@@ -24,12 +24,11 @@
         <div class="wrapper">
             <nav>
                 <ul>
-
                     <% if (request.getSession().getAttribute("role")==null) { %>
                     <li><a href="register">Register</a></li>
                     <% } else  if (request.getSession().getAttribute("role").equals("admin")) {%>
                     <li><a href="admin">To admin page </a></li>
-                    <li><a href="admin?action=addTour"> Add tour </a></li>
+                    <li><a href="editTour?action=addTour"> Add tour </a></li>
                     <% } %>
                 </ul>
                 <% if (request.getSession().getAttribute("role")==null) { %>
@@ -63,7 +62,7 @@
 
                <a href="order?action=order&tourId=<c:out value="${tour.id}"/>">
                 <% }  else {%>
-                 <a href="tour?action=edit&tourId=<c:out value="${tour.id}"/>">
+                 <a href="editTour?action=edit&tourId=<c:out value="${tour.id}"/>">
 
                 <% } %>
                     <img src="img/${tour.title}.jpg" alt="" title="" class="property_img"/>
@@ -81,7 +80,6 @@
                      </c:choose>
                     <c:out value = "${tour.type}"/><span class="property_size"></span></h2>
                 </div>
-            </li>
             </c:forEach>
         </ul>
         <div class="more_listing">

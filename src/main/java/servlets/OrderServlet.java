@@ -52,9 +52,9 @@ public class OrderServlet extends HttpServlet {
 
                 if (req.getParameter("days") != null) {
                     if (req.getParameter("days").equals("seven")) {
-                        order = new Order(1313, 7);
+                        order = new Order(Integer.parseInt(req.getParameter("cost7")), 7);
                     } else {
-                        order = new Order(2424,10);
+                        order = new Order(Integer.parseInt(req.getParameter("cost10")),10);
                     }
 
                 } else {
@@ -73,7 +73,7 @@ public class OrderServlet extends HttpServlet {
                 // bad think how make better.
                 int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
 
-                if (orderService.createOrder(order, idUser, tourId) && !error) {
+                if (!error && orderService.createOrder(order, idUser, tourId)) {
                     req.setAttribute("message", "Ordered, please wait, our manager contact with you.");
                     RequestDispatcher view = req.getRequestDispatcher(Utils.WELCOME_PAGE);
                     view.forward(req,resp);
