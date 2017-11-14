@@ -29,6 +29,7 @@
                     <li><a href="register">Register</a></li>
                     <% } else  if (request.getSession().getAttribute("role").equals("admin")) {%>
                     <li><a href="admin">To admin page </a></li>
+                    <li><a href="admin?action=addTour"> Add tour </a></li>
                     <% } %>
                 </ul>
                 <% if (request.getSession().getAttribute("role")==null) { %>
@@ -58,13 +59,20 @@
         <ul class="properties_list">
             <c:forEach items="${tours}" var="tour">
             <li>
-                <a href="order?action=order&tourId=<c:out value="${tour.id}"/>">
+            <% if (request.getSession().getAttribute("role")==null||request.getSession().getAttribute("role").equals("user")) { %>
+
+               <a href="order?action=order&tourId=<c:out value="${tour.id}"/>">
+                <% }  else {%>
+                 <a href="tour?action=edit&tourId=<c:out value="${tour.id}"/>">
+
+                <% } %>
                     <img src="img/${tour.title}.jpg" alt="" title="" class="property_img"/>
+
                 </a>
                 <span class="price"><c:out value = "${tour.costSevenDays} $"/></span>
                 <div class="property_details">
                     <h1>
-                        <a href="order?action=order&tourId"><c:out value = "${tour.title}"/></a>
+                        <c:out value = "${tour.title}"/>
                     </h1>
                     <h2> <c:choose>
                        <c:when test="${order.tour.isHot eq ('true')}">

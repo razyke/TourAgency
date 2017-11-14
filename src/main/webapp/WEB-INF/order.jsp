@@ -74,9 +74,11 @@
             <div class="row 50%">
                 <div class="6u 12u(mobile)">
                     <input type="radio" name="days" value="seven"> Price for 7 days: ${tour.costSevenDays} </input>
+                     <input type="invisible" name="cost7" value="${tour.costSevenDays}"> Price for 7 days: ${tour.costSevenDays} </input>
                 </div>
                 <div class="6u 12u(mobile)">
                     <input type="radio" name="days" value="ten" checked> Price for 10 days: ${tour.costTenDays} </input>
+                    <input type="invisible" name="cost10" value="${tour.costTenDays}"> Price for 7 days: ${tour.costSevenDays} </input>
                 </div>
             </div>
 
