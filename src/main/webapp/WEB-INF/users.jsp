@@ -2,7 +2,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
-    <title>Admin Page</title>
+    <title>Users</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
 
     <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
@@ -20,7 +20,6 @@
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
-            <li class="current"><a href="admin?action=users"> Users </a></li>
             <li><a href="/?action=signOut" class="button special">Sign out</a></li>
 
         </ul>
@@ -31,8 +30,7 @@
 <article id="main">
     <header class="special container">
         <span class="icon fa-laptop"></span>
-        <h2>Hello, admin, </h2>
-        <p>it's time to WORK! </p>
+        <h2> Users </h2>
 
     </header>
 
@@ -74,11 +72,12 @@
                 </c:otherwise>
             </c:choose>
             </td>
+            td><a href="admin?action=delete"> delete user </a></td>
         </tr>
     </c:forEach>
  </table>
 
- <a href="admin?action=delete"> delete user </a>
+
  </section>
  </article>
  <% }  else {%>
