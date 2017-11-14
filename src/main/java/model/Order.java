@@ -69,10 +69,11 @@ public class Order {
         return orderDate;
     }
 
-    public Order(int price, int days, Date orderDate) {
+    public Order(){}
+
+    public Order(int price, int days) {
         this.price = price;
         this.days = days;
-        this.orderDate = orderDate;
     }
 
     @Override

@@ -52,7 +52,7 @@
                 </p>
             </section>
         </div>
-        <form>
+        <form method="post" action="order">
             <div class="row 50%">
                 <div class="12u">
                     <p> <strong> Select date </strong></p>
@@ -80,7 +80,7 @@
                         <% if (request.getSession().getAttribute("role") != null) {%>
                         <li><input type="submit" class="special" value="Order" /></li>
                         <% } else { %>
-                        <li><input type="submit" class="special" value="Sign in" /></li>
+                        <li><a href="login" class="button special">Sign in</a></li>
                         <% } %>
                     </ul>
                 </div>

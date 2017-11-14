@@ -41,6 +41,10 @@
     </header><!--  end header section  -->
 <p align = "center" style = "color: green" > ${registration} </p>
 
+    <h3 align="center" style="color:green" > ${registration}</h3>
+    <h3 align="center" style="color:green" > ${message}</h3>
+    <h3 align="center" style="color:red" > ${errorMessage}</h3>
+
     <section class="caption">
         <h2 class="caption">Find You Perfect Trip</h2>
         <h3 class="properties">Rest - Excursion - shopping</h3>
@@ -72,29 +76,6 @@
         </div>
     </div>
 </section>	<!--  end listing section  -->
-
-
-<%--<a href = "order?action=order&tourId=<c:out value="${tour.id}"/>"></br></br>
-    <c:out value = "${tour.title}"/> </a>--%>
-
-
-
-
-
-
-<%--< form action=register>
-    <p align="right">
-        <button type="submit" value="register">Register</button>
-    </p>--%>
-
-
-<%--<% } else {%>
-</>
-<a href="admin"> To admin page </a>
-<p align="center"> Hello, ${userName}! </p>
-<p align="center"> You signed as  ${role}. </p>
-<a href="welcome?action=signOut"> sign out </a>
---%>
 
 </body>
 </html>

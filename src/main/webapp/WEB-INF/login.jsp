@@ -15,7 +15,7 @@
     <script src="${pageContext.request.contextPath}/js/util.js"></script>
 
 </head>
-<body>
+
 
 <body class="contact">
 
