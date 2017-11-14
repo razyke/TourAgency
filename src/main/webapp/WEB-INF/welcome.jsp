@@ -39,11 +39,14 @@
             </nav>
         </div>
     </header><!--  end header section  -->
-<p align = "center" style = "color: green" > ${registration} </p>
+
+<h3 align = "center" style = "color: green" > ${registration} </h3>
+<h3 align = "center" style="color: green"> ${message} </h3>
+<h3 align = "center" style="color: red"> ${errorMessage} </h3>
 
     <section class="caption">
         <h2 class="caption">Find You Perfect Trip</h2>
-        <h3 class="properties">Rest - Excursion - shopping</h3>
+        <h3 class="properties">Rest - Excursion - Shopping</h3>
     </section>
 </section><!--  end hero section  -->
 

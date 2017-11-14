@@ -2,7 +2,7 @@ package model;
 
 public class Tour {
     private int id;
-    private boolean isHot;
+    private boolean hot;
     private String title;
     private String type;
     private String city;
@@ -68,11 +68,11 @@ public class Tour {
     }
 
     public boolean isHot() {
-        return isHot;
+        return hot;
     }
 
     public void setHot(boolean hot) {
-        isHot = hot;
+        this.hot = hot;
     }
 
     public int getId() {
