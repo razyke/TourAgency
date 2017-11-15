@@ -38,7 +38,10 @@ public class WelcomeServlet extends HttpServlet {
         }
 //TODO find out why tours don't load when user just've signed in
         TourService tourService = StaticContextProvider.getTourService();
-        Collection<Tour> tours = tourService.getAllTours(String.valueOf(request.getSession().getAttribute("language")));
+        Collection<Tour> tours = tourService.getAllTours(
+                String.valueOf(request.getSession().getAttribute("language")),
+                false //FIXME: enter boolean parameter isLoyal
+        );
         request.setAttribute("tours", tours);
         RequestDispatcher view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
         view.forward(request, response);

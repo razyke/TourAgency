@@ -2,8 +2,6 @@ package servlets;
 
 import model.Order;
 import model.Tour;
-import model.User;
-import services.AuthService;
 import services.OrderService;
 import services.TourService;
 import spring.StaticContextProvider;
@@ -21,14 +19,19 @@ import java.util.Date;
 
 public class OrderServlet extends HttpServlet {
 
+    private int tourId = 0;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         if (req.getParameter("action") != null) {
             if (req.getParameter("action").equals("order")) {
                 TourService tourService = StaticContextProvider.getTourService();
-                Tour tour = tourService.getTour(Integer.parseInt(req.getParameter("tourId")),
-                        String.valueOf(req.getSession().getAttribute("language")));
+                tourId = Integer.parseInt(req.getParameter("tourId"));
+                Tour tour = tourService.getTour(    //TODO: Need to add 'isLoyal' and use getTourWithDiscount(...)
+                        tourId,
+                        String.valueOf(req.getSession().getAttribute("language"))
+                );
                 req.setAttribute("tour", tour);
             }
         }
@@ -40,20 +43,24 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if (req.getParameter("action") != null) {
-            if (req.getParameter("action").equals("order")) {
+
+
+                OrderService orderService = StaticContextProvider.getOrderService();
+                Order order;
 
                 boolean error = false;
 
-                OrderService orderService = StaticContextProvider.getOrderService();
+                if (req.getParameter("days") != null) {
+                    if (req.getParameter("days").equals("seven")) {
+                        order = new Order(Integer.parseInt(req.getParameter("cost7")), 7);
+                    } else {
+                        order = new Order(Integer.parseInt(req.getParameter("cost10")),10);
+                    }
 
-                Order order = new Order();
-
-                // bad think how make better.
-                int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
-                //order.setUserId(idUser);
-                int tourId = Integer.parseInt(req.getParameter("tourId"));
-                //order.setTourId(tourId);
+                } else {
+                    order = null;
+                    error = true;
+                }
 
                 try {
                     Date flyDate = new SimpleDateFormat("MM/dd/yyyy").parse(req.getParameter("Date"));
@@ -62,18 +69,20 @@ public class OrderServlet extends HttpServlet {
                     e.printStackTrace();
                     error = true;
                 }
-                order.setPrice(Integer.parseInt(req.getParameter("A TYT NADO PEREDATI NORMALINO")));
-                order.setDays(Integer.parseInt(req.getParameter("I TYT TOJE DNI")));
-                //Are we need is_activ ?
-                if (!error) {
-                    orderService.createOrder(order, idUser, tourId);
+
+                // bad think how make better.
+                int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
+
+                if (!error && orderService.createOrder(order, idUser, tourId)) {
+                    req.setAttribute("message", "Ordered, please wait, our manager contact with you.");
+                    RequestDispatcher view = req.getRequestDispatcher(Utils.WELCOME_PAGE);
+                    view.forward(req,resp);
                 } else {
-                    System.out.println("Something bad happened =( ");
+                    req.setAttribute("errorMessage", "Tour has not been ordered");
+                    RequestDispatcher view = req.getRequestDispatcher(Utils.WELCOME_PAGE);
+                    view.forward(req,resp);
                 }
             }
-        }
 
-        RequestDispatcher view = req.getRequestDispatcher(Utils.TOUR_PAGE);
-        view.forward(req, resp);
-    }
+
 }

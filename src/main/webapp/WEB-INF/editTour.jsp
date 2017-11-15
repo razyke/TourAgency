@@ -1,23 +1,3 @@
-<%--%@ page  contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
-<html>
-<head>
-    <title>Users</title>
-</head>
-
-<body>
-
-<h3 align="center"> <c:out value="tour.title"> </h3>
-<form method="post" action="admin">
-<p> Tour title <br> </p>
-<input type="text" value = "${tour.title}"> </input>
-<p> Tour description <br> </p>
-<input type="text" value = "${tour.description}"> </input>
-</form>
-</body>
-</html>
---%>
 <%@ page  contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
@@ -33,12 +13,10 @@
             <li class="current"><a href="/">To main page </a></li>
             <li class="current"><a href="admin?action=addTour"> Add tour </a></li>
             <li><a href="/?action=signOut" class="button special">Sign out</a></li>
-
         </ul>
     </nav>
 </header>
 <article id="main">
-
 					<header class="special container">
 						<span class="icon fa-tablet"></span>
 						<h2>Edit tour</h2>
@@ -50,9 +28,9 @@
 
 							<!-- Content -->
 								<div class="content">
-									<form>
-								<div class="row 50%">
-                   					<div class="6u 12u(mobile)">
+									<form method="post">
+										<div class="row 50%">
+                   						<div class="6u 12u(mobile)">
                                     	<p> Title </p>
                                     		</div>
                                     			<div class="6u 12u(mobile)">
@@ -86,10 +64,11 @@
                                                     </select>
                                                     <br/>
                                                     </c:when>
+                                                </c:choose>
 											</div>
 											<div class="6u 12u(mobile)">
 												<c:choose>
-                                                        <c:when test="${tour.isHot eq ('true')}">
+                                                        <c:when test="${tour.hot eq ('true')}">
                                                             <input
                                                                     type="checkbox" name="isHot" checked="checked"
                                                                     value="true" /><br /><br/>
@@ -99,7 +78,8 @@
                                                                     type="checkbox" name="isHot"
                                                                     value="true" /><br /><br/>
                                                         </c:otherwise>
-                                                    </c:choose>
+												</c:choose>
+
 											</div>
 										</div>
 
@@ -113,7 +93,9 @@
 											<div class="12u">
 												<ul class="buttons">
 													<li><input type="submit" class="special" value="Edit" /></li>
-												</ul>
+														</ul>
+													</div>
+												</div>
 											</div>
 										</div>
 									</form>

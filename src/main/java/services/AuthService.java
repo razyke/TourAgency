@@ -6,6 +6,7 @@ import model.User;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AuthService {
@@ -139,6 +140,12 @@ public class AuthService {
             }
         }
         return null;
+    }
+
+    public boolean isLoyalCustomer(User user) {
+        Date lastOrderDate = user.getLastOrderDate();
+        long duration = new Date().getTime() - lastOrderDate.getTime();
+        return duration < (long) 183*24*60*60*1000;
     }
 
     /**

@@ -59,7 +59,7 @@
                 </p>
             </section>
         </div>
-        <form>
+        <form method="post" action="order">
             <div class="row 50%">
                 <div class="12u">
                     <p> <strong> Select date </strong></p>
@@ -74,11 +74,11 @@
             <div class="row 50%">
                 <div class="6u 12u(mobile)">
                     <input type="radio" name="days" value="seven"> Price for 7 days: ${tour.costSevenDays} </input>
-                     <input type="invisible" name="cost7" value="${tour.costSevenDays}"> Price for 7 days: ${tour.costSevenDays} </input>
+                     <input type="hidden" name="cost7" value="${tour.costSevenDays}"> </input>
                 </div>
                 <div class="6u 12u(mobile)">
                     <input type="radio" name="days" value="ten" checked> Price for 10 days: ${tour.costTenDays} </input>
-                    <input type="invisible" name="cost10" value="${tour.costTenDays}"> Price for 7 days: ${tour.costSevenDays} </input>
+                    <input type="hidden" name="cost10" value="${tour.costTenDays}"> </input>
                 </div>
             </div>
 
@@ -87,7 +87,7 @@
                 <div class="12u">
                     <ul class="buttons">
                         <% if (request.getSession().getAttribute("role") != null) {%>
-                        <li><input type="submit" class="special" value="order" /></li>
+                        <li><input type="submit" class="special" value="Order" /></li>
                         <% } else { %>
                         <li><a href="login" class="button special"> Sign in </a></li>
                         <% } %>

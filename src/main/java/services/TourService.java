@@ -6,7 +6,7 @@ import model.Tour;
 import java.util.Collection;
 
 public class TourService {
-
+    private DiscountService discountService;
     private TourDao dao;
 
     /**
@@ -14,11 +14,28 @@ public class TourService {
      * @param language - that we need.
      * @return collection of tours on selected language.
      */
-    public Collection<Tour> getAllTours(String language) {
+    public Collection<Tour> getAllTours(String language, boolean isLoyal) {
         if ((!"RU".equals(language)) && (!"EN".equals(language))) {
             language = "EN";
         }
-        return dao.getAllTours(language);
+        Collection<Tour> tours = dao.getAllTours(language);
+        for (Tour tour : tours) {
+            tour.setCostSevenDays(
+                    discountService.calculatePrice(
+                            tour.getCostSevenDays(),
+                            tour.isHot(),
+                            isLoyal
+                    )
+            );
+            tour.setCostTenDays(
+                    discountService.calculatePrice(
+                            tour.getCostTenDays(),
+                            tour.isHot(),
+                            isLoyal
+                    )
+            );
+        }
+        return tours;
     }
 
     /**
@@ -32,13 +49,32 @@ public class TourService {
     }
 
     /**
-     * Get tour by id with selected language from DB.
+     * Get tour by id with selected language and recalculated with discounts price from DB.
      * @param id - of tour in DB.
      * @param language - that we need (RU/EN).
+     * @param isLoyal - if the user is loyal
      * @return tour.
      */
+    public Tour getTourWithDiscount(int id, String language, boolean isLoyal) {
+        Tour tour = dao.getTour(id, language);
+        tour.setCostSevenDays(
+                discountService.calculatePrice(
+                        tour.getCostSevenDays(),
+                        tour.isHot(),
+                        isLoyal
+                )
+        );
+        tour.setCostTenDays(
+                discountService.calculatePrice(
+                        tour.getCostTenDays(),
+                        tour.isHot(),
+                        isLoyal
+                )
+        );
+        return tour;
+    }
     public Tour getTour(int id, String language) {
-        return dao.getTour(id,language);
+        return dao.getTour(id, language);
     }
 
     /**
@@ -65,5 +101,13 @@ public class TourService {
      **/
     public void setDao(TourDao dao) {
         this.dao = dao;
+    }
+
+    /**
+     * This is set via Beans.xml configuration
+     * @param discountService is discountService
+     **/
+    public void setDiscountService(DiscountService discountService) {
+        this.discountService = discountService;
     }
 }

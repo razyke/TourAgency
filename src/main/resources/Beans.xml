@@ -47,6 +47,7 @@
     <bean id = "tourService"
           class="services.TourService">
         <property name="dao" ref="TourDao"/>
+        <property name="discountService" ref="discountService"/>
     </bean>
 
     <!-- Definition for OrderService bean-->
@@ -55,5 +56,11 @@
         <property name="orderDao" ref="OrderDao"/>
         <property name="tourDao" ref="TourDao"/>
         <property name="userDao" ref="UserDao"/>
+    </bean>
+
+    <!-- Definition for DiscountService bean-->
+    <bean id = "discountService"
+          class="services.DiscountService">
+        <property name="dao" ref="DiscountDao"/>
     </bean>
 </beans>

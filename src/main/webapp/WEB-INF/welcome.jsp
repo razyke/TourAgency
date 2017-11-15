@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="text" />
 <!DOCTYPE html>
@@ -25,17 +24,11 @@
         <div class="wrapper">
             <nav>
                 <ul>
-                    <li><form>
-                                    <select id="language" name="language" onchange="submit()">
-                                        <option value="EN" ${language == 'EN' ? 'selected' : ''}>English</option>
-                                        <option value="RU" ${language == 'RU' ? 'selected' : ''}>Русский</option>
-                                    </select>
-                                </form></li>
                     <% if (request.getSession().getAttribute("role")==null) { %>
                     <li><a href="register">Register</a></li>
                     <% } else  if (request.getSession().getAttribute("role").equals("admin")) {%>
                     <li><a href="admin">To admin page </a></li>
-                    <li><a href="admin?action=addTour"> Add tour </a></li>
+                    <li><a href="editTour?action=addTour"> Add tour </a></li>
                     <% } %>
                 </ul>
                 <% if (request.getSession().getAttribute("role")==null) { %>
@@ -69,7 +62,7 @@
 
                <a href="order?action=order&tourId=<c:out value="${tour.id}"/>">
                 <% }  else {%>
-                 <a href="tour?action=edit&tourId=<c:out value="${tour.id}"/>">
+                 <a href="editTour?action=edit&tourId=<c:out value="${tour.id}"/>">
 
                 <% } %>
                     <img src="img/${tour.title}.jpg" alt="" title="" class="property_img"/>
@@ -87,7 +80,6 @@
                      </c:choose>
                     <c:out value = "${tour.type}"/><span class="property_size"></span></h2>
                 </div>
-            </li>
             </c:forEach>
         </ul>
         <div class="more_listing">

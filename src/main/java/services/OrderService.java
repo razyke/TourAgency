@@ -7,7 +7,9 @@ import model.Order;
 import model.Tour;
 import model.User;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 public class OrderService {
 
@@ -18,8 +20,11 @@ public class OrderService {
     private Collection<Order> orders;
 
     private boolean validateOrder(Order order) {
-        //TODO: write this method later
-        return true;
+        if (order.getOrderDate().after(new Date()))
+        {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -33,6 +38,17 @@ public class OrderService {
             order.setTour(tourDao.getTour(order.getTour().getId(), order.getUser().getLanguage()));
         }
         return orders;
+    }
+
+    public Collection<Order> getAllOrders(int userId) {
+        getAllOrders();
+        Collection<Order> ordersFromUser = new ArrayList<Order>();
+        for (Order order : orders) {
+            if (order.getUser().getId() == userId) {
+                ordersFromUser.add(order);
+            }
+        }
+        return ordersFromUser;
     }
 
     /**
@@ -58,17 +74,18 @@ public class OrderService {
      * Create order in DB.
      * @param order - that we put in DB.
      */
-    public void createOrder(Order order, int userId, int tourId) {
-        User user = new User();
-        user.setId(userId);
+    public boolean createOrder(Order order, int userId, int tourId) {
+        User user = userDao.getUser(userId);
         Tour tour = new Tour();
         tour.setId(tourId);
         order.setUser(user);
         order.setTour(tour);
         if (validateOrder(order)){
             orderDao.createOrder(order);
+            return true;
         } else {
             System.out.println("Invalid order: " + order);
+            return false;
         }
     }
 
@@ -76,10 +93,12 @@ public class OrderService {
      * Marks the order inactive.
      * @param id - id of tour
      */
-    public void makeNotActive(int id) {
+    public void acceptOrder(int id) {
         Order order = getOrder(id);
-        order.setActiv(false);
+        order.setActive(false);
         updateOrder(order);
+        order.getUser().setLastOrderDate(new Date());
+        userDao.updateUser(order.getUser());
     }
 
     /**
