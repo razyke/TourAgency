@@ -59,10 +59,7 @@ public class AdminServlet extends HttpServlet {
             OrderService orderService = StaticContextProvider.getOrderService();
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             if (request.getParameter("manage").equals("Approve")) {
-                int userId = Integer.parseInt(request.getParameter("userId"));
-                AuthService authService = StaticContextProvider.getAuthService();
-                authService.updateUserLastOrder(userId);
-                orderService.deleteOrder(orderId);
+                orderService.acceptOrder(orderId);
                 response.sendRedirect(Utils.ADMIN_SERVLET);
             } else if (request.getParameter("manage").equals("Disapprove")) {
                 orderService.deleteOrder(orderId);

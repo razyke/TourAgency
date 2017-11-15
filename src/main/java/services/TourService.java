@@ -22,31 +22,25 @@ public class TourService {
 
         Collection<Tour> tours = dao.getAllTours(language);
 
-        if (isLoyal) {
-            for (Tour tour : tours) {
-                tour.setCostSevenDays(
-                        discountService.calculatePrice(
-                                tour.getCostSevenDays(),
-                                tour.isHot(),
-                                isLoyal
-                        )
-                );
-                tour.setCostTenDays(
-                        discountService.calculatePrice(
-                                tour.getCostTenDays(),
-                                tour.isHot(),
-                                isLoyal
-                        )
-                );
-            }
+        for (Tour tour : tours) {
+            tour.setCostSevenDays(
+                    discountService.calculatePrice(
+                            tour.getCostSevenDays(),
+                            tour.isHot(),
+                            isLoyal
+                    )
 
+            );
 
-            return tours;
-
-        } else {
-            return tours;
+            tour.setCostTenDays(
+                    discountService.calculatePrice(
+                            tour.getCostTenDays(),
+                            tour.isHot(),
+                            isLoyal
+                    )
+            );
         }
-
+        return tours;
     }
 
     /**
