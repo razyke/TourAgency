@@ -2,7 +2,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
-    <title>Users</title>
+    <title>Admin Page</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
 
     <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
@@ -20,6 +20,7 @@
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
+            <li class="current"><a href="admin?action=users"> Users </a></li>
             <li><a href="/?action=signOut" class="button special">Sign out</a></li>
 
         </ul>
@@ -30,7 +31,8 @@
 <article id="main">
     <header class="special container">
         <span class="icon fa-laptop"></span>
-        <h2> Users </h2>
+        <h2>Hello, admin, </h2>
+        <p>it's time to WORK! </p>
 
     </header>
 
@@ -49,22 +51,31 @@
         <th>Address</th>
         <th>Login</th>
         <th>Admin</th>
-        <th></th>
+        <th>Manage</th>
     </tr>
     </thead>
 <tbody>
 
     <c:forEach items="${users}" var="user">
         <tr>
-            <td><c:out value="${user.idUser}" /></td>
+            <td><c:out value="${user.id}" /></td>
             <td><c:out value="${user.firstName}" /></td>
             <td><c:out value="${user.middleName}" /></td>
             <td><c:out value="${user.lastName}" /></td>
             <td><c:out value="${user.email}" /></td>
             <td><c:out value="${user.address}" /></td>
             <td>
+                                       <c:when test="${tour.hot eq ('true')}">
+                                            <input type="checkbox" name="isHot" checked="checked"
+                                                    value="true" />
+                                        </c:when>
+                                        <c:otherwise>
+                                            <input type="checkbox" name="isHot"
+                                                                    value="true" />
+                                                        </c:otherwise>
+                                                </c:choose>
             <c:choose>
-                <c:when test="${user.isAdmin eq ('true')}">
+                <c:when test="${user.admin eq ('true')}">
                     <td><c:out value="Yes"/></td>
                 </c:when>
                 <c:otherwise>
@@ -72,12 +83,10 @@
                 </c:otherwise>
             </c:choose>
             </td>
-            td><a href="admin?action=delete"> delete user </a></td>
+            <td><a href="admin?action=delete&userId=<c:out value="${user.id}"/>"> Delete </a></td>
         </tr>
     </c:forEach>
  </table>
-
-
  </section>
  </article>
  <% }  else {%>
@@ -86,7 +95,7 @@
      <p align="right" ></p>
      <header class="special container">
          <h2>Classified</h2>
-         <p>Please sign as administranor</p>
+         <p>Please sign as administrator</p>
      </header>
 
  <% } %>
