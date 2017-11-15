@@ -11,7 +11,6 @@
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
-            <li class="current"><a href="admin?action=addTour"> Add tour </a></li>
             <li><a href="/?action=signOut" class="button special">Sign out</a></li>
         </ul>
     </nav>

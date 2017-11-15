@@ -53,7 +53,7 @@
     <c:forEach items="${discounts}" var="discount">
             <td> <c:out value="${discount.id}" /> </td>
             <td> <c:out value="${discount.name}" /> </td>
-            <td> <input type="text" name="city" value="${${discount.value}}" /> </td>
+            <td> <input type="text" name="city" value="${discount.value}" /> </td>
             <td> <c:out value="${discount.authorId}" /> </td>
             <td> <c:out value="${discount.lastUpdate}" /> </td>
         </tr>

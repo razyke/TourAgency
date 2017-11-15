@@ -27,6 +27,11 @@
         <div class="wrapper">
             <nav>
                 <ul>
+                    <% if (request.getSession().getAttribute("language") == null|| request.getSession().getAttribute("language").equals("RU")) { %>
+                    <li><a href="admin"> Русский </a></li>
+                    <% } else {%>
+                    <li><a href="admin"> English </a></li>
+                    <% } %>
                     <% if (request.getSession().getAttribute("role")==null) { %>
                     <li><a href="register">Register</a></li>
                     <% } else  if (request.getSession().getAttribute("role").equals("admin")) {%>
@@ -90,7 +95,7 @@
             </c:forEach>
         </ul>
         <div class="more_listing">
-            <a href="#" class="more_listing_btn">View More Tours</a>
+            <a href="#" class="more_listing_btn"><%out.print(bundle.getString("global.view_more_tours"));%></a>
         </div>
     </div>
 </section>	<!--  end listing section  -->
