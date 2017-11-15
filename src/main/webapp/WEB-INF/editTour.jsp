@@ -16,6 +16,7 @@
         </ul>
     </nav>
 </header>
+<% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
 					<header class="special container">
 						<span class="icon fa-tablet"></span>
@@ -27,7 +28,7 @@
 						<section class="wrapper style4 special container 75%">
 								<div class="content">
 									<form method="post">
-<div class="row 50%">
+                  <div class="row 50%">
                 <div class="6u 12u(mobile)">
                     <p align = "center"> <strong> Title </strong> </p>
                 </div>
@@ -150,6 +151,16 @@
 						</section>
 
 				</article>
+				<% }  else {%>
+
+                <article id="main">
+                    <p align="right" ></p>
+                    <header class="special container">
+                        <h2>Classified</h2>
+                        <p>Please sign as administrator</p>
+                    </header>
+
+                <% } %>
 				<!-- Scripts -->
                 			<script src="assets/js/jquery.min.js"></script>
                 			<script src="assets/js/jquery.dropotron.min.js"></script>
