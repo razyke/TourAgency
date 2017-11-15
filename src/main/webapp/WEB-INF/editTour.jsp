@@ -17,7 +17,7 @@
 </header>
 <article id="main">
 					<header class="special container">
-						<span class="icon fa-tablet"></span>
+						<span class="icon fa-edit"></span>
 						<h2>Edit tour</h2>
 						<p>Use the form below to edit tour </p>
 					</header>

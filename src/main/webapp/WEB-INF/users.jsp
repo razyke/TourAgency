@@ -30,7 +30,7 @@
 <% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
     <header class="special container">
-        <span class="icon fa-laptop"></span>
+        <span class="icon fa-user"></span>
         <h2> Users </h2>
         <p> List of all users </p>
 

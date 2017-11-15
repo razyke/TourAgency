@@ -31,7 +31,7 @@
 <% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
     <header class="special container">
-        <span class="icon fa-laptop"></span>
+        <span class="icon fa-percent"></span>
         <h2> Discounts </h2>
         <p>List of all discounts </p>
 

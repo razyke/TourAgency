@@ -30,7 +30,7 @@
 <article id="main">
 
     <header class="special container">
-     <span class="icon fa-laptop"></span>
+     <span class="icon fa-keyboard-o"></span>
         <h2>Order details</h2>
     </header>
 

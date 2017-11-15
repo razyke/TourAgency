@@ -55,7 +55,7 @@
     <article id="main">
 
         <header class="special container">
-            <span class="icon fa-envelope"> </span>
+            <span class="icon fa-user-plus"> </span>
 
             <h2>Registration</h2>
 

@@ -41,7 +41,7 @@
     </header>
     <article id="main">
     <header class="special container">
-    						<span class="icon fa-mobile"></span>
+    						<span class="icon fa-plane"></span>
     						<h2> <strong> <c:out value="${tour.city}" /></strong></h2>
     						<p> <c:out value="${tour.type}" /> tour </p>
     					</header>

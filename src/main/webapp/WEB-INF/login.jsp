@@ -51,7 +51,7 @@
 <article id="main">
     <p align="right" ></p>
     <header class="special container">
-        <span class="icon fa-laptop"></span>
+        <span class="icon fa-key"></span>
         <h2>Login</h2>
         <p>Use the form below to sign in </p>
         <p style="color: red">${errorString} </p>

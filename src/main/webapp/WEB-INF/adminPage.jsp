@@ -31,22 +31,12 @@
 <% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
     <header class="special container">
-        <span class="icon fa-laptop"></span>
+        <span class="icon fa-user-secret"></span>
         <h2>Hello, admin, </h2>
         <p>it's time to WORK! </p>
 
     </header>
 
-<%--
-<p align="right">
-<a href="welcome?action=signOut"> sign out </a>
-</p>
-<a href="admin?action=tours"> Tours </a>
-</br>
-<a href="admin?action=users"> Users </a>
-</br>
-<a href="admin?action=discounts"> Discounts </a>
---%>
 <section class="wrapper style3 special container 75%">
 <table align = "center" border = "1">
     <tr>
