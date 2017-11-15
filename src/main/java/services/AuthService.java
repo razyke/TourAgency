@@ -57,7 +57,7 @@ public class AuthService {
 
         }
         try {
-            Integer.parseInt(user.getPhone());
+            Long.parseLong(user.getPhone());
         } catch (Exception e) {
             error = true;
             errors.add("Phone contain illegal symbols");

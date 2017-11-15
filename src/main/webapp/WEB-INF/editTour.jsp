@@ -58,7 +58,7 @@
                             </c:when>
                             <c:otherwise>
                                 <input type="checkbox" name="isHot"
-                                                        value="true" />
+                                                        value="false" />
                                             </c:otherwise>
                                     </c:choose>
                                 </div>
@@ -69,33 +69,33 @@
                                     <c:choose>
                                         <c:when test="${tour.type eq ('excursion')}">
                                         <select id="type" name="typeId">
-                                            <option selected value="1"> Excursion </option>
-                                            <option value="2"> Shopping </option>
-                                            <option value="3"> Rest </option>
+                                            <option selected value="Excursion"> Excursion </option>
+                                            <option value="Shopping"> Shopping </option>
+                                            <option value="Rest"> Rest </option>
                                         </select>
                                         <br/>
                                         </c:when>
                                         <c:when test="${tour.type eq ('rest')}">
                                         <select id="type" name="typeId">
-                                            <option selected value="1"> Rest </option>
-                                            <option value="2"> Shopping </option>
-                                            <option value="3"> Excursion </option>
+                                            <option selected value="Rest"> Rest </option>
+                                            <option value="Shopping"> Shopping </option>
+                                            <option value="Excursion"> Excursion </option>
                                         </select>
                                         <br/>
                                         </c:when>
                                         <c:when test="${tour.type eq ('shopping')}">
                                         <select id="type" name="typeId">
-                                            <option selected value="1"> Shopping </option>
-                                            <option value="2"> Rest </option>
-                                            <option value="3"> Excursion </option>
+                                            <option selected value="Shopping"> Shopping </option>
+                                            <option value="Rest"> Rest </option>
+                                            <option value="Excursion"> Excursion </option>
                                         </select>
                                         <br/>
                                         </c:when>
                                         <c:otherwise>
                                         <select id="type" name="typeId">
-                                            <option selected value="1"> Excursion </option>
-                                            <option value="2"> Shopping </option>
-                                            <option value="3"> Rest </option>
+                                            <option selected value="Excursion"> Excursion </option>
+                                            <option value="Shopping"> Shopping </option>
+                                            <option value="Rest"> Rest </option>
                                         </select>
                                         <br/>
                                         </c:otherwise>
@@ -118,6 +118,7 @@
         <div class="12u">
 <% if (request.getParameter("tourId") != null) { %>
 <ul class="buttons">
+    <input type="hidden" name="tourid" value="${tour.id}" />
                 <li><input type="submit" class="special" name="manage" value="Edit" /></li>
                 <li><input type="submit" class="special" name="manage" value="Delete" /></li>
             </ul>

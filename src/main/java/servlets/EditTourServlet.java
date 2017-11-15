@@ -38,19 +38,42 @@ public class EditTourServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         if (req.getParameter("manage") != null) {
+            TourService tourService = StaticContextProvider.getTourService();
             if (req.getParameter("manage").equals("Edit")) {
                 System.out.println("EDIT");
             } else if (req.getParameter("manage").equals("Delete")) {
-                System.out.println("DELETE");
+                int tourid = Integer.parseInt(req.getParameter("tourid"));
+                tourService.deleteTour(tourid);
+                req.getSession().setAttribute("message", "Tour has been deleted");
+                resp.sendRedirect(Utils.WELCOME_SERVLET);
             } else if (req.getParameter("manage").equals("Add")) {
-                System.out.println("ADD");
+                boolean error = false;
+                Tour tour = new Tour();
+                tour.setCity(req.getParameter("city"));
+                tour.setDescription(req.getParameter("description"));
+                tour.setHot(Boolean.getBoolean(req.getParameter("isHot")));
+                tour.setTitle(req.getParameter("title"));
+                String language = String.valueOf(req.getSession().getAttribute("language"));
+                tour.setLanguage(language);
+                tour.setType(req.getParameter("typeId"));
+                //TODO: After that info will be on JSP page about cost remake 2 fields below.
+                tour.setCostSevenDays(7);
+                tour.setCostTenDays(10);
+                if (!error) {
+                    tourService.addTour(tour, language);
+                    req.getSession().setAttribute("message","Tour has been added");
+                    resp.sendRedirect(Utils.WELCOME_SERVLET);
+                } else {
+                    req.getSession().setAttribute("errorMessage", "Tour has not been added");
+                    resp.sendRedirect(Utils.WELCOME_SERVLET);
+                }
+
             } else if (req.getParameter("manage").equals("Cancel")) {
-                System.out.println("CANCEL");
+                resp.sendRedirect(Utils.WELCOME_SERVLET);
             }
+        } else {
+            RequestDispatcher view = req.getRequestDispatcher(Utils.EDIT_TOUR_PAGE);
+            view.forward(req,resp);
         }
-
-
-        RequestDispatcher view = req.getRequestDispatcher(Utils.EDIT_TOUR_PAGE);
-        view.forward(req,resp);
     }
 }

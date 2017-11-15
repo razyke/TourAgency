@@ -90,6 +90,10 @@ public class TourService {
         updateTour(tour);
     }
 
+    public void deleteTour(int id) {
+        dao.deleteTour(id);
+    }
+
     /**
      * Update given tour
      * @param tour for updating
