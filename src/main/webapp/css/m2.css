@@ -1579,7 +1579,7 @@
 		-webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-		color: #3fb1a3;
+		color: #95badf;
 		text-decoration: none;
 		border-bottom: dotted 1px;
 	}
@@ -1639,7 +1639,7 @@
 	}
 
 	blockquote {
-		border-left: solid 0.5em rgba(124, 128, 129, 0.2);
+		border-left: solid 0.5em rgba(203, 228, 255, 0.2);
 		font-style: italic;
 		padding: 1em 0 1em 2em;
 	}
@@ -2004,7 +2004,7 @@
     text-align: center;
     }
     th {
-    background: #BCEBDD;
+    background: #bfd9f2;
     color: white;
     text-shadow: 0 1px 1px #2D2020;
     padding: 10px 20px;
@@ -2026,7 +2026,7 @@
     }
     td {
     padding: 10px 20px;
-    background: #F8E391;
+    background: #f9fbc1;
     }
     tr:last-child td:first-child {
     border-radius: 0 0 0 10px;
@@ -2357,7 +2357,7 @@
 			}
 
 			.dropotron > li:hover > a {
-				background: #83d3c9;
+				background: #bfd9f2;
 				color: #fff;
 			}
 

@@ -484,8 +484,8 @@ header nav .login_btn:hover{
     position: absolute;
     top: 10px;
     left: 10px;
-    padding: 15px 20px;
-    background: #ffffff;
+    padding: 150px 200px;
+    background: #ff2353;
     color: #514d4d;
     font-family: "lato-bold", Helvetica, Arial, sans-serif;
     font-size: 16px;
@@ -580,7 +580,28 @@ header nav .login_btn:hover{
     color: #a0c3e5;
     border: 2px solid #a0c3e5;    
 }
+.hot {
+    display:inline-block;
+    position:relative;
+}
+.hot .hott_text {
+    display:block;
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    box-sizing:border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 
+    color:#fff;
+
+    padding:10px;
+    background-color:rgba(0,0,0,.3);
+
+
+}
 
 
 

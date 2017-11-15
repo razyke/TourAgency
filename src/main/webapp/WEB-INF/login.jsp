@@ -7,13 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
 
-    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.dropotron.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.scrolly.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.scrollgress.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/skel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/util.js"></script>
-
 </head>
 
 
@@ -21,9 +14,8 @@
 
 <div id="page-wrapper">
 
-    <!-- Header -->
     <header id="header">
-     <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
+     <h1 id="logo"><a href="#">TourAgenstvo <span>Java</span></a></h1>
         <nav id="nav">
             <ul>
                 <li class="current"><a href="/">To main page </a></li>
@@ -57,10 +49,9 @@
         <p style="color: red">${errorString} </p>
     </header>
 
-    <!-- One -->
+
     <section class="wrapper style4 special container 75%">
 
-        <!-- Content -->
         <div class="content">
             <form method="POST" action="login">
                 <div class="row">

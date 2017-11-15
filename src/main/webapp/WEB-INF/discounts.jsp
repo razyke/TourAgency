@@ -16,7 +16,7 @@
 <body>
 
 <header id="header">
- <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
+ <h1 id="logo"><a href="#">TourAgenstvo <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
@@ -62,8 +62,7 @@
 <div class="row">
                     <div class="12u">
                         <ul class="buttons">
-                            <li><input type="submit" class="special" name="manage" value="Approve" /></li>
-                            <li><input type="submit" class="special" name="manage" value="Back" /></li>
+                            <li><input type="submit"  name="manage" value="Save" /></li>
                         </ul>
                     </div>
                 </div>

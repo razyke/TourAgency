@@ -22,7 +22,6 @@
 						<p>Use the form below to edit tour </p>
 					</header>
 
-					<!-- One -->
 						<section class="wrapper style4 special container 75%">
 								<div class="content">
         <form method="post">
@@ -77,78 +76,79 @@
                 <div class="6u 12u(mobile)">
                     <p align = "center"> <strong> Type </strong> </p>
                 </div>
-                <div class="6u 12u(mobile)">
-                    <p align = "center"> <strong> Hot </strong>
-                    <c:choose>
-                            <c:when test="${tour.hot eq ('true')}">
-                                <input
-                                        type="checkbox" name="isHot" checked="checked"
-                                        value="true" />
-                            </c:when>
-                            <c:otherwise>
-                                <input type="checkbox" name="isHot"
-                                                        value="false" />
-                                            </c:otherwise>
-                                    </c:choose>
-                                </div>
-                            </div>
+<div class="6u 12u(mobile)">
+<p align = "center"> <strong> Hot </strong>
+<c:choose>
+    <c:when test="${tour.hot eq ('true')}">
+        <input
+                type="checkbox" name="isHot" checked="checked"
+                value="true" />
+    </c:when>
+    <c:otherwise>
+        <input type="checkbox" name="isHot"
+                                value="false" />
+                    </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
 
-                            <div class="row 50%">
-                                <div class="6u 12u(mobile)">
-                                    <c:choose>
-                                        <c:when test="${tour.type eq ('excursion')}">
-                                        <select id="type" name="typeId">
-                                            <option selected value="Excursion"> Excursion </option>
-                                            <option value="Shopping"> Shopping </option>
-                                            <option value="Rest"> Rest </option>
-                                        </select>
-                                        <br/>
-                                        </c:when>
-                                        <c:when test="${tour.type eq ('rest')}">
-                                        <select id="type" name="typeId">
-                                            <option selected value="Rest"> Rest </option>
-                                            <option value="Shopping"> Shopping </option>
-                                            <option value="Excursion"> Excursion </option>
-                                        </select>
-                                        <br/>
-                                        </c:when>
-                                        <c:when test="${tour.type eq ('shopping')}">
-                                        <select id="type" name="typeId">
-                                            <option selected value="Shopping"> Shopping </option>
-                                            <option value="Rest"> Rest </option>
-                                            <option value="Excursion"> Excursion </option>
-                                        </select>
-                                        <br/>
-                                        </c:when>
-                                        <c:otherwise>
-                                        <select id="type" name="typeId">
-                                            <option selected value="Excursion"> Excursion </option>
-                                            <option value="Shopping"> Shopping </option>
-                                            <option value="Rest"> Rest </option>
-                                        </select>
-                                        <br/>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </div>
-                                <div class="6u 12u(mobile)">
+    <div class="row 50%">
+        <div class="6u 12u(mobile)">
+            <c:choose>
+                <c:when test="${tour.type eq ('excursion')}">
+                <select id="type" name="typeId">
+                    <option selected value="Excursion"> Excursion </option>
+                    <option value="Shopping"> Shopping </option>
+                    <option value="Rest"> Rest </option>
+                </select>
+                <br/>
+                </c:when>
+                <c:when test="${tour.type eq ('rest')}">
+                <select id="type" name="typeId">
+                    <option selected value="Rest"> Rest </option>
+                    <option value="Shopping"> Shopping </option>
+                    <option value="Excursion"> Excursion </option>
+                </select>
+                <br/>
+                </c:when>
+                <c:when test="${tour.type eq ('shopping')}">
+                <select id="type" name="typeId">
+                    <option selected value="Shopping"> Shopping </option>
+                    <option value="Rest"> Rest </option>
+                    <option value="Excursion"> Excursion </option>
+                </select>
+                <br/>
+                </c:when>
+                <c:otherwise>
+                <select id="type" name="typeId">
+                    <option selected value="Excursion"> Excursion </option>
+                    <option value="Shopping"> Shopping </option>
+                    <option value="Rest"> Rest </option>
+                </select>
+                <br/>
+                </c:otherwise>
+            </c:choose>
+        </div>
+        <div class="6u 12u(mobile)">
 
-                                </div>
-                            </div>
-                            <div class="row 50%">
-                                <div class="12u">
-                                    <p align = "center"> <strong> Description </strong> </p>
-                                </div>
-                            </div>
-                            <div class="row 50%">
-                                <div class="12u">
-                                    <input type="text"  name="description" value="${tour.description}"/>                                 </div>
-                            </div>
-                             <div class="row">
+        </div>
+    </div>
+    <div class="row 50%">
+        <div class="12u">
+            <p align = "center"> <strong> Description </strong> </p>
+        </div>
+    </div>
+    <div class="row 50%">
+        <div class="12u">
+            <input type="text"  name="description" value="${tour.description}"/>
+        </div>
+    </div>
+     <div class="row">
         <div class="12u">
 <% if (request.getParameter("tourId") != null) { %>
 <ul class="buttons">
     <input type="hidden" name="tourid" value="${tour.id}" />
-                <li><input type="submit" class="special" name="manage" value="Edit" /></li>
+                <li><input type="submit" class="special" name="manage" value="Save" /></li>
                 <li><input type="submit" class="special" name="manage" value="Delete" /></li>
             </ul>
             <% } else { %>
@@ -164,16 +164,7 @@
     </div>
     </section>
 </article>
-<!-- Scripts -->
-            <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/js/jquery.dropotron.min.js"></script>
-            <script src="assets/js/jquery.scrolly.min.js"></script>
-            <script src="assets/js/jquery.scrollgress.min.js"></script>
-            <script src="assets/js/skel.min.js"></script>
-            <script src="assets/js/util.js"></script>
-            <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-            <script src="assets/js/main.js"></script>
 
-                	</body>
-                </html>
-                           <a href="admin?action=changeRole&userId=<c:out value="${user.id}"/>"> Change role </a>
+
+    </body>
+</html>

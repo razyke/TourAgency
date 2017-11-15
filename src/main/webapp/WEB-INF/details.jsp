@@ -11,7 +11,7 @@
     <script src="${pageContext.request.contextPath}/js/skel.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/util.js"></script>
 
-    <title>Orders</title>
+    <title>Details</title>
 </head>
 
 <body>
@@ -34,7 +34,6 @@
         <h2>Order details</h2>
     </header>
 
-    <!-- One -->
     <section class="wrapper style4 special container 75%">
 
         <form method="post" name="manage">
