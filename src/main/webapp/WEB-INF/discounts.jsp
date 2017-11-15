@@ -2,7 +2,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
-    <title>Admin Page</title>
+    <title>Discounts</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
 
     <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
@@ -20,7 +20,7 @@
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
-            <li class="current"><a href="admin?action=discounts">Discounts </a></li>
+            <li class="current"><a href="admin">To admin page </a></li>
             <li class="current"><a href="admin?action=users"> Users </a></li>
             <li><a href="/?action=signOut" class="button special">Sign out</a></li>
 
@@ -32,51 +32,42 @@
 <article id="main">
     <header class="special container">
         <span class="icon fa-laptop"></span>
-        <h2>Hello, admin, </h2>
-        <p>it's time to WORK! </p>
+        <h2> Discounts </h2>
+        <p>List of all discounts </p>
 
     </header>
 
-<%--
-<p align="right">
-<a href="welcome?action=signOut"> sign out </a>
-</p>
-<a href="admin?action=tours"> Tours </a>
-</br>
-<a href="admin?action=users"> Users </a>
---%>
 <section class="wrapper style3 special container 75%">
+
+<form method = "post">
 <table align = "center" border = "1">
     <tr>
     <strong>
         <th> Id</th>
-        <th> Tour </th>
-        <th> Price </th>
-        <th>Language</th>
-        <th>Client</th>
-        <th>Phone</th>
-        <th> Details </th>
+        <th> Name </th>
+        <th> Value </th>
+        <th>Author</th>
+        <th>Last update</th>
     </strong>
     </tr>
-    <c:forEach items="${orders}" var="order">
-    <c:choose>
-    <c:when test="${order.active eq ('true')}">
-        <tr>
-        </c:when>
-    <c:otherwise>
-        <tr style="color: silver">
-    </c:otherwise>
-      </c:choose>
-            <td> <c:out value="${order.id}" /> </td>
-            <td> <c:out value="${order.tour.title}" /> </td>
-            <td> <c:out value="${order.price}" /> </td>
-            <td> <c:out value="${order.user.language}"/> </td>
-            <td> <c:out value="${order.user.firstName}" />  <c:out value="${order.user.lastName}" /> </td>
-            <td> <c:out value="${order.user.phone}" /></td>
-            <td> <a href="admin?action=detail&idOrder=<c:out value="${order.id}"/>"> Details </a> </td>
+    <c:forEach items="${discounts}" var="discount">
+            <td> <c:out value="${discount.id}" /> </td>
+            <td> <c:out value="${discount.name}" /> </td>
+            <td> <input type="text" name="city" value="${${discount.value}}" /> </td>
+            <td> <c:out value="${discount.authorId}" /> </td>
+            <td> <c:out value="${discount.lastUpdate}" /> </td>
         </tr>
    </c:forEach>
 </table>
+<div class="row">
+                    <div class="12u">
+                        <ul class="buttons">
+                            <li><input type="submit" class="special" name="manage" value="Approve" /></li>
+                            <li><input type="submit" class="special" name="manage" value="Disapprove" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
 </section>
 </article>
 <% }  else {%>

@@ -26,6 +26,7 @@
         </ul>
     </nav>
 </header>
+<% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
 
     <header class="special container">
@@ -44,154 +45,78 @@
     </theah>
     <tbody>
 
+    <tr>
     <td> <strong> First name </strong> </td>
     <td style="color: silver"> <c:out value="${order.user.firstName}" /> </td>
 
     <td> id </td>
     <td style="color: silver"> <c:out value="${order.tour.id}" /> </td>
+    </tr>
 
+    <tr>
     <td> <strong> Middle name </strong> </td>
     <td style="color: silver"> <c:out value="${order.user.middleName}" /> </td>
 
     <td> Title </td>
     <td style="color: silver"> <c:out value="${order.tour.title}" /> </td>
+    </tr>
 
-    <td> <strong>  </strong> </td>
-    <td style="color: silver">  </td>
+    <tr>
+    <td> <strong> Last name </strong> </td>
+    <td style="color: silver"> <c:out value="${order.user.lastName}" /> </td>
 
-    <td>  </td>
-    <td style="color: silver">  </td>
+    <td> Type </td>
+    <td style="color: silver"> <c:out value="${order.tour.type}" /> </td>
+    </tr>
 
+    <tr>
+    <td> <strong> Phone </strong> </td>
+    <td style="color: silver"> <c:out value="${order.user.phone}" /> </td>
+
+    <td> City </td>
+    <td style="color: silver"> <c:out value="${order.tour.city}" /> </td>
+    </tr>
+
+    <tr>
+    <td> <strong> email  </strong> </td>
+    <td style="color: silver"> <c:out value="${order.user.email}" /> </td>
+
+    <td> Description </td>
+    <td style="color: silver">
+    <c:out value="${order.tour.description}" />
+     <input type="hidden" name="orderId" value="${order.id}"></td>
+    </tr>
+
+    <tr>
+    <td> Address <strong>   </strong> </td>
+    <td style="color: silver"> <c:out value="${order.user.address}" /> </td>
+
+    <td> Cost </td>
+    <td style="color: silver"> <c:out value="${order.price}" /> </td>
+    </tr>
+
+    <tr>
+    <td> Login <strong>  </strong> </td>
+    <td style="color: silver"> <c:out value="${order.user.loginName}" />
+      <input type="hidden" name="userId" value="${order.user.id}"> </td>
+
+    <td> Hot </td>
+    <td style="color: silver">
+     <c:choose>
+         <c:when test="${order.tour.hot eq ('true')}">
+             <p><c:out value="Yes"/></p>
+         </c:when>
+         <c:otherwise>
+             <p><c:out value="No"/></p>
+         </c:otherwise>
+     </c:choose>
+     </td>
+    </tr>
+
+    <tr>
     </tbody>
     </table>
-
-
-
-
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> Last name</p>
-                     </div>
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.user.lastName}" /> </p>
-                     </div>
-                 </div>
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> Phone </p>
-                     </div>
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.user.phone}" /> </p>
-                     </div>
-                 </div>                <div class="row 50%">
-                 <div class="12u(mobile)">
-                     <p> email </p>
-                 </div>
-                 <div class="12u(mobile)">
-                     <p> <c:out value="${order.user.email}" /> </p>
-                 </div>
-             </div>
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> Address</p>
-                     </div>
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.user.address}" /> </p>
-                     </div>
-                 </div>
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> Login </p>
-                     </div>
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.user.loginName}" /> </p>
-                         <input type="hidden" name="userId" value="${order.user.id}">
-                     </div>
-                 </div>
-
-                 <div class="row 50%">
-                     <div class="12u">
-                         <p> <strong> Tour info </strong></p>
-                     </div>
-                 </div>
-
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p>  </p>
-                     </div>
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.tour.id}" /> </p>
-                     </div>
-                 </div>
-
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> Title</p>
-                     </div>
-
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.tour.title}" /></p>
-                     </div>
-                 </div>
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> Type </p>
-                     </div>
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.tour.type}" /> </p>
-                     </div>
-                 </div>
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> City </p>
-                     </div>
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.tour.city}" /> </p>
-                     </div>
-                 </div>
-                 <div class="row 50%">
-                 <div class="12u(mobile)">
-                     <p> Days </p>
-                 </div>
-                 <div class="12u(mobile)">
-                     <p> <c:out value="${order.days}" /> </p>
-                 </div>
-             </div>
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> Price </p>
-                     </div>
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.price}" /> </p>
-                     </div>
-                 </div>
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> Hot </p>
-                     </div>
-                     <div class="12u(mobile)">
-                         <c:choose>
-                             <c:when test="${order.tour.hot eq ('true')}">
-                                 <p><c:out value="Yes"/></p>
-                             </c:when>
-                             <c:otherwise>
-                                 <p><c:out value="No"/></p>
-                             </c:otherwise>
-                         </c:choose>
-                     </div>
-                 </div>
-                 <div class="row 50%">
-                     <div class="12u">
-                         <p> <c:out value="${order.tour.description}" /> </p>
-                     </div>
-                 </div>
-                 <div class="row 50%">
-                     <div class="12u">
-                         <p> Description </p>
-                         <input type="hidden" name="orderId" value="${order.id}">
-                     </div>
-                 </div>
-                <div class="row">
+ <div class="row">
                     <div class="12u">
                         <ul class="buttons">
                             <li><input type="submit" class="special" name="manage" value="Approve" /></li>
@@ -200,9 +125,17 @@
                     </div>
                 </div>
             </form>
-        </div>
+<% }  else {%>
 
-    </section>
+<article id="main">
+    <p align="right" ></p>
+    <header class="special container">
+        <h2>Classified</h2>
+        <p>Please sign as administrator</p>
+    </header>
+
+<% } %>
+</section>
 
 </article>
 </body>
