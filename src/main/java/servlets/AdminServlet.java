@@ -62,7 +62,7 @@ public class AdminServlet extends HttpServlet {
                 int userId = Integer.parseInt(request.getParameter("userId"));
                 AuthService authService = StaticContextProvider.getAuthService();
                 authService.updateUserLastOrder(userId);
-                orderService.deleteOrder(orderId);
+                orderService.deleteOrder(orderId);  //TODO: don't use deleteOrder, order is inactive,  it must be filtered in AdminPage.jsp
                 response.sendRedirect(Utils.ADMIN_SERVLET);
             } else if (request.getParameter("manage").equals("Disapprove")) {
                 orderService.deleteOrder(orderId);
