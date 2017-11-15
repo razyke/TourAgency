@@ -103,10 +103,12 @@ public class TourService {
      * Update given tour
      * @param tour for updating
      */
-    private void updateTour(Tour tour) {
-        if (!dao.isTitleUsed(tour.getTitle())) {
+    private boolean updateTour(Tour tour) {
+        if (validateTour(tour)) {
             dao.updateTour(tour);
+            return true;
         }
+        return false;
     }
 
     /**
