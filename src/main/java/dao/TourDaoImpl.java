@@ -35,12 +35,16 @@ public class TourDaoImpl implements TourDao {
 
     @Override
     public void createTour(Tour tour) {
-        String SQL = "INSERT INTO tours (is_hot) VALUES(?)";
-        jdbcTemplate.update(SQL, tour.isHot());
-        SQL = "INSERT INTO tour_details (tour_id, title, description, language, type, city, cost_seven, cost_ten) " +
-                "VALUES(?,?,?,?,?,?,?,?)";
+        String SQL = "INSERT INTO tours (is_hot, cost_seven, cost_ten) VALUES(?,?,?)";
+        jdbcTemplate.update(SQL, tour.isHot(), tour.getCostSevenDays(), tour.getCostTenDays());
+        SQL = "SELECT max(id) FROM tours";
+        tour.setId(jdbcTemplate.queryForObject(SQL, int.class));
+        SQL = "INSERT INTO tour_details (tour_id, title, description, language, type, city) " +
+                "VALUES(?,?,?,?,?,?)";
         jdbcTemplate.update(SQL, tour.getId(), tour.getTitle(), tour.getDescription(), tour.getLanguage(),
-                tour.getType(), tour.getCity(), tour.getCostSevenDays(), tour.getCostTenDays());
+                tour.getType(), tour.getCity());
+        jdbcTemplate.update(SQL, tour.getId(), tour.getTitle() + " (FROM " + tour.getLanguage() +")",
+                tour.getDescription(), tour.getLanguage(), tour.getType(), tour.getCity());
     }
 
     @Override

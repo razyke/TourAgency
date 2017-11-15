@@ -29,9 +29,7 @@ public class TourService {
                             tour.isHot(),
                             isLoyal
                     )
-
             );
-
             tour.setCostTenDays(
                     discountService.calculatePrice(
                             tour.getCostTenDays(),
@@ -47,7 +45,7 @@ public class TourService {
      * Add new tour in DB.
      * @param tour that we add in DB.
      */
-    public void addTour(Tour tour) {
+    public void addTour(Tour tour, String language) {
         if (!dao.isTitleUsed(tour.getTitle())) {
             dao.createTour(tour);
         }
@@ -97,7 +95,9 @@ public class TourService {
      * @param tour for updating
      */
     public void updateTour(Tour tour) {
-        dao.updateTour(tour);
+        if (!dao.isTitleUsed(tour.getTitle())) {
+            dao.updateTour(tour);
+        }
     }
 
     /**
