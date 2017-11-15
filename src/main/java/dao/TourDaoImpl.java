@@ -41,10 +41,10 @@ public class TourDaoImpl implements TourDao {
         tour.setId(jdbcTemplate.queryForObject(SQL, int.class));
         SQL = "INSERT INTO tour_details (tour_id, title, description, language, type, city) " +
                 "VALUES(?,?,?,?,?,?)";
-        jdbcTemplate.update(SQL, tour.getId(), tour.getTitle(), tour.getDescription(), tour.getLanguage(),
+        jdbcTemplate.update(SQL, tour.getId(), tour.getTitle(), tour.getDescription(), "RU",
                 tour.getType(), tour.getCity());
-        jdbcTemplate.update(SQL, tour.getId(), tour.getTitle() + " (FROM " + tour.getLanguage() +")",
-                tour.getDescription(), tour.getLanguage(), tour.getType(), tour.getCity());
+        jdbcTemplate.update(SQL, tour.getId(), tour.getTitle(),
+                tour.getDescription(), "EN", tour.getType(), tour.getCity());
     }
 
     @Override

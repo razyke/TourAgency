@@ -171,6 +171,16 @@ public class AuthService {
     }
 
     /**
+     * Change user's role - admin or user
+     * @param id user's id
+     */
+    public void changeUserRole(int id) {
+        User user = dao.getUser(id);
+        user.setAdmin(!user.isAdmin());
+        updateUser(user);
+    }
+
+    /**
      * Delete user in DB.
      * @param id - id of user in DB.
      */
