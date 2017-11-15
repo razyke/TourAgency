@@ -2,146 +2,94 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
-    <title> Edit tour </title>
+    <title>Admin Page</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
+
+    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.dropotron.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.scrolly.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.scrollgress.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/skel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/util.js"></script>
 </head>
-<body class="contact">
+
+<body>
+
 <header id="header">
- <h1 id="logo"><a href="#">TourAgenstvo <span>Java</span></a></h1>
+ <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
-            <li class="current"><a href="admin?action=addTour"> Add tour </a></li>
+            <li class="current"><a href="admin?action=users"> Users </a></li>
             <li><a href="/?action=signOut" class="button special">Sign out</a></li>
+
         </ul>
     </nav>
 </header>
+
+<% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
-					<header class="special container">
-						<span class="icon fa-tablet"></span>
-						<h2>Edit tour</h2>
-						<p>Use the form below to edit tour </p>
-					</header>
+    <header class="special container">
+        <span class="icon fa-laptop"></span>
+        <h2>Hello, admin, </h2>
+        <p>it's time to WORK! </p>
 
-					<!-- One -->
-						<section class="wrapper style4 special container 75%">
-								<div class="content">
-									<form method="post">
-<div class="row 50%">
-                <div class="6u 12u(mobile)">
-                    <p align = "center"> <strong> Title </strong> </p>
-                </div>
-                <div class="6u 12u(mobile)">
-                    <p align = "center"> <strong> City </strong> </p>
-                </div>
-            </div>
+    </header>
 
-            <div class="row 50%">
-                <div class="6u 12u(mobile)">
-                    <input type="text" name="title" value="${tour.title}" />
-                </div>
-                <div class="6u 12u(mobile)">
-                    <input type="text" name="city" value="${tour.city}" />
-                </div>
-            </div>
-            <div class="row 50%">
-                <div class="6u 12u(mobile)">
-                    <p align = "center"> <strong> Type </strong> </p>
-                </div>
-                <div class="6u 12u(mobile)">
-                    <p align = "center"> <strong> Hot </strong>
-                    <c:choose>
-                            <c:when test="${tour.hot eq ('true')}">
-                                <input
-                                        type="checkbox" name="isHot" checked="checked"
-                                        value="true" />
-                            </c:when>
-                            <c:otherwise>
-                                <input type="checkbox" name="isHot"
-                                                        value="true" />
-                                            </c:otherwise>
-                                    </c:choose>
-                                </div>
-                            </div>
+<section class="wrapper style3 special container 75%">
+<table border=1>
 
-                            <div class="row 50%">
-                                <div class="6u 12u(mobile)">
-                                    <c:choose>
-                                        <c:when test="${tour.type eq ('excursion')}">
-                                        <select id="type" name="typeId">
-                                            <option selected value="1"> Excursion </option>
-                                            <option value="2"> Shopping </option>
-                                            <option value="3"> Rest </option>
-                                        </select>
-                                        <br/>
-                                        </c:when>
-                                    </c:choose>
+    <thead>
 
-                                    <c:choose>
-                                        <c:when test="${tour.type eq ('rest')}">
-                                        <select id="type" name="typeId">
-                                            <option selected value="1"> Rest </option>
-                                            <option value="2"> Shopping </option>
-                                            <option value="3"> Excursion </option>
-                                        </select>
-                                        <br/>
-                                        </c:when>
-                                    </c:choose>
-                                    <c:choose>
-                                        <c:when test="${tour.type eq ('shopping')}">
-                                        <select id="type" name="typeId">
-                                            <option selected value="1"> Shopping </option>
-                                            <option value="2"> Rest </option>
-                                            <option value="3"> Excursion </option>
-                                        </select>
-                                        <br/>
-                                        </c:when>
-                                    </c:choose>
-                                </div>
-                                <div class="6u 12u(mobile)">
+    <tr>
 
-                                </div>
-                            </div>
-                            <div class="row 50%">
-                                <div class="12u">
-                                    <p align = "center"> <strong> Description </strong> </p>
-                                </div>
-                            </div>
-                            <div class="row 50%">
-                                <div class="12u">
-                                    <input type="text"  name="description" value="${tour.description}" rows="7"></input>
-                                </div>
-                            </div>
-                             <div class="row">
-        <div class="12u">
-<% if request.getParameter("tourId") == null { %>
-<ul class="buttons">
-                <li><input type="submit" class="special" name="manage" value="Edit" /></li>
-                <li><input type="submit" class="special" name="manage" value="Delete" /></li>
-            </ul>
-            <% } else { %}
-            <ul class="buttons">
-                <li><input type="submit" class="special" name="manage" value="Add" /></li>
-                <li><input type="submit" class="special" name="manage" value="Cancel" /></li>
-            </ul>
-            <% } %>
-        </div>
-    </div>
-            </form>
-    </div>
+        <th>Id</th>
+        <th>First Name</th>
+         <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Login</th>
+        <th>Admin</th>
+        <th>Manage</th>
+    </tr>
+    </thead>
+<tbody>
 
-						</section>
+    <c:forEach items="${users}" var="user">
+        <tr>
+            <td><c:out value="${user.id}" /></td>
+            <td><c:out value="${user.firstName}" /></td>
+            <td><c:out value="${user.middleName}" /></td>
+            <td><c:out value="${user.lastName}" /></td>
+            <td><c:out value="${user.email}" /></td>
+            <td><c:out value="${user.address}" /></td>
+            <td>
+            <c:choose>
+                <c:when test="${user.admin eq ('true')}">
+                    <td><c:out value="Yes"/></td>
+                </c:when>
+                <c:otherwise>
+                    <td><c:out value="No"/></td>
+                </c:otherwise>
+            </c:choose>
+            </td>
+            <td><a href="admin?action=delete&userId=<c:out value="${user.id}"/>"> Delete </a></td>
+        </tr>
+    </c:forEach>
+ </table>
+ </section>
+ </article>
+ <% }  else {%>
 
-				</article>
-				<!-- Scripts -->
-                			<script src="assets/js/jquery.min.js"></script>
-                			<script src="assets/js/jquery.dropotron.min.js"></script>
-                			<script src="assets/js/jquery.scrolly.min.js"></script>
-                			<script src="assets/js/jquery.scrollgress.min.js"></script>
-                			<script src="assets/js/skel.min.js"></script>
-                			<script src="assets/js/util.js"></script>
-                			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-                			<script src="assets/js/main.js"></script>
+ <article id="main">
+     <p align="right" ></p>
+     <header class="special container">
+         <h2>Classified</h2>
+         <p>Please sign as administrator</p>
+     </header>
 
-                	</body>
-                </html>
+ <% } %>
+
+ </body>
+ </html>
