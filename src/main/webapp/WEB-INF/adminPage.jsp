@@ -58,12 +58,14 @@
     </strong>
     </tr>
     <c:forEach items="${orders}" var="order">
+    <c:choose>
     <c:when test="${order.active eq ('true')}">
         <tr>
         </c:when>
     <c:otherwise>
-        <tr bgcolor="#C0C0C0">
+        <tr style="color: silver">
     </c:otherwise>
+      </c:choose>
             <td> <c:out value="${order.id}" /> </td>
             <td> <c:out value="${order.tour.title}" /> </td>
             <td> <c:out value="${order.price}" /> </td>

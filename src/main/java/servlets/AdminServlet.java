@@ -46,7 +46,7 @@ public class AdminServlet extends HttpServlet {
             Collection<Order> allOrders = orderService.getAllOrders();
 
             request.setAttribute("orders", allOrders);
-
+            System.out.println(allOrders);
             RequestDispatcher view = request.getRequestDispatcher(Utils.ADMIN_PAGE);
             view.forward(request, response);
         }

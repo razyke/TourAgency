@@ -16,7 +16,7 @@
 
 <body>
 <header id="header">
- <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
+ <h1 id="logo"><a href="#">TourAgenstvo <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
@@ -29,13 +29,30 @@
 <article id="main">
 
     <header class="special container">
+     <span class="icon fa-laptop"></span>
         <h2>Order details</h2>
     </header>
 
     <!-- One -->
     <section class="wrapper style4 special container 75%">
 
-        <!-- Content -->
+    <table align = "center">
+
+    <theah>
+    <th colspan = "2" align = "center"> Client info </th>
+    <th colspan = "2" align = "center"> Tour info </th>
+    </theah>
+    <tbody>
+    <td> <strong> First name </strong> </td>
+    <td style="color: silver"> <c:out value="${order.user.firstName}" /> </td>
+    <td> Middle name </td>
+    <td style="color: silver"> <c:out value="${order.user.middleName}" /></td>
+
+    </tbody>
+    </table>
+
+
+
         <div class="content">
              <form method="post" action="admin">
                 <div class="row 50%">
