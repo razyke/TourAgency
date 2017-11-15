@@ -22,7 +22,7 @@ public class TourService {
      * @return collection of tours on selected language.
      */
     public Collection<Tour> getAllTours(String language, boolean isLoyal) {
-
+        discountService.loadDiscounts();
         if ((!"RU".equals(language)) && (!"EN".equals(language))) {
             language = "EN";
         }
@@ -30,20 +30,7 @@ public class TourService {
         Collection<Tour> tours = dao.getAllTours(language);
 
         for (Tour tour : tours) {
-            tour.setCostSevenDays(
-                    discountService.calculatePrice(
-                            tour.getCostSevenDays(),
-                            tour.isHot(),
-                            isLoyal
-                    )
-            );
-            tour.setCostTenDays(
-                    discountService.calculatePrice(
-                            tour.getCostTenDays(),
-                            tour.isHot(),
-                            isLoyal
-                    )
-            );
+            discountService.calculateDiscountAndPrice(tour, isLoyal);
         }
         return tours;
     }
@@ -68,23 +55,18 @@ public class TourService {
      * @return tour.
      */
     public Tour getTourWithDiscount(int id, String language, boolean isLoyal) {
+        discountService.loadDiscounts();
         Tour tour = dao.getTour(id, language);
-        tour.setCostSevenDays(
-                discountService.calculatePrice(
-                        tour.getCostSevenDays(),
-                        tour.isHot(),
-                        isLoyal
-                )
-        );
-        tour.setCostTenDays(
-                discountService.calculatePrice(
-                        tour.getCostTenDays(),
-                        tour.isHot(),
-                        isLoyal
-                )
-        );
+        discountService.calculateDiscountAndPrice(tour, isLoyal);
         return tour;
     }
+
+    /**
+     * Get tour by id with selected language from DB.
+     * @param id - of tour in DB.
+     * @param language - that we need (RU/EN).
+     * @return tour.
+     */
     public Tour getTour(int id, String language) {
         return dao.getTour(id, language);
     }

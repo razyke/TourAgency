@@ -10,6 +10,7 @@ public class Tour {
     private String language;
     private int costSevenDays;
     private int costTenDays;
+    private int discount;
 
     public Tour() {
     }
@@ -98,5 +99,13 @@ public class Tour {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 }
