@@ -26,6 +26,7 @@
         </ul>
     </nav>
 </header>
+<% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
 
     <header class="special container">
@@ -124,7 +125,16 @@
                     </div>
                 </div>
             </form>
+<% }  else {%>
 
+<article id="main">
+    <p align="right" ></p>
+    <header class="special container">
+        <h2>Classified</h2>
+        <p>Please sign as administrator</p>
+    </header>
+
+<% } %>
 </section>
 
 </article>
