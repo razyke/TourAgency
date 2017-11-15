@@ -37,6 +37,8 @@
     <!-- One -->
     <section class="wrapper style4 special container 75%">
 
+        <form method="post" name="manage">
+
     <table align = "center">
 
     <theah>

@@ -44,6 +44,8 @@
 <a href="admin?action=tours"> Tours </a>
 </br>
 <a href="admin?action=users"> Users </a>
+</br>
+<a href="admin?action=discounts"> Discounts </a>
 --%>
 <section class="wrapper style3 special container 75%">
 <table align = "center" border = "1">

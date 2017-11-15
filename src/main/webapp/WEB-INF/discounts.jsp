@@ -39,7 +39,7 @@
 
 <section class="wrapper style3 special container 75%">
 
-<form method = "post">
+<form method = "post" name = "discount">
 <table align = "center" border = "1">
     <tr>
     <strong>
@@ -53,7 +53,7 @@
     <c:forEach items="${discounts}" var="discount">
             <td> <c:out value="${discount.id}" /> </td>
             <td> <c:out value="${discount.name}" /> </td>
-            <td> <input type="text" name="city" value="${discount.value}" /> </td>
+            <td> <input type="text" name="value" value="${discount.value}" /> </td>
             <td> <c:out value="${discount.authorId}" /> </td>
             <td> <c:out value="${discount.lastUpdate}" /> </td>
         </tr>
@@ -63,7 +63,7 @@
                     <div class="12u">
                         <ul class="buttons">
                             <li><input type="submit" class="special" name="manage" value="Approve" /></li>
-                            <li><input type="submit" class="special" name="manage" value="Disapprove" /></li>
+                            <li><input type="submit" class="special" name="manage" value="Back" /></li>
                         </ul>
                     </div>
                 </div>

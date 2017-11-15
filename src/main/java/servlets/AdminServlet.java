@@ -3,6 +3,7 @@ package servlets;
 import model.Order;
 import model.User;
 import services.AuthService;
+import services.DiscountService;
 import services.OrderService;
 import spring.StaticContextProvider;
 import util.Utils;
@@ -21,6 +22,7 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if (request.getParameter("action") != null) {
+
             AuthService authService = StaticContextProvider.getAuthService();
             if (request.getParameter("action").equals("detail")) {
                 OrderService orderService = StaticContextProvider.getOrderService();
@@ -33,11 +35,25 @@ public class AdminServlet extends HttpServlet {
                 request.setAttribute("users", allUsers);
                 RequestDispatcher view = request.getRequestDispatcher(Utils.USERS_PAGE);
                 view.forward(request, response);
-            } else if (request.getParameter("action").equals("delete")) {
-                authService.deleteUser(Integer.parseInt(request.getParameter("userId")));
+            } else if (request.getParameter("action").equals("delete") || request.getParameter("action").equals("changeRole")) {
+
+                int id = Integer.parseInt(request.getParameter("userId"));
+
+                if (request.getParameter("action").equals("delete")) {
+                    authService.deleteUser(id);
+                } else if (request.getParameter("action").equals("changeRole")) {
+                    authService.changeUserRole(id);
+                }
+
                 Collection<User> allUsers = authService.getAllUsers();
                 request.setAttribute("users", allUsers);
                 RequestDispatcher view = request.getRequestDispatcher(Utils.USERS_PAGE);
+                view.forward(request, response);
+
+            } else if (request.getParameter("action").equals("discounts")) {
+                DiscountService discountService = StaticContextProvider.getDiscountService();
+                request.setAttribute("discounts", discountService.getAllDiscounts());
+                RequestDispatcher view = request.getRequestDispatcher(Utils.DISCOUNT_PAGE);
                 view.forward(request, response);
             }
 
@@ -65,6 +81,9 @@ public class AdminServlet extends HttpServlet {
                 orderService.deleteOrder(orderId);
                 response.sendRedirect(Utils.ADMIN_SERVLET);
             }
+        } else if (request.getParameter("discount") != null) {
+            //TODO: manage with discount.
+
         } else {
             RequestDispatcher view = request.getRequestDispatcher(Utils.ADMIN_PAGE);
             view.forward(request, response);
