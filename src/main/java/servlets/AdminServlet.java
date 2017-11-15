@@ -3,6 +3,7 @@ package servlets;
 import model.Order;
 import model.User;
 import services.AuthService;
+import services.DiscountService;
 import services.OrderService;
 import spring.StaticContextProvider;
 import util.Utils;
@@ -38,6 +39,11 @@ public class AdminServlet extends HttpServlet {
                 Collection<User> allUsers = authService.getAllUsers();
                 request.setAttribute("users", allUsers);
                 RequestDispatcher view = request.getRequestDispatcher(Utils.USERS_PAGE);
+                view.forward(request, response);
+            } else if (request.getParameter("action").equals("discounts")) {
+                DiscountService discountService = StaticContextProvider.getDiscountService();
+                request.setAttribute("discounts", discountService.getAllDiscounts());
+                RequestDispatcher view = request.getRequestDispatcher(Utils.DISCOUNT_PAGE);
                 view.forward(request, response);
             }
 
