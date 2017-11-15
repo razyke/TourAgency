@@ -65,6 +65,15 @@
             <td><c:out value="${user.email}" /></td>
             <td><c:out value="${user.address}" /></td>
             <td>
+                                       <c:when test="${tour.hot eq ('true')}">
+                                            <input type="checkbox" name="isHot" checked="checked"
+                                                    value="true" />
+                                        </c:when>
+                                        <c:otherwise>
+                                            <input type="checkbox" name="isHot"
+                                                                    value="true" />
+                                                        </c:otherwise>
+                                                </c:choose>
             <c:choose>
                 <c:when test="${user.admin eq ('true')}">
                     <td><c:out value="Yes"/></td>
