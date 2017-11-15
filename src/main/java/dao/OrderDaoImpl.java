@@ -22,7 +22,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     public Collection<Order> getAllOrders() {
-        String SQL = "SELECT * FROM orders";
+        String SQL = "SELECT * FROM orders ORDER BY -is_activ";
         return jdbcTemplate.query(SQL, new OrderMapper());
     }
 
