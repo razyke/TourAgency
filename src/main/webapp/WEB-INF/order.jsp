@@ -50,7 +50,7 @@
         <!-- Content -->
         <div class="content">
             <section>
-                <a href="#" class="image featured"><img src="img/${tour.title}_b.jpg" alt="" title="" class="property_img"/> </a>
+                <a href="#" class="image featured"><img src="img/${tour.id}_b.jpg" alt="" title="" class="property_img"/> </a>
                 <header>
                     <h3><c:out value="${tour.title}" /></h3>
                 </header>
