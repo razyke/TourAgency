@@ -11,15 +11,16 @@ public class DiscountService {
     private int loyalDiscount;
     private DiscountDao dao;
 
-    public void changeValue(int discountId, int newValue, int authorId) {
+    public boolean changeValue(int discountId, int newValue, int authorId) {
         if (newValue <= 50 && newValue >= 0) {
             Discount discount = getDiscount(discountId);
             discount.setValue(newValue);
             discount.setAuthorId(authorId);
             discount.setLastUpdate(new Date());
             dao.updateDiscount(discount);
+            return true;
         } else {
-            System.out.println("Wrong discount value!");
+            return false;
         }
     }
 
