@@ -26,6 +26,9 @@ public class EditTourServlet extends HttpServlet {
                 req.setAttribute("tour",tour);
                 RequestDispatcher view = req.getRequestDispatcher(Utils.EDIT_TOUR_PAGE);
                 view.forward(req,resp);
+            } else if (req.getParameter("action").equals("addTour")) {
+                RequestDispatcher view = req.getRequestDispatcher(Utils.EDIT_TOUR_PAGE);
+                view.forward(req,resp);
             }
         }
 
@@ -33,6 +36,18 @@ public class EditTourServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        if (req.getParameter("manage") != null) {
+            if (req.getParameter("manage").equals("Edit")) {
+                System.out.println("EDIT");
+            } else if (req.getParameter("manage").equals("Delete")) {
+                System.out.println("DELETE");
+            } else if (req.getParameter("manage").equals("Add")) {
+                System.out.println("ADD");
+            } else if (req.getParameter("manage").equals("Cancel")) {
+                System.out.println("CANCEL");
+            }
+        }
 
 
         RequestDispatcher view = req.getRequestDispatcher(Utils.EDIT_TOUR_PAGE);

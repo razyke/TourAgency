@@ -26,8 +26,8 @@
 					<!-- One -->
 						<section class="wrapper style4 special container 75%">
 								<div class="content">
-									<form method="post">
-<div class="row 50%">
+        <form method="post">
+            <div class="row 50%">
                 <div class="6u 12u(mobile)">
                     <p align = "center"> <strong> Title </strong> </p>
                 </div>
@@ -75,9 +75,6 @@
                                         </select>
                                         <br/>
                                         </c:when>
-                                    </c:choose>
-
-                                    <c:choose>
                                         <c:when test="${tour.type eq ('rest')}">
                                         <select id="type" name="typeId">
                                             <option selected value="1"> Rest </option>
@@ -86,8 +83,6 @@
                                         </select>
                                         <br/>
                                         </c:when>
-                                    </c:choose>
-                                    <c:choose>
                                         <c:when test="${tour.type eq ('shopping')}">
                                         <select id="type" name="typeId">
                                             <option selected value="1"> Shopping </option>
@@ -96,6 +91,14 @@
                                         </select>
                                         <br/>
                                         </c:when>
+                                        <c:otherwise>
+                                        <select id="type" name="typeId">
+                                            <option selected value="1"> Excursion </option>
+                                            <option value="2"> Shopping </option>
+                                            <option value="3"> Rest </option>
+                                        </select>
+                                        <br/>
+                                        </c:otherwise>
                                     </c:choose>
                                 </div>
                                 <div class="6u 12u(mobile)">
@@ -109,17 +112,16 @@
                             </div>
                             <div class="row 50%">
                                 <div class="12u">
-                                    <input type="text"  name="description" value="${tour.description}" rows="7"></input>
-                                </div>
+                                    <input type="text"  name="description" value="${tour.description}"/>                                 </div>
                             </div>
                              <div class="row">
         <div class="12u">
-<% if request.getParameter("tourId") == null { %>
+<% if (request.getParameter("tourId") != null) { %>
 <ul class="buttons">
                 <li><input type="submit" class="special" name="manage" value="Edit" /></li>
                 <li><input type="submit" class="special" name="manage" value="Delete" /></li>
             </ul>
-            <% } else { %}
+            <% } else { %>
             <ul class="buttons">
                 <li><input type="submit" class="special" name="manage" value="Add" /></li>
                 <li><input type="submit" class="special" name="manage" value="Cancel" /></li>
@@ -129,19 +131,17 @@
     </div>
             </form>
     </div>
+    </section>
+</article>
+<!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/jquery.dropotron.min.js"></script>
+            <script src="assets/js/jquery.scrolly.min.js"></script>
+            <script src="assets/js/jquery.scrollgress.min.js"></script>
+            <script src="assets/js/skel.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+            <script src="assets/js/main.js"></script>
 
-						</section>
-
-				</article>
-				<!-- Scripts -->
-                			<script src="assets/js/jquery.min.js"></script>
-                			<script src="assets/js/jquery.dropotron.min.js"></script>
-                			<script src="assets/js/jquery.scrolly.min.js"></script>
-                			<script src="assets/js/jquery.scrollgress.min.js"></script>
-                			<script src="assets/js/skel.min.js"></script>
-                			<script src="assets/js/util.js"></script>
-                			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-                			<script src="assets/js/main.js"></script>
-
-                	</body>
-                </html>
+    </body>
+</html>
