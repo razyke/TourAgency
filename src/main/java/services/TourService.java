@@ -45,10 +45,12 @@ public class TourService {
      * Add new tour in DB.
      * @param tour that we add in DB.
      */
-    public void addTour(Tour tour, String language) {
+    public boolean addTour(Tour tour, String language) {
         if (!dao.isTitleUsed(tour.getTitle())) {
             dao.createTour(tour);
+            return true;
         }
+        return false;
     }
 
     /**
@@ -94,7 +96,7 @@ public class TourService {
      * Update given tour
      * @param tour for updating
      */
-    public void updateTour(Tour tour) {
+    private void updateTour(Tour tour) {
         if (!dao.isTitleUsed(tour.getTitle())) {
             dao.updateTour(tour);
         }
