@@ -24,7 +24,7 @@ public class WelcomeServlet extends HttpServlet {
         //By default will be open on english language.
         if (request.getSession().getAttribute("language") == null) {
             HttpSession session = request.getSession();
-            session.setAttribute("language", "EN");
+            session.setAttribute("language", "RU");
         }
 
         //Before user sing out, we will save information about what language he see.
