@@ -11,6 +11,22 @@ public class Tour {
     private int costSevenDays;
     private int costTenDays;
 
+    public Tour() {
+    }
+
+    public Tour(int id, boolean hot, String title, String type, String city,
+                String description, String language, int costSevenDays, int costTenDays) {
+        this.id = id;
+        this.hot = hot;
+        this.title = title;
+        this.type = type;
+        this.city = city;
+        this.description = description;
+        this.language = language;
+        this.costSevenDays = costSevenDays;
+        this.costTenDays = costTenDays;
+    }
+
     public int getCostSevenDays() {
         return costSevenDays;
     }
