@@ -9,6 +9,13 @@ public class TourService {
     private DiscountService discountService;
     private TourDao dao;
 
+    private boolean validateTour(Tour tour) {
+        return tour.getLanguage() != null
+                && tour.getCostSevenDays() > 1000
+                && tour.getCostTenDays() > 1000
+                && !dao.isTitleUsed(tour.getTitle()) ;
+    }
+
     /**
      * Get all tours from DB with selected language.
      * @param language - that we need.
@@ -46,7 +53,7 @@ public class TourService {
      * @param tour that we add in DB.
      */
     public boolean addTour(Tour tour, String language) {
-        if (!dao.isTitleUsed(tour.getTitle())) {
+        if (validateTour(tour)) {
             dao.createTour(tour);
             return true;
         }
