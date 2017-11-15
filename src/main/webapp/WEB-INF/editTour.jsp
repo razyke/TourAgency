@@ -27,6 +27,7 @@
 						<section class="wrapper style4 special container 75%">
 								<div class="content">
         <form method="post">
+
             <div class="row 50%">
                 <div class="6u 12u(mobile)">
                     <p align = "center"> <strong> Title </strong> </p>
@@ -45,22 +46,34 @@
                 </div>
             </div>
 
-            <div class="6u 12u(mobile)">
-                                <p align = "center"> <strong> Price 7 days </strong> </p>
-                            </div>
-                            <div class="6u 12u(mobile)">
-                                <p align = "center"> <strong> Price 10 days </strong> </p>
-                            </div>
-                        </div>
+            <div class="row 50%">
+                <div class="6u 12u(mobile)">
+                    <p align = "center"> <strong> Price 7 days </strong> </p>
+                </div>
+                <div class="6u 12u(mobile)">
+                    <p align = "center"> <strong> Price 10 days </strong> </p>
+                </div>
+            </div>
 
+            <% if (request.getParameter("tourId") != null) {%>
                         <div class="row 50%">
                             <div class="6u 12u(mobile)">
-                                <input type="text" name="price7" value="${tour.costTenDays}" />
+                                <input type="text" name="price7" value="${tour.costSevenDays}" />
                             </div>
                             <div class="6u 12u(mobile)">
-                                <input type="text" name="city" value="${tour.tenTenDays}" />
+                                <input type="text" name="price10" value="${tour.costTenDays}" />
                             </div>
                         </div>
+            <% } else { %>
+            <div class="row 50%">
+                <div class="6u 12u(mobile)">
+                    <input type="text" name="price7" value="0" />
+                </div>
+                <div class="6u 12u(mobile)">
+                    <input type="text" name="price10" value="0" />
+                </div>
+            </div>
+            <% } %>
             <div class="row 50%">
                 <div class="6u 12u(mobile)">
                     <p align = "center"> <strong> Type </strong> </p>
@@ -147,7 +160,8 @@
             <% } %>
         </div>
     </div>
-            </form>
+
+    </form>
     </div>
     </section>
 </article>

@@ -47,7 +47,7 @@ public class EditTourServlet extends HttpServlet {
                 req.getSession().setAttribute("message", "Tour has been deleted");
                 resp.sendRedirect(Utils.WELCOME_SERVLET);
             } else if (req.getParameter("manage").equals("Add")) {
-                boolean error = false;
+
                 Tour tour = new Tour();
                 tour.setCity(req.getParameter("city"));
                 tour.setDescription(req.getParameter("description"));
@@ -56,11 +56,10 @@ public class EditTourServlet extends HttpServlet {
                 String language = String.valueOf(req.getSession().getAttribute("language"));
                 tour.setLanguage(language);
                 tour.setType(req.getParameter("typeId"));
-                //TODO: After that info will be on JSP page about cost remake 2 fields below.
-                tour.setCostSevenDays(7);
-                tour.setCostTenDays(10);
-                if (!error) {
-                    tourService.addTour(tour, language);
+                tour.setCostSevenDays(Integer.parseInt(req.getParameter("price7")));
+                tour.setCostTenDays(Integer.parseInt(req.getParameter("price10")));
+
+                if (tourService.addTour(tour, language)) {
                     req.getSession().setAttribute("message","Tour has been added");
                     resp.sendRedirect(Utils.WELCOME_SERVLET);
                 } else {
