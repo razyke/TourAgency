@@ -43,42 +43,31 @@
     <th colspan = "2" align = "center"> Tour info </th>
     </theah>
     <tbody>
+
     <td> <strong> First name </strong> </td>
     <td style="color: silver"> <c:out value="${order.user.firstName}" /> </td>
-    <td> Middle name </td>
-    <td style="color: silver"> <c:out value="${order.user.middleName}" /></td>
+
+    <td> id </td>
+    <td style="color: silver"> <c:out value="${order.tour.id}" /> </td>
+
+    <td> <strong> Middle name </strong> </td>
+    <td style="color: silver"> <c:out value="${order.user.middleName}" /> </td>
+
+    <td> Title </td>
+    <td style="color: silver"> <c:out value="${order.tour.title}" /> </td>
+
+    <td> <strong>  </strong> </td>
+    <td style="color: silver">  </td>
+
+    <td>  </td>
+    <td style="color: silver">  </td>
 
     </tbody>
     </table>
 
 
 
-        <div class="content">
-             <form method="post" action="admin">
-                <div class="row 50%">
-                 <div class="12u">
-                     <p> <strong> Client info </strong></p>
-                 </div>
-             </div>
 
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> First name</p>
-                     </div>
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.user.firstName}" /> </p>
-                     </div>
-                 </div>
-
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> Middle name</p>
-                     </div>
-
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.user.middleName}" /></p>
-                     </div>
-                 </div>
                  <div class="row 50%">
                      <div class="12u(mobile)">
                          <p> Last name</p>
@@ -128,7 +117,7 @@
 
                  <div class="row 50%">
                      <div class="12u(mobile)">
-                         <p> id </p>
+                         <p>  </p>
                      </div>
                      <div class="12u(mobile)">
                          <p> <c:out value="${order.tour.id}" /> </p>
