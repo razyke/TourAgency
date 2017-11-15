@@ -1,14 +1,13 @@
-<%@ page import="java.util.ResourceBundle" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<fmt:setLocale value="ru_RU" scope="session" />
-<fmt:setBundle basename="text" scope="session" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="text" />
 <!DOCTYPE html>
 
 <html>
 <head>
-    <%  ResourceBundle bundle = (ResourceBundle)request.getSession().getAttribute("bundle"); %>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/responsive.css">
     <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />--%>
@@ -16,8 +15,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
     <meta charset="UTF-8">
-
-    <title> Welcome </title>
+    <title>Welcome Page</title>
 
 </head>
 
@@ -27,11 +25,17 @@
         <div class="wrapper">
             <nav>
                 <ul>
+                    <li><form>
+                                    <select id="language" name="language" onchange="submit()">
+                                        <option value="EN" ${language == 'EN' ? 'selected' : ''}>English</option>
+                                        <option value="RU" ${language == 'RU' ? 'selected' : ''}>Русский</option>
+                                    </select>
+                                </form></li>
                     <% if (request.getSession().getAttribute("role")==null) { %>
                     <li><a href="register">Register</a></li>
                     <% } else  if (request.getSession().getAttribute("role").equals("admin")) {%>
                     <li><a href="admin">To admin page </a></li>
-                    <li><a href="editTour?action=addTour"> Add tour </a></li>
+                    <li><a href="admin?action=addTour"> Add tour </a></li>
                     <% } %>
                 </ul>
                 <% if (request.getSession().getAttribute("role")==null) { %>
@@ -43,10 +47,6 @@
         </div>
     </header><!--  end header section  -->
 
-<!--remove me: resource bundle example-->
-<h2><fmt:message key="button.register" /></h2>
-<!--remove me/-->
-
 <h3 align = "center" style = "color: green" > ${registration} </h3>
 <h3 align = "center" style="color: green"> ${message} </h3>
 <h3 align = "center" style="color: red"> ${errorMessage} </h3>
@@ -57,7 +57,7 @@
     </section>
 </section><!--  end hero section  -->
 
-    <h2 align= "center" > <strong> <%out.print(bundle.getString("global.wonderful_message"));%> </strong></h2>
+    <h2 align= "center" > <strong> Our wonderful tours </strong></h2>
 
 
 <section class="listings">
@@ -69,7 +69,7 @@
 
                <a href="order?action=order&tourId=<c:out value="${tour.id}"/>">
                 <% }  else {%>
-                 <a href="editTour?action=edit&tourId=<c:out value="${tour.id}"/>">
+                 <a href="tour?action=edit&tourId=<c:out value="${tour.id}"/>">
 
                 <% } %>
                     <img src="img/${tour.title}.jpg" alt="" title="" class="property_img"/>
@@ -87,6 +87,7 @@
                      </c:choose>
                     <c:out value = "${tour.type}"/><span class="property_size"></span></h2>
                 </div>
+            </li>
             </c:forEach>
         </ul>
         <div class="more_listing">
