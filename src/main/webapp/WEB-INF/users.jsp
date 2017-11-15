@@ -16,7 +16,7 @@
 <body>
 
 <header id="header">
- <h1 id="logo"><a href="#">TourAgenstvo <span>Java</span></a></h1>
+    <h1 id="logo"><a href="#">TourAgenstvo <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
@@ -36,27 +36,27 @@
 
     </header>
 
-<table border=1 align="center">
+    <table border=1 align="center">
 
-    <thead>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th>Id</th>
-        <th>First Name</th>
-         <th>Middle Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>Login</th>
-        <th>Admin</th>
-        <th>Manage</th>
-    </tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Login</th>
+            <th>Admin</th>
+            <th>Manage</th>
+        </tr>
 
-    </thead>
+        </thead>
 
-<tbody>
-    <c:forEach items="${users}" var="user">
+        <tbody>
+        <c:forEach items="${users}" var="user">
         <tr>
             <td><c:out value="${user.id}" /></td>
             <td><c:out value="${user.firstName}" /></td>
@@ -64,7 +64,7 @@
             <td><c:out value="${user.lastName}" /></td>
             <td><c:out value="${user.email}" /></td>
             <td><c:out value="${user.address}" /></td>
-              <td><c:out value="${user.loginName}" /></td>
+            <td><c:out value="${user.loginName}" /></td>
             <c:choose>
                 <c:when test="${user.admin eq ('true')}">
                     <td><c:out value="Yes"/></td>
@@ -74,23 +74,23 @@
                 </c:otherwise>
             </c:choose>
             <td><a href="admin?action=delete&userId=<c:out value="${user.id}"/>"> Delete <br> </a>
-            <a href="admin?action=changeRole&userId=<c:out value="${user.id}"/>"> Change role </a>
+                <a href="admin?action=changeRole&userId=<c:out value="${user.id}"/>"> Change role </a>
             </td>
         </tr>
-    </c:forEach>
+        </c:forEach>
 
- </table>
+    </table>
 
- <% }  else {%>
+        <% }  else {%>
 
- <article id="main">
-     <p align="right" ></p>
-     <header class="special container">
-         <h2>Classified</h2>
-         <p>Please sign as administrator</p>
-     </header>
+    <article id="main">
+        <p align="right" ></p>
+        <header class="special container">
+            <h2>Classified</h2>
+            <p>Please sign as administrator</p>
+        </header>
 
- <% } %>
+            <% } %>
 
- </body>
- </html>
+</body>
+</html>
