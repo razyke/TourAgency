@@ -16,7 +16,7 @@
 
 <body>
 <header id="header">
- <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
+ <h1 id="logo"><a href="#">TourAgenstvo <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/">To main page </a></li>
@@ -29,39 +29,45 @@
 <article id="main">
 
     <header class="special container">
+     <span class="icon fa-laptop"></span>
         <h2>Order details</h2>
     </header>
 
     <!-- One -->
     <section class="wrapper style4 special container 75%">
 
-        <!-- Content -->
-        <div class="content">
-             <form method="post" action="admin">
-                <div class="row 50%">
-                 <div class="12u">
-                     <p> <strong> Client info </strong></p>
-                 </div>
-             </div>
+    <table align = "center">
 
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> First name</p>
-                     </div>
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.user.firstName}" /> </p>
-                     </div>
-                 </div>
+    <theah>
+    <th colspan = "2" align = "center"> Client info </th>
+    <th colspan = "2" align = "center"> Tour info </th>
+    </theah>
+    <tbody>
 
-                 <div class="row 50%">
-                     <div class="12u(mobile)">
-                         <p> Middle name</p>
-                     </div>
+    <td> <strong> First name </strong> </td>
+    <td style="color: silver"> <c:out value="${order.user.firstName}" /> </td>
 
-                     <div class="12u(mobile)">
-                         <p> <c:out value="${order.user.middleName}" /></p>
-                     </div>
-                 </div>
+    <td> id </td>
+    <td style="color: silver"> <c:out value="${order.tour.id}" /> </td>
+
+    <td> <strong> Middle name </strong> </td>
+    <td style="color: silver"> <c:out value="${order.user.middleName}" /> </td>
+
+    <td> Title </td>
+    <td style="color: silver"> <c:out value="${order.tour.title}" /> </td>
+
+    <td> <strong>  </strong> </td>
+    <td style="color: silver">  </td>
+
+    <td>  </td>
+    <td style="color: silver">  </td>
+
+    </tbody>
+    </table>
+
+
+
+
                  <div class="row 50%">
                      <div class="12u(mobile)">
                          <p> Last name</p>
@@ -111,7 +117,7 @@
 
                  <div class="row 50%">
                      <div class="12u(mobile)">
-                         <p> id </p>
+                         <p>  </p>
                      </div>
                      <div class="12u(mobile)">
                          <p> <c:out value="${order.tour.id}" /> </p>

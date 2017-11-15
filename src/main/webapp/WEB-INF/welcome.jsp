@@ -72,7 +72,7 @@
                  <a href="editTour?action=edit&tourId=<c:out value="${tour.id}"/>">
 
                 <% } %>
-                    <img src="img/${tour.title}.jpg" alt="" title="" class="property_img"/>
+                    <img src="img/${tour.id}.jpg" alt="" title="" class="property_img"/>
 
                 </a>
                 <span class="price"><c:out value = "${tour.costSevenDays} $"/></span>

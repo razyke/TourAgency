@@ -44,6 +44,23 @@
                     <input type="text" name="city" value="${tour.city}" />
                 </div>
             </div>
+
+            <div class="6u 12u(mobile)">
+                                <p align = "center"> <strong> Price 7 days </strong> </p>
+                            </div>
+                            <div class="6u 12u(mobile)">
+                                <p align = "center"> <strong> Price 10 days </strong> </p>
+                            </div>
+                        </div>
+
+                        <div class="row 50%">
+                            <div class="6u 12u(mobile)">
+                                <input type="text" name="price7" value="${tour.costTenDays}" />
+                            </div>
+                            <div class="6u 12u(mobile)">
+                                <input type="text" name="city" value="${tour.tenTenDays}" />
+                            </div>
+                        </div>
             <div class="row 50%">
                 <div class="6u 12u(mobile)">
                     <p align = "center"> <strong> Type </strong> </p>
@@ -144,5 +161,6 @@
             <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
             <script src="assets/js/main.js"></script>
 
-    </body>
-</html>
+                	</body>
+                </html>
+                           <a href="admin?action=changeRole&userId=<c:out value="${user.id}"/>"> Change role </a>
