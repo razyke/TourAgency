@@ -2,8 +2,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<fmt:setLocale value="ru_RU" scope="session" />
-<fmt:setBundle basename="text" scope="session" />
 <!DOCTYPE html>
 
 <html>
@@ -11,7 +9,6 @@
     <%  ResourceBundle bundle = (ResourceBundle)request.getSession().getAttribute("bundle"); %>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/responsive.css">
-    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />--%>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
@@ -44,9 +41,6 @@
         </div>
     </header><!--  end header section  -->
 
-<!--remove me: resource bundle example-->
-<!--<h2><fmt:message key="button.register" /></h2>-->
-<!--remove me/-->
 
 <h3 align = "center" style = "color: green" > ${registration} </h3>
 <h3 align = "center" style="color: green"> ${message} </h3>
@@ -58,7 +52,7 @@
     </section>
 </section><!--  end hero section  -->
 
-    <h2 align= "center" > <strong> <%out.print(bundle.getString("global.wonderful_message"));%> </strong></h2>
+    <h2 align= "center" > <strong> <% out.print(bundle.getString("global.wonderful_message"));%> </strong></h2>
 
 
 <section class="listings">
@@ -82,7 +76,7 @@
                         <c:out value = "${tour.title}"/>
                     </h1>
                     <h2> <c:choose>
-                       <c:when test="${order.tour.hot eq ('true')}">
+                       <c:when test="${tour.hot eq ('true')}">
                            <p style="color: red"><c:out value="Hot!"/></p>
                        </c:when>
                      </c:choose>

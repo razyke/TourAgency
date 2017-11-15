@@ -25,13 +25,14 @@ public class DiscountService {
 
     public int calculatePrice(int basePrice, boolean isHot, boolean isLoyal) {
         getAllDiscounts();
+
         int discount = isHot ? hotDiscount : 0;
         discount = isLoyal ? Math.max(discount, loyalDiscount) : discount;
         return basePrice * (100 - discount) / 100;
     }
 
     /**
-     * Get all discounts from DB.
+     * Get all discounts from DB and stores to private fields.
      * @return Collection of all discounts in DB.
      */
     public Collection<Discount> getAllDiscounts() {
