@@ -77,7 +77,7 @@
     <p align="right" ></p>
     <header class="special container">
         <h2>Classified</h2>
-        <p>Please sign as administranor</p>
+        <p>Please sign as administrator</p>
     </header>
 
 <% } %>

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html" charset=UTF-8">
 <link type="text/css"
           href="${pageContext.request.contextPath}/css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
@@ -59,7 +59,9 @@
                 </p>
             </section>
         </div>
+        <%--<a href="admin?action=detail&idOrder=<c:out value="${order.id}"/>"> Details </a>--%>
         <form method="post" action="order">
+            <input type="hidden" name="tourId" value="<c:out value="${tour.id}"/>">
             <div class="row 50%">
                 <div class="12u">
                     <p> <strong> Select date </strong></p>
@@ -96,8 +98,8 @@
             </div>
         </form>
     </section>
+    </article>
 </div>
-</article>
 <script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>

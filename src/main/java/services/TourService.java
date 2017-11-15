@@ -15,27 +15,38 @@ public class TourService {
      * @return collection of tours on selected language.
      */
     public Collection<Tour> getAllTours(String language, boolean isLoyal) {
+
         if ((!"RU".equals(language)) && (!"EN".equals(language))) {
             language = "EN";
         }
+
         Collection<Tour> tours = dao.getAllTours(language);
-        for (Tour tour : tours) {
-            tour.setCostSevenDays(
-                    discountService.calculatePrice(
-                            tour.getCostSevenDays(),
-                            tour.isHot(),
-                            isLoyal
-                    )
-            );
-            tour.setCostTenDays(
-                    discountService.calculatePrice(
-                            tour.getCostTenDays(),
-                            tour.isHot(),
-                            isLoyal
-                    )
-            );
+
+        if (isLoyal) {
+            for (Tour tour : tours) {
+                tour.setCostSevenDays(
+                        discountService.calculatePrice(
+                                tour.getCostSevenDays(),
+                                tour.isHot(),
+                                isLoyal
+                        )
+                );
+                tour.setCostTenDays(
+                        discountService.calculatePrice(
+                                tour.getCostTenDays(),
+                                tour.isHot(),
+                                isLoyal
+                        )
+                );
+            }
+
+
+            return tours;
+
+        } else {
+            return tours;
         }
-        return tours;
+
     }
 
     /**

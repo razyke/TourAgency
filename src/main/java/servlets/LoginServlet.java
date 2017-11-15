@@ -46,6 +46,11 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("role", "admin");
                 response.sendRedirect(Utils.ADMIN_SERVLET);
             } else {
+                if (authService.isLoyalCustomer(authUser)) {
+                    session.setAttribute("loyal",true);
+                } else {
+                    session.setAttribute("loyal", false);
+                }
                 session.setAttribute("idUser", authUser.getId());
                 session.setAttribute("role", "user");
                 response.sendRedirect(Utils.WELCOME_SERVLET);
