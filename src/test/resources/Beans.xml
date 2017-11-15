@@ -9,10 +9,22 @@
           class = "dao.MockUserDaoImpl">
     </bean>
 
+    <!-- Definition for UserDao bean -->
+    <bean id = "TourDao"
+          class = "dao.MockTourDaoImpl">
+    </bean>
+
     <!-- Definition for RegistrationService bean-->
     <bean id = "authService"
           class="services.AuthService">
         <property name="dao" ref="UserDao"/>
     </bean>
+
+    <!-- Definition for RegistrationService bean-->
+    <bean id = "tourService"
+          class="services.TourService">
+        <property name="dao" ref="TourDao"/>
+    </bean>
+
 
 </beans>

@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Collection<User> getAllUsers() {
-        String SQL = "SELECT * FROM users";
+        String SQL = "SELECT * FROM users ORDER BY -is_admin";
         return jdbcTemplate.query(SQL, new UserMapper());
     }
 
