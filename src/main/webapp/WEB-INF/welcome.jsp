@@ -66,7 +66,7 @@
                            <% }  else {%>
                                <a href="editTour?action=edit&tourId=<c:out value="${tour.id}"/>">
                                    <% } %>
-                   <img src="img/<%out.print(i++);%>.jpg" alt="" title="" class="property_img"/>
+                   <img src="img/<%out.print(i); i = i<6 ? ++i: 1;%>.jpg" alt="" title="" class="property_img"/>
                                </a>
                                <span class="price"><c:out value = "${tour.costSevenDays} $"/></span>
 
@@ -75,7 +75,7 @@
                         <c:out value = "${tour.title}"/>
                      <c:choose>
                        <c:when test="${tour.hot eq ('true')}">
-                           <q style="color: red"><c:out value="Hot!"/></q>
+                           <q style="color: red"><c:out value="Hot! -${tour.discount}%"/></q>
                        </c:when>
                          <c:when test="${tour.discount > 0}">
                              <q style="color: red"><c:out value="${tour.discount}% discount"/></q>
