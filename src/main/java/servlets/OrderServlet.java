@@ -78,23 +78,17 @@ public class OrderServlet extends HttpServlet {
                     error = true;
                 }
 
-                // bad think how make better.
+
                 int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
                 int tourId = Integer.parseInt(req.getParameter("tourId"));
-               // int tourId = Integer.parseInt(String.valueOf(req.getSession().getAttribute("tourId")));
 
                 if (!error && orderService.createOrder(order, idUser, tourId)) {
                     req.getSession().setAttribute("message","Ordered, please wait, our manager contact with you.");
                     resp.sendRedirect(Utils.WELCOME_SERVLET);
-                    //req.setAttribute("message", "Ordered, please wait, our manager contact with you.");
-                    //RequestDispatcher view = req.getRequestDispatcher(Utils.WELCOME_PAGE);
-                    //view.forward(req,resp);
+
                 } else {
                     req.getSession().setAttribute("errorMessage", "Tour has not been ordered");
                     resp.sendRedirect(Utils.WELCOME_SERVLET);
-                    //req.setAttribute("errorMessage", "Tour has not been ordered");
-                    //RequestDispatcher view = req.getRequestDispatcher(Utils.WELCOME_PAGE);
-                    //view.forward(req,resp);
                 }
             }
 

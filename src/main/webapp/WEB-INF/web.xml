@@ -32,11 +32,6 @@
     </servlet>
 
     <servlet>
-        <servlet-name>Details</servlet-name>
-        <servlet-class>servlets.DetailsServlet</servlet-class>
-    </servlet>
-
-    <servlet>
         <servlet-name>EditTour</servlet-name>
         <servlet-class>servlets.EditTourServlet</servlet-class>
     </servlet>
@@ -64,11 +59,6 @@
     <servlet-mapping>
         <servlet-name>Tour</servlet-name>
         <url-pattern>/order</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>Details</servlet-name>
-        <url-pattern>/details</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

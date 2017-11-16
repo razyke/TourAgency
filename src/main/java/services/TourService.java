@@ -16,6 +16,12 @@ public class TourService {
                 && !dao.isTitleUsed(tour.getTitle()) ;
     }
 
+    private boolean validateForUpdate(Tour tour) {
+        return tour.getLanguage() != null
+                && tour.getCostSevenDays() > 1000
+                && tour.getCostTenDays() > 1000 ;
+    }
+
     /**
      * Get all tours from DB with selected language.
      * @param language - that we need.
@@ -39,7 +45,7 @@ public class TourService {
      * Add new tour in DB.
      * @param tour that we add in DB.
      */
-    public boolean addTour(Tour tour, String language) {
+    public boolean addTour(Tour tour) {
         if (validateTour(tour)) {
             dao.createTour(tour);
             return true;
@@ -71,16 +77,6 @@ public class TourService {
         return dao.getTour(id, language);
     }
 
-    /**
-     * Mark tour as hot.
-     * @param id - of tour in DB.
-     */
-    public void markAsHot(int id) {
-        Tour tour = getTour(id, "EN");
-        tour.setHot(true);
-        updateTour(tour);
-    }
-
     public void deleteTour(int id) {
         dao.deleteTour(id);
     }
@@ -89,8 +85,8 @@ public class TourService {
      * Update given tour
      * @param tour for updating
      */
-    private boolean updateTour(Tour tour) {
-        if (validateTour(tour)) {
+    public boolean updateTour(Tour tour) {
+        if (validateForUpdate(tour)) {
             dao.updateTour(tour);
             return true;
         }

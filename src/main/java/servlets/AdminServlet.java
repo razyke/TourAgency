@@ -1,5 +1,6 @@
 package servlets;
 
+import model.Discount;
 import model.Order;
 import model.User;
 import services.AuthService;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.ResourceBundle;
 
 public class AdminServlet extends HttpServlet {
 
@@ -62,7 +64,6 @@ public class AdminServlet extends HttpServlet {
             Collection<Order> allOrders = orderService.getAllOrders();
 
             request.setAttribute("orders", allOrders);
-            System.out.println(allOrders);
             RequestDispatcher view = request.getRequestDispatcher(Utils.ADMIN_PAGE);
             view.forward(request, response);
         }
@@ -74,14 +75,39 @@ public class AdminServlet extends HttpServlet {
         if (request.getParameter("manage") != null) {
             OrderService orderService = StaticContextProvider.getOrderService();
             int orderId = Integer.parseInt(request.getParameter("orderId"));
-            if (request.getParameter("manage").equals("Approve")) {
+            if (request.getParameter("manage").equals(
+                    ((ResourceBundle)request.getSession().getAttribute("bundle")).getString("global.approve"))) {
                 orderService.acceptOrder(orderId);
                 response.sendRedirect(Utils.ADMIN_SERVLET);
-            } else if (request.getParameter("manage").equals("Disapprove")) {
+            } else if (request.getParameter("manage").equals(
+                    ((ResourceBundle)request.getSession().getAttribute("bundle")).getString("global.disapprove"))){
                 orderService.deleteOrder(orderId);
                 response.sendRedirect(Utils.ADMIN_SERVLET);
             }
-        } else if (request.getParameter("discount") != null) {
+        } else if (request.getParameter("change") != null) {
+            if (request.getParameter("change").equals(
+                    ((ResourceBundle)request.getSession().getAttribute("bundle")).getString("global.change"))) {
+
+                DiscountService discountService = StaticContextProvider.getDiscountService();
+
+                String[] discountIds = request.getParameterValues("discountId");
+                String[] values = request.getParameterValues("value");
+
+                for (int i = 0; i < 2; i++) {
+                    Discount discount = discountService.getDiscount(Integer.parseInt(discountIds[i]));
+                    //TODO: CLASS CAST EXCEPTION, ty bro
+                    int newValue = Integer.parseInt(values[i]);
+                    if (discount.getValue() != newValue) {
+                        discountService.changeValue(discount.getId(),
+                                newValue,
+                                Integer.parseInt(
+                                        String.valueOf(request.getSession().getAttribute("idUser"))));
+                    }
+                }
+                response.sendRedirect(Utils.ADMIN_SERVLET);
+            } else {
+                response.sendRedirect(Utils.ADMIN_SERVLET);
+            }
             //TODO: manage with discount.
 
         } else {

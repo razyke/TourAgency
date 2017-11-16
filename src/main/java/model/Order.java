@@ -72,17 +72,12 @@ public class Order {
     public Order() {
     }
 
-    //TODO: Delete unnecessary constructor
     public Order(int price, int days) {
         this.price = price;
         this.days = days;
     }
 
-    public Order(int price, int days, Date orderDate) {
-        this.price = price;
-        this.days = days;
-        this.orderDate = orderDate;
-    }
+
 
     @Override
     public String toString() {

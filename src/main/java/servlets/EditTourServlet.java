@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class EditTourServlet extends HttpServlet {
 
@@ -39,35 +40,62 @@ public class EditTourServlet extends HttpServlet {
 
         if (req.getParameter("manage") != null) {
             TourService tourService = StaticContextProvider.getTourService();
-            if (req.getParameter("manage").equals("Edit")) {
-                System.out.println("EDIT");
-            } else if (req.getParameter("manage").equals("Delete")) {
+            String language = String.valueOf(req.getSession().getAttribute("language"));
+            String message = "message";
+            String errorMessage = "errorMessage";
+
+            if (req.getParameter("manage").equals(
+                    ((ResourceBundle)req.getSession().getAttribute("bundle")).getString("global.edit"))) {
+                Tour tour = new Tour(
+                        Boolean.getBoolean(req.getParameter("isHot")),
+                        req.getParameter("title"),
+                        req.getParameter("typeId"),
+                        req.getParameter("city"),
+                        req.getParameter("description"),
+                        language,
+                        Integer.parseInt(req.getParameter("price7")),
+                        Integer.parseInt(req.getParameter("price10"))
+                );
                 int tourid = Integer.parseInt(req.getParameter("tourid"));
-                tourService.deleteTour(tourid);
-                req.getSession().setAttribute("message", "Tour has been deleted");
-                resp.sendRedirect(Utils.WELCOME_SERVLET);
-            } else if (req.getParameter("manage").equals("Add")) {
+                tour.setId(tourid);
 
-                Tour tour = new Tour();
-                tour.setCity(req.getParameter("city"));
-                tour.setDescription(req.getParameter("description"));
-                tour.setHot(Boolean.getBoolean(req.getParameter("isHot")));
-                tour.setTitle(req.getParameter("title"));
-                String language = String.valueOf(req.getSession().getAttribute("language"));
-                tour.setLanguage(language);
-                tour.setType(req.getParameter("typeId"));
-                tour.setCostSevenDays(Integer.parseInt(req.getParameter("price7")));
-                tour.setCostTenDays(Integer.parseInt(req.getParameter("price10")));
-
-                if (tourService.addTour(tour, language)) {
-                    req.getSession().setAttribute("message","Tour has been added");
+                if (tourService.updateTour(tour)) {
+                    req.getSession().setAttribute(message, "Tour has been updated");
                     resp.sendRedirect(Utils.WELCOME_SERVLET);
                 } else {
-                    req.getSession().setAttribute("errorMessage", "Tour has not been added");
+                    req.getSession().setAttribute(errorMessage, "Fail to update tour");
                     resp.sendRedirect(Utils.WELCOME_SERVLET);
                 }
 
-            } else if (req.getParameter("manage").equals("Cancel")) {
+            } else if (req.getParameter("manage").equals(
+                    ((ResourceBundle)req.getSession().getAttribute("bundle")).getString("global.delete"))) {
+                int tourid = Integer.parseInt(req.getParameter("tourid"));
+                tourService.deleteTour(tourid);
+                req.getSession().setAttribute(message, "Tour has been deleted");
+                resp.sendRedirect(Utils.WELCOME_SERVLET);
+            } else if (req.getParameter("manage").equals(
+                    ((ResourceBundle)req.getSession().getAttribute("bundle")).getString("global.add"))) {
+                Tour tour = new Tour(
+                        Boolean.getBoolean(req.getParameter("isHot")),
+                        req.getParameter("title"),
+                        req.getParameter("typeId"),
+                        req.getParameter("city"),
+                        req.getParameter("description"),
+                        language,
+                        Integer.parseInt(req.getParameter("price7")),
+                        Integer.parseInt(req.getParameter("price10"))
+                );
+
+                if (tourService.addTour(tour)) {
+                    req.getSession().setAttribute(message,"Tour has been added");
+                    resp.sendRedirect(Utils.WELCOME_SERVLET);
+                } else {
+                    req.getSession().setAttribute(errorMessage, "Tour has not been added");
+                    resp.sendRedirect(Utils.WELCOME_SERVLET);
+                }
+
+            } else if (req.getParameter("manage").equals(
+                    ((ResourceBundle)req.getSession().getAttribute("bundle")).getString("global.cancel"))) {
                 resp.sendRedirect(Utils.WELCOME_SERVLET);
             }
         } else {

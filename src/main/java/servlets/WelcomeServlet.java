@@ -24,7 +24,7 @@ public class WelcomeServlet extends HttpServlet {
         //By default will be open on english language.
         if (request.getSession().getAttribute("language") == null) {
             HttpSession session = request.getSession();
-            session.setAttribute("language", "RU");
+            session.setAttribute("language", "EN");
         }
 
         //Before user sing out, we will save information about what language he see.
@@ -35,6 +35,9 @@ public class WelcomeServlet extends HttpServlet {
                 session.invalidate();
                 HttpSession newSession = request.getSession();
                 newSession.setAttribute("language", language);
+            } else if (request.getParameter("action").equals("changeLanguage")) {
+                String language = String.valueOf(request.getSession().getAttribute("language"));
+                request.getSession().setAttribute("language", language.equals("EN")?"RU":"EN");
             }
         }
 
@@ -43,12 +46,15 @@ public class WelcomeServlet extends HttpServlet {
 
         boolean loyal = false;
 
+
         String language = String.valueOf(request.getSession().getAttribute("language"));
+
         ResourceBundle bundle;
 
         bundle =  ResourceBundle.getBundle("global", language.equals("EN") ?
                 Locale.ROOT :
                 new Locale("ru", "RU"));
+
         request.getSession().setAttribute("bundle", bundle);
 
         if (request.getSession().getAttribute("loyal") != null) {
