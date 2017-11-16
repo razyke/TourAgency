@@ -15,7 +15,7 @@ public class DiscountDaoImpl implements DiscountDao {
     public Discount getDiscount(int id) {
 
         String SQL = "SELECT * FROM discounts WHERE id = ?";
-        return (Discount) jdbcTemplate.query(SQL, new DiscountMapper(), id);
+        return (Discount) jdbcTemplate.queryForObject(SQL, new DiscountMapper(), id);
     }
 
     @Override
