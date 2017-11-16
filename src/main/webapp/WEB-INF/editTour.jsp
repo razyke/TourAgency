@@ -89,7 +89,7 @@
                             </c:when>
                             <c:otherwise>
                                 <input type="checkbox" name="isHot"
-                                                        value="false" />
+                                                        value="true" />
                                             </c:otherwise>
                                     </c:choose>
                                 </div>

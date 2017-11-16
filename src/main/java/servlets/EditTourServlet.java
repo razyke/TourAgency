@@ -46,8 +46,12 @@ public class EditTourServlet extends HttpServlet {
 
             if (req.getParameter("manage").equals(
                     ((ResourceBundle)req.getSession().getAttribute("bundle")).getString("global.edit"))) {
+                boolean hot = false;
+                if (req.getParameter("isHot") != null) {
+                    hot = req.getParameter("isHot").equals("true");
+                }
                 Tour tour = new Tour(
-                        Boolean.getBoolean(req.getParameter("isHot")),
+                        hot,
                         req.getParameter("title"),
                         req.getParameter("typeId"),
                         req.getParameter("city"),
@@ -75,8 +79,12 @@ public class EditTourServlet extends HttpServlet {
                 resp.sendRedirect(Utils.WELCOME_SERVLET);
             } else if (req.getParameter("manage").equals(
                     ((ResourceBundle)req.getSession().getAttribute("bundle")).getString("global.add"))) {
+                boolean hot = false;
+                if (req.getParameter("isHot") != null) {
+                    hot = req.getParameter("isHot").equals("true");
+                }
                 Tour tour = new Tour(
-                        Boolean.getBoolean(req.getParameter("isHot")),
+                        hot,
                         req.getParameter("title"),
                         req.getParameter("typeId"),
                         req.getParameter("city"),

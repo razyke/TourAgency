@@ -83,8 +83,8 @@
                      </c:choose>
                     </h1>
 
-                    <h2><c:out value = "${tour.type}"/><span class="property_size"></span> </h2>
-
+                    <h2><c:out value = "${tour.type}"/> shopping <span class="property_size"></span> </h2>
+                    <%--TODO: remake like this -> bundle.getString("global."+tour.type)--%>
                 </div>
             </c:forEach>
             </li>

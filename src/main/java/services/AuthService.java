@@ -143,6 +143,10 @@ public class AuthService {
         return null;
     }
 
+    public User getUser(int id) {
+        return dao.getUser(id);
+    }
+
     public Collection<User> getAllUsers() {
         return dao.getAllUsers();
     }

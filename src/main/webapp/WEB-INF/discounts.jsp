@@ -55,7 +55,7 @@
         <input type="hidden" name="discountId" value="${discount.id}">
             <td> <c:out value="${discount.name}" /> </td>
             <td> <input type="text" name="value" value="${discount.value}" /> </td>
-            <td> <c:out value="${discount.authorId}" /> </td>
+            <td> <c:out value="${discount.authorLogin}" /> </td>
             <td> <c:out value="${discount.lastUpdate}" /> </td>
         </tr>
    </c:forEach>
