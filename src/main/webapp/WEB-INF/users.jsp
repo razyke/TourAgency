@@ -26,11 +26,11 @@
 <article id="main">
     <header class="special container">
         <span class="icon fa-user"></span>
-        <h2> Users </h2>
-        <p> List of all users </p>
+        <h2> <%out.print(bundle.getString("global.users"));%> </h2>
+        <p> <%out.print(bundle.getString("globla.list_of_all_users"));%> </p>
 
     </header>
-    <section class="wrapper style3 special container 75%">
+    <section class="wrapper style3 ">
     <table border=1 align="center">
 
         <thead>
@@ -38,14 +38,14 @@
         <tr>
 
             <th>Id</th>
-            <th>First Name</th>
-            <th>Middle Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Login</th>
-            <th>Admin</th>
-            <th>Manage</th>
+            <th><%out.print(bundle.getString("global.first_name"));%></th>
+            <th><%out.print(bundle.getString("global.middle_name"));%></th>
+            <th><%out.print(bundle.getString("global.last_name"));%></th>
+            <th><%out.print(bundle.getString("global.email"));%></th>
+            <th><%out.print(bundle.getString("global.address"));%></th>
+            <th><%out.print(bundle.getString("global.login"));%></th>
+            <th><%out.print(bundle.getString("global.admin"));%></th>
+            <th><%out.print(bundle.getString("global.manage"));%></th>
         </tr>
 
         </thead>
@@ -62,14 +62,14 @@
             <td><c:out value="${user.loginName}" /></td>
             <c:choose>
                 <c:when test="${user.admin eq ('true')}">
-                    <td><c:out value="Yes"/></td>
+                    <td><%out.print(bundle.getString("global.yes"));%></td>
                 </c:when>
                 <c:otherwise>
-                    <td><c:out value="No"/></td>
+                    <td><%out.print(bundle.getString("global.no"));%></td>
                 </c:otherwise>
             </c:choose>
-            <td><a href="admin?action=delete&userId=<c:out value="${user.id}"/>"> Delete <br> </a>
-                <a href="admin?action=changeRole&userId=<c:out value="${user.id}"/>"> Change role </a>
+            <td><a href="admin?action=delete&userId=<c:out value="${user.id}"/>"> <%out.print(bundle.getString("global.delete"));%> <br> </a>
+                <a href="admin?action=changeRole&userId=<c:out value="${user.id}"/>"> <%out.print(bundle.getString("global.change"));%> <%out.print(bundle.getString("global.role"));%> </a>
             </td>
         </tr>
         </c:forEach>
@@ -82,8 +82,8 @@
     <article id="main">
         <p align="right" ></p>
         <header class="special container">
-            <h2>Classified</h2>
-            <p>Please sign as administrator</p>
+            <h2><%out.print(bundle.getString("global.classified"));%></h2>
+            <p><%out.print(bundle.getString("global.please_sign_in_as_admin"));%></p>
         </header>
 
             <% } %>
