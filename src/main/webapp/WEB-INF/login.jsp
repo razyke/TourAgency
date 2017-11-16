@@ -1,9 +1,12 @@
 <%@ page  contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ResourceBundle" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
+    <%  ResourceBundle bundle = (ResourceBundle)request.getSession().getAttribute("bundle"); %>
+
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title><% out.print(bundle.getString("global.login_page"));%></title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
 
@@ -23,15 +26,15 @@
 
     <!-- Header -->
     <header id="header">
-     <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
+     <h1 id="logo"><a href="index.html"><% out.print(bundle.getString("global.touragency"));%> <span>Java</span></a></h1>
         <nav id="nav">
             <ul>
-                <li class="current"><a href="/">To main page </a></li>
+                <li class="current"><a href="/"><% out.print(bundle.getString("global.tomainpage"));%> </a></li>
                 </li>
                 <% if (request.getSession().getAttribute("role")!=null) { %>
-                <li><a href="/?action=signOut" class="button special">Sign out</a></li>
+                <li><a href="/?action=signOut" class="button special"><% out.print(bundle.getString("global.sign_out"));%></a></li>
                 <% } else {%>
-                <li><a href="register" class="button special">Register</a></li>
+                <li><a href="register" class="button special"><% out.print(bundle.getString("global.register"));%></a></li>
                 <% } %>
             </ul>
         </nav>
@@ -40,8 +43,8 @@
     <article id="main">
     <header class="special container">
         <span class="icon fa-laptop"></span>
-        <h2>Hello, ${userName}!</h2>
-        <p>You signed as  ${role}. </p>
+        <h2><% out.print(bundle.getString("global.welcome"));%>, ${userName}!</h2>
+        <p><% out.print(bundle.getString("global.y_s_a"));%>  ${role}. </p>
 
     </header>
     </article>
@@ -52,8 +55,8 @@
     <p align="right" ></p>
     <header class="special container">
         <span class="icon fa-laptop"></span>
-        <h2>Login</h2>
-        <p>Use the form below to sign in </p>
+        <h2><% out.print(bundle.getString("global.login"));%></h2>
+        <p><% out.print(bundle.getString("global.u_f_b"));%></p>
         <p style="color: red">${errorString} </p>
     </header>
 
@@ -65,19 +68,19 @@
             <form method="POST" action="login">
                 <div class="row">
                     <div class="12u">
-                        <input type="text" name="userName" value= "${user.loginName}" placeholder="Login" />
+                        <input type="text" name="userName" value= "${user.loginName}" placeholder="<% out.print(bundle.getString("global.login"));%>" />
                     </div>
 
                 </div>
                 <div class="row">
                     <div class="12u">
-                        <input type="password" name="password" value= "${user.password}" placeholder="Password" />
+                        <input type="password" name="password" value= "${user.password}" placeholder="<% out.print(bundle.getString("global.password"));%>" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="12u">
                         <ul class="buttons">
-                            <li><input type="submit" class="special" value="Sign in" /></li>
+                            <li><input type="submit" class="special" value="<% out.print(bundle.getString("global.sign_in"));%>" /></li>
                         </ul>
                     </div>
                 </div>

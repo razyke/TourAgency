@@ -35,6 +35,9 @@ public class WelcomeServlet extends HttpServlet {
                 session.invalidate();
                 HttpSession newSession = request.getSession();
                 newSession.setAttribute("language", language);
+            } else if (request.getParameter("action").equals("changeLanguage")) {
+                String language = String.valueOf(request.getSession().getAttribute("language"));
+                request.getSession().setAttribute("language", language.equals("EN")?"RU":"EN");
             }
         }
 
@@ -43,13 +46,15 @@ public class WelcomeServlet extends HttpServlet {
 
         boolean loyal = false;
 
+
         String language = String.valueOf(request.getSession().getAttribute("language"));
+
         ResourceBundle bundle;
-        if (language.equals("EN")) {
-            bundle = ResourceBundle.getBundle("global", Locale.ROOT);
-        } else {
-            bundle = ResourceBundle.getBundle("global",new Locale("ru","RU"));
-        }
+
+        bundle =  ResourceBundle.getBundle("global", language.equals("EN") ?
+                Locale.ROOT :
+                new Locale("ru", "RU"));
+
         request.getSession().setAttribute("bundle", bundle);
 
         if (request.getSession().getAttribute("loyal") != null) {

@@ -1,7 +1,9 @@
-<%@ page  contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
+    <%  ResourceBundle bundle = (ResourceBundle)request.getSession().getAttribute("bundle"); %>
     <title>Admin Page</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
 
@@ -16,13 +18,13 @@
 <body>
 
 <header id="header">
- <h1 id="logo"><a href="index.html">TourAgenstvo <span>Java</span></a></h1>
+ <h1 id="logo"><a href="index.html"><% out.print(bundle.getString("global.touragency"));%> <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
-            <li class="current"><a href="/">To main page </a></li>
-            <li class="current"><a href="admin?action=discounts">Discounts </a></li>
-            <li class="current"><a href="admin?action=users"> Users </a></li>
-            <li><a href="/?action=signOut" class="button special">Sign out</a></li>
+            <li class="current"><a href="/"><% out.print(bundle.getString("global.tomainpage"));%> </a></li>
+            <li class="current"><a href="admin?action=discounts"><%out.print(bundle.getString("global.discounts"));%> </a></li>
+            <li class="current"><a href="admin?action=users"><%out.print(bundle.getString("global.users"));%></a></li>
+            <li><a href="/?action=signOut" class="button special"><%out.print(bundle.getString("global.sign_out"));%></a></li>
 
         </ul>
     </nav>
@@ -32,32 +34,22 @@
 <article id="main">
     <header class="special container">
         <span class="icon fa-laptop"></span>
-        <h2>Hello, admin, </h2>
-        <p>it's time to WORK! </p>
+        <h2><%out.print(bundle.getString("global.hello_admin"));%> </h2>
+        <p><%out.print(bundle.getString("global.time_to_work"));%> </p>
 
     </header>
 
-<%--
-<p align="right">
-<a href="welcome?action=signOut"> sign out </a>
-</p>
-<a href="admin?action=tours"> Tours </a>
-</br>
-<a href="admin?action=users"> Users </a>
-</br>
-<a href="admin?action=discounts"> Discounts </a>
---%>
 <section class="wrapper style3 special container 75%">
 <table align = "center" border = "1">
     <tr>
     <strong>
         <th> Id</th>
-        <th> Tour </th>
-        <th> Price </th>
-        <th>Language</th>
-        <th>Client</th>
-        <th>Phone</th>
-        <th> Details </th>
+        <th> <%out.print(bundle.getString("global.tour"));%> </th>
+        <th> <%out.print(bundle.getString("global.price"));%> </th>
+        <th> <%out.print(bundle.getString("global.language_after"));%></th>
+        <th> <%out.print(bundle.getString("global.client"));%></th>
+        <th> <%out.print(bundle.getString("global.phone"));%></th>
+        <th> <%out.print(bundle.getString("global.details"));%></th>
     </strong>
     </tr>
     <c:forEach items="${orders}" var="order">
@@ -75,7 +67,7 @@
             <td> <c:out value="${order.user.language}"/> </td>
             <td> <c:out value="${order.user.firstName}" />  <c:out value="${order.user.lastName}" /> </td>
             <td> <c:out value="${order.user.phone}" /></td>
-            <td> <a href="admin?action=detail&idOrder=<c:out value="${order.id}"/>"> Details </a> </td>
+            <td> <a href="admin?action=detail&idOrder=<c:out value="${order.id}"/>"> <%out.print(bundle.getString("global.details"));%></a> </td>
         </tr>
    </c:forEach>
 </table>
@@ -86,8 +78,8 @@
 <article id="main">
     <p align="right" ></p>
     <header class="special container">
-        <h2>Classified</h2>
-        <p>Please sign as administrator</p>
+        <h2><%out.print(bundle.getString("global.classified"));%></h2>
+        <p><%out.print(bundle.getString("global.please_sign_in_as_admin"));%></p>
     </header>
 
 <% } %>

@@ -2,8 +2,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<fmt:setLocale value="ru_RU" scope="session" />
-<fmt:setBundle basename="text" scope="session" />
 <!DOCTYPE html>
 
 <html>
@@ -11,7 +9,6 @@
     <%  ResourceBundle bundle = (ResourceBundle)request.getSession().getAttribute("bundle"); %>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/responsive.css">
-    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />--%>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
@@ -27,25 +24,23 @@
         <div class="wrapper">
             <nav>
                 <ul>
+                    <li><a href="/?action=changeLanguage"> <%out.print(bundle.getString("global.language"));%> </a></li>
                     <% if (request.getSession().getAttribute("role")==null) { %>
-                    <li><a href="register">Register</a></li>
+                    <li><a href="register"><%out.print(bundle.getString("global.register"));%></a></li>
                     <% } else  if (request.getSession().getAttribute("role").equals("admin")) {%>
-                    <li><a href="admin">To admin page </a></li>
-                    <li><a href="editTour?action=addTour"> Add tour </a></li>
+                    <li><a href="admin"><%out.print(bundle.getString("global.to_admin_page"));%> </a></li>
+                    <li><a href="editTour?action=addTour"> <%out.print(bundle.getString("global.add_tour"));%> </a></li>
                     <% } %>
                 </ul>
                 <% if (request.getSession().getAttribute("role")==null) { %>
-                <a href="login" class="login_btn"> Sign in </a>
+                <a href="login" class="login_btn"> <%out.print(bundle.getString("global.sign_in"));%> </a>
                 <% } else {%>
-                <a href="/?action=signOut" class="login_btn"> Sign out </a>
+                <a href="/?action=signOut" class="login_btn"> <%out.print(bundle.getString("global.sign_out"));%> </a>
                 <% } %>
             </nav>
         </div>
     </header><!--  end header section  -->
 
-<!--remove me: resource bundle example-->
-<h2><fmt:message key="button.register" /></h2>
-<!--remove me/-->
 
 <h3 align = "center" style = "color: green" > ${registration} </h3>
 <h3 align = "center" style="color: green"> ${message} </h3>
@@ -53,11 +48,11 @@
 
     <section class="caption">
         <h2 class="caption">Find You Perfect Trip</h2>
-        <h3 class="properties">Rest - Excursion - Shopping</h3>
+        <h3 class="properties"><%out.print(bundle.getString("global.ad"));%></h3>
     </section>
 </section><!--  end hero section  -->
 
-    <h2 align= "center" > <strong> <%out.print(bundle.getString("global.wonderful_message"));%> </strong></h2>
+    <h2 align= "center" > <strong> <% out.print(bundle.getString("global.wonderful_message"));%> </strong></h2>
 
 
 <section class="listings">
@@ -81,7 +76,7 @@
                         <c:out value = "${tour.title}"/>
                     </h1>
                     <h2> <c:choose>
-                       <c:when test="${order.tour.isHot eq ('true')}">
+                       <c:when test="${tour.hot eq ('true')}">
                            <p style="color: red"><c:out value="Hot!"/></p>
                        </c:when>
                      </c:choose>
@@ -90,33 +85,10 @@
             </c:forEach>
         </ul>
         <div class="more_listing">
-            <a href="#" class="more_listing_btn">View More Tours</a>
+            <a href="#" class="more_listing_btn"><%out.print(bundle.getString("global.view_more_tours"));%></a>
         </div>
     </div>
 </section>	<!--  end listing section  -->
-
-
-<%--<a href = "order?action=order&tourId=<c:out value="${tour.id}"/>"></br></br>
-    <c:out value = "${tour.title}"/> </a>--%>
-
-
-
-
-
-
-<%--< form action=register>
-    <p align="right">
-        <button type="submit" value="register">Register</button>
-    </p>--%>
-
-
-<%--<% } else {%>
-</>
-<a href="admin"> To admin page </a>
-<p align="center"> Hello, ${userName}! </p>
-<p align="center"> You signed as  ${role}. </p>
-<a href="/?action=signOut"> sign out </a>
---%>
 
 </body>
 </html>
