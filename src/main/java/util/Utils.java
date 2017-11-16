@@ -15,6 +15,4 @@ public class Utils {
     public static final String WELCOME_SERVLET = "";
     public static final String ADMIN_SERVLET = "admin";
 
-    //TODO: add language bundles for all jsp pages.
-
 }

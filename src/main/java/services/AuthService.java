@@ -5,10 +5,7 @@ import model.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class AuthService {
 
@@ -23,6 +20,10 @@ public class AuthService {
      */
     public List<String> ValidateAndSend(User user, String password2) {
 
+        ResourceBundle bundle =  ResourceBundle.getBundle("global", user.getLanguage().equals("EN") ?
+                Locale.ROOT :
+                new Locale("ru", "RU"));
+
         ArrayList<String> errors = new ArrayList<String>();
         boolean error = false;
 
@@ -30,62 +31,61 @@ public class AuthService {
 
         if (user.getLoginName().isEmpty() || user.getLoginName().equals("")) {
             error = true;
-            errors.add("Empty Login Name");
+            errors.add(bundle.getString("global.err.empty_login"));
         }
 
         if (user.getPassword().isEmpty() || user.getPassword().equals("")) {
             error = true;
-            errors.add("Empty Password field");
+            errors.add(bundle.getString("global.err.empty_pass"));
         }
         if (!user.getPassword().equals(password2)) {
             error = true;
-            errors.add("Passwords does not repeat");
+            errors.add(bundle.getString("global.err.pass_not_rep"));
         } else {
             user.setPassword(getSha256Hash(user.getPassword()));
         }
         if (user.getFirstName().isEmpty() || user.getFirstName().equals("")) {
             error = true;
-            errors.add("Empty First Name");
+            errors.add(bundle.getString("global.err.empty_f_n"));
         }
         if (user.getLastName().isEmpty() || user.getLastName().equals("")) {
             error = true;
-            errors.add("Empty Last Name");
+            errors.add(bundle.getString("global.err.empty_l_n"));
         }
         if (user.getPhone().isEmpty() || user.getPhone().equals("")) {
             error = true;
-            errors.add("Empty Phone");
+            errors.add(bundle.getString("global.err.empty_phone"));
 
         }
         try {
             Long.parseLong(user.getPhone());
         } catch (Exception e) {
             error = true;
-            errors.add("Phone contain illegal symbols");
+            errors.add(bundle.getString("global.err.phone_ill"));
         }
         if (user.getEmail().isEmpty() || user.getEmail().equals("")) {
             error = true;
-            errors.add("Empty Email");
+            errors.add(bundle.getString("global.err.empty_email"));
         } else if (!user.getEmail().contains("@")) {
             error = true;
-            errors.add("Wrong naming email");
+            errors.add(bundle.getString("global.err.email_ill"));
         }
 
         if (!error) {
             //Check on unique values in DB.
             if (dao.isLoginUsed(user.getLoginName())) {
                 error = true;
-                errors.add("This login already used");
+                errors.add(bundle.getString("global.err.login_a_u"));
             }
             if (dao.isEmailUsed(user.getEmail())) {
                 error = true;
-                errors.add("This email already used");
+                errors.add(bundle.getString("global.err.email_a_u"));
             }
             if (dao.isPhoneUsed(user.getPhone())) {
                 error = true;
-                errors.add("This phone already used");
+                errors.add(bundle.getString("global.err.phone_a_u"));
             }
             if (!error) {
-                user.setLanguage("EN"); //TODO: When internationalization service will be completed remove this.
                 dao.createUser(user);
                 return null;
             }

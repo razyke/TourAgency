@@ -74,11 +74,11 @@
 
             <div class="row 50%">
                 <div class="6u 12u(mobile)">
-                    <input type="radio" name="days" value="seven"> <% out.print(bundle.getString("global.price7"));%>: ${tour.costSevenDays} </input>
+                    <input type="radio" name="days" value="seven"> <% out.print(bundle.getString("global.price7"));%>: ${tour.costSevenDays} $ </input>
                      <input type="hidden" name="cost7" value="${tour.costSevenDays}"> </input>
                 </div>
                 <div class="6u 12u(mobile)">
-                    <input type="radio" name="days" value="ten" checked> <% out.print(bundle.getString("global.price10"));%>: ${tour.costTenDays} </input>
+                    <input type="radio" name="days" value="ten" checked> <% out.print(bundle.getString("global.price10"));%>: ${tour.costTenDays} $ </input>
                     <input type="hidden" name="cost10" value="${tour.costTenDays}"> </input>
                 </div>
             </div>

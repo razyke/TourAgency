@@ -59,10 +59,10 @@
             <% if (request.getParameter("tourId") != null) {%>
                         <div class="row 50%">
                             <div class="6u 12u(mobile)">
-                                <input type="text" name="price7" value="${tour.costSevenDays}" />
+                                <input type="text" name="price7" value="${tour.costSevenDays}" $/>
                             </div>
                             <div class="6u 12u(mobile)">
-                                <input type="text" name="price10" value="${tour.costTenDays}" />
+                                <input type="text" name="price10" value="${tour.costTenDays}" $/>
                             </div>
                         </div>
             <% } else { %>
