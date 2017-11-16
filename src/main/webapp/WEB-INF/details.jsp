@@ -13,7 +13,7 @@
     <script src="${pageContext.request.contextPath}/js/skel.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/util.js"></script>
 
-    <title><% out.print(bundle.getString("global.orders"));%></title>
+    <title><% out.print(bundle.getString("global.details"));%></title>
 </head>
 
 <body>
@@ -31,11 +31,10 @@
 <article id="main">
 
     <header class="special container">
-     <span class="icon fa-laptop"></span>
+     <span class="icon fa-keyboard-o"></span>
         <h2><% out.print(bundle.getString("global.order_details"));%></h2>
     </header>
 
-    <!-- One -->
     <section class="wrapper style4 special container 75%">
 
         <form method="post" name="manage">

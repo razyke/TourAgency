@@ -25,7 +25,6 @@
 						<p><% out.print(bundle.getString("global.use_form_e_t"));%></p>
 					</header>
 
-					<!-- One -->
 						<section class="wrapper style4 special container 75%">
 								<div class="content">
         <form method="post">
@@ -167,16 +166,7 @@
     </div>
     </section>
 </article>
-<!-- Scripts -->
-            <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/js/jquery.dropotron.min.js"></script>
-            <script src="assets/js/jquery.scrolly.min.js"></script>
-            <script src="assets/js/jquery.scrollgress.min.js"></script>
-            <script src="assets/js/skel.min.js"></script>
-            <script src="assets/js/util.js"></script>
-            <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-            <script src="assets/js/main.js"></script>
 
-                	</body>
-                </html>
-                           <%--<a href="admin?action=changeRole&userId=<c:out value="${user.id}"/>"> Change role </a>--%>
+
+    </body>
+</html>

@@ -18,7 +18,7 @@
 <body>
 
 <header id="header">
- <h1 id="logo"><a href="index.html"><% out.print(bundle.getString("global.touragency"));%> <span>Java</span></a></h1>
+ <h1 id="logo"><a href="#"><% out.print(bundle.getString("global.touragency"));%> <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/"><% out.print(bundle.getString("global.tomainpage"));%> </a></li>
@@ -32,7 +32,7 @@
 <% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
     <header class="special container">
-        <span class="icon fa-laptop"></span>
+        <span class="icon fa-percent"></span>
         <h2> <% out.print(bundle.getString("global.discounts"));%> </h2>
         <p> <% out.print(bundle.getString("global.list_of_all_discounts"));%> </p>
     </header>

@@ -27,7 +27,7 @@
 <div id="page-wrapper">
 
     <header id="header">
-     <h1 id="logo"><a href="index.html"><% out.print(bundle.getString("global.touragency"));%> <span>Java</span></a></h1>
+     <h1 id="logo"><a href="#"><% out.print(bundle.getString("global.touragency"));%> <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/"><% out.print(bundle.getString("global.tomainpage"));%> </a></li>
@@ -43,16 +43,14 @@
     </header>
     <article id="main">
     <header class="special container">
-    						<span class="icon fa-mobile"></span>
+    						<span class="icon fa-plane"></span>
     						<h2> <strong> <c:out value="${tour.city}" /></strong></h2>
     						<p> <c:out value="${tour.type}" /> tour </p>
     					</header>
     <section class="wrapper style4 container">
 
-        <!-- Content -->
         <div class="content">
             <section>
-                <a href="#" class="image featured"><img src="img/${tour.id}_b.jpg" alt="" title="" class="property_img"/> </a>
                 <header>
                     <h3><c:out value="${tour.title}" /></h3>
                 </header>
@@ -61,7 +59,6 @@
                 </p>
             </section>
         </div>
-        <%--<a href="admin?action=detail&idOrder=<c:out value="${order.id}"/>"> Details </a>--%>
         <form method="post" action="order">
             <input type="hidden" name="tourId" value="<c:out value="${tour.id}"/>">
             <div class="row 50%">
@@ -102,12 +99,5 @@
     </section>
     </article>
 </div>
-<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollgress.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
 </body>
 </html>

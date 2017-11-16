@@ -6,19 +6,12 @@
     <%  ResourceBundle bundle = (ResourceBundle)request.getSession().getAttribute("bundle"); %>
     <title>Admin Page</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
-
-    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.dropotron.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.scrolly.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.scrollgress.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/skel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/util.js"></script>
 </head>
 
 <body>
 
 <header id="header">
- <h1 id="logo"><a href="index.html"><% out.print(bundle.getString("global.touragency"));%> <span>Java</span></a></h1>
+ <h1 id="logo"><a href="#">TourAgenstvo <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/"><% out.print(bundle.getString("global.tomainpage"));%> </a></li>
@@ -33,7 +26,7 @@
 <% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
     <header class="special container">
-        <span class="icon fa-laptop"></span>
+        <span class="icon fa-user-secret"></span>
         <h2><%out.print(bundle.getString("global.hello_admin"));%> </h2>
         <p><%out.print(bundle.getString("global.time_to_work"));%> </p>
 

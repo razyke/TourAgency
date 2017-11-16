@@ -6,13 +6,6 @@
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
 
-        <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/jquery.dropotron.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/jquery.scrolly.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/jquery.scrollgress.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/skel.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/util.js"></script>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title> Registration </title>
@@ -23,7 +16,7 @@
 
     <header id="header">
 
-    <h1 id = "logo"> <a href = "index.html"> TourAgenstvo <span> Java </span> </a> </h1>
+    <h1 id = "logo"> <a href = "#"> TourAgenstvo <span> Java </span> </a> </h1>
         <nav id="nav">
             <ul>
                 <li class="current"><a href="/">To main page </a></li>
@@ -55,7 +48,7 @@
     <article id="main">
 
         <header class="special container">
-            <span class="icon fa-envelope"> </span>
+            <span class="icon fa-user-plus"> </span>
 
             <h2>Registration</h2>
 

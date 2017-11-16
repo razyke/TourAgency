@@ -5,12 +5,6 @@
     <title> Users </title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
 
-    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.dropotron.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.scrolly.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.scrollgress.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/skel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/util.js"></script>
 </head>
 
 <body>
@@ -30,12 +24,12 @@
 <% if (request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
     <header class="special container">
-        <span class="icon fa-laptop"></span>
+        <span class="icon fa-user"></span>
         <h2> Users </h2>
         <p> List of all users </p>
 
     </header>
-
+    <section class="wrapper style3 special container 75%">
     <table border=1 align="center">
 
         <thead>
@@ -80,7 +74,8 @@
         </c:forEach>
 
     </table>
-
+    </section>
+</article>
         <% }  else {%>
 
     <article id="main">
