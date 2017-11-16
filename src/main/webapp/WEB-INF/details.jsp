@@ -22,12 +22,13 @@
     <nav id="nav">
         <ul>
             <li class="current"><a href="/"><% out.print(bundle.getString("global.tomainpage"));%> </a></li>
+            <% if (!(request.getSession().getAttribute("role")==null))&&(request.getSession().getAttribute("role").equals("admin")) { %>
             <li class="current"><a href="admin"><% out.print(bundle.getString("global.to_admin_page"));%> </a></li>
             <li><a href="/?action=signOut" class="button special"><% out.print(bundle.getString("global.sign_out"));%></a></li>
         </ul>
     </nav>
 </header>
-<% if (request.getSession().getAttribute("role").equals("admin")) { %>
+
 <article id="main">
 
     <header class="special container">

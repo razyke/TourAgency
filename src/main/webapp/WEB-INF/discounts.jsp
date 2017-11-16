@@ -22,6 +22,7 @@
     <nav id="nav">
         <ul>
             <li class="current"><a href="/"><% out.print(bundle.getString("global.tomainpage"));%> </a></li>
+          <% if ((!(request.getSession().getAttribute("role")==null))&&request.getSession().getAttribute("role").equals("admin")) { %>
             <li class="current"><a href="admin"><% out.print(bundle.getString("global.to_admin_page"));%> </a></li>
             <li class="current"><a href="admin?action=users"> <% out.print(bundle.getString("global.users"));%> </a></li>
             <li><a href="/?action=signOut" class="button special"><% out.print(bundle.getString("global.sign_out"));%></a></li>
@@ -29,7 +30,7 @@
     </nav>
 </header>
 
-<% if (request.getSession().getAttribute("role").equals("admin")) { %>
+
 <article id="main">
     <header class="special container">
         <span class="icon fa-percent"></span>

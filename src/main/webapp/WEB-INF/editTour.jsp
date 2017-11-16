@@ -18,6 +18,7 @@
         </ul>
     </nav>
 </header>
+<% if ((!(request.getSession().getAttribute("role")==null))&&request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
 					<header class="special container">
 						<span class="icon fa-tablet"></span>
@@ -166,7 +167,16 @@
     </div>
     </section>
 </article>
+<% }  else {%>
 
+<article id="main">
+    <p align="right" ></p>
+    <header class="special container">
+        <h2><%out.print(bundle.getString("global.classified"));%></h2>
+        <p><%out.print(bundle.getString("global.please_sign_in_as_admin"));%></p>
+    </header>
+
+<% } %>
 
     </body>
 </html>
