@@ -1,10 +1,11 @@
+<%@ page import="java.util.ResourceBundle" %>
 <%@ page  contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
     <title> Users </title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css" />
-
+<%  ResourceBundle bundle = (ResourceBundle)request.getSession().getAttribute("bundle"); %>
 </head>
 
 <body>
@@ -13,9 +14,9 @@
     <h1 id="logo"><a href="#">TourAgenstvo <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
-            <li class="current"><a href="/">To main page </a></li>
-            <li class="current"><a href="admin">To admin page </a></li>
-            <li><a href="/?action=signOut" class="button special">Sign out</a></li>
+            <li class="current"><a href="/"><a href="/"><% out.print(bundle.getString("global.tomainpage"));%> </a></li>
+            <li class="current"><a href="admin"><% out.print(bundle.getString("global.to_admin_page"));%> </a></li>
+            <li><a href="/?action=signOut" class="button special"><% out.print(bundle.getString("global.sign_out"));%></a></li>
 
         </ul>
     </nav>
