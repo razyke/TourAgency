@@ -3,7 +3,6 @@ package services;
 import dao.DiscountDao;
 import model.Discount;
 import model.Tour;
-import spring.StaticContextProvider;
 
 import java.util.Collection;
 import java.util.Date;
