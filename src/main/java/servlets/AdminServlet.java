@@ -37,7 +37,8 @@ public class AdminServlet extends HttpServlet {
                 request.setAttribute("users", allUsers);
                 RequestDispatcher view = request.getRequestDispatcher(Utils.USERS_PAGE);
                 view.forward(request, response);
-            } else if (request.getParameter("action").equals("delete") || request.getParameter("action").equals("changeRole")) {
+            } else if (request.getParameter("action").equals("delete")
+                    || request.getParameter("action").equals("changeRole")) {
 
                 int id = Integer.parseInt(request.getParameter("userId"));
 
