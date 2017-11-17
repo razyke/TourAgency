@@ -31,7 +31,7 @@
                     <li><a href="admin"><%out.print(bundle.getString("global.to_admin_page"));%></a></li>
                     <li><a href="editTour?action=addTour"><%out.print(bundle.getString("global.add_tour"));%></a></li>
                     <% } else { %>
-                    <li><a href="admin?action=myOrders"><%out.print(bundle.getString("global.my_orders"));%></a></li>
+                    <li><a href="userOrders"><%out.print(bundle.getString("global.my_orders"));%></a></li>
                     <% } %>
                 </ul>
                 <% if (request.getSession().getAttribute("role") == null) { %>
