@@ -34,7 +34,11 @@ public class AdminServlet extends HttpServlet {
                 RequestDispatcher view = request.getRequestDispatcher(Utils.DETAIL_PAGE);
                 view.forward(request, response);
             } else if (request.getParameter("action").equals("users")) {
-                Collection<User> allUsers = authService.getAllUsers();
+                int pageOfUsers = 1;
+                if (request.getParameter("page") != null) {
+                    pageOfUsers = Integer.valueOf(request.getParameter("page"));
+                }
+                PartitionList<User> allUsers = authService.getAllUsers(pageOfUsers);
                 request.setAttribute("users", allUsers);
                 RequestDispatcher view = request.getRequestDispatcher(Utils.USERS_PAGE);
                 view.forward(request, response);

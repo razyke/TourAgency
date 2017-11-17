@@ -51,7 +51,7 @@
         </thead>
 
         <tbody>
-        <c:forEach items="${users}" var="user">
+        <c:forEach items="${users.items}" var="user">
         <tr>
             <td><c:out value="${user.id}" /></td>
             <td><c:out value="${user.firstName}" /></td>
@@ -75,6 +75,9 @@
         </c:forEach>
 
     </table>
+    <div class="more_listing">
+        <a href="/admin?action=users&page=<c:out value="${users.currentPage+1}"/>" class="more_listing_btn"><%out.print(bundle.getString("global.view_more_tours"));%></a>
+    </div>
     </section>
 </article>
         <% }  else {%>
