@@ -38,7 +38,7 @@ public class UserServlet extends HttpServlet {
             int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
             Collection<Order> orders = orderService.getAllOrders(idUser);
             req.setAttribute("orders", orders);
-            RequestDispatcher view = req.getRequestDispatcher(Utils.USER_ORDERS);
+            RequestDispatcher view = req.getRequestDispatcher(Utils.USER_ORDERS_PAGE);
             view.forward(req, resp);
         }
     }
@@ -46,7 +46,7 @@ public class UserServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        RequestDispatcher view = req.getRequestDispatcher(Utils.USER_ORDERS);
+        RequestDispatcher view = req.getRequestDispatcher(Utils.USER_ORDERS_PAGE);
         view.forward(req,resp);
     }
 }

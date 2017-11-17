@@ -63,13 +63,6 @@ public class AdminServlet extends HttpServlet {
                 RequestDispatcher view = request.getRequestDispatcher(Utils.DISCOUNT_PAGE);
                 view.forward(request, response);
 
-            } else if (request.getParameter("action").equals("myOrders")) {
-                OrderService orderService = StaticContextProvider.getOrderService();
-                Collection<Order> allOrders = orderService.getAllOrders();
-                //TODO put only currents user's orders in this request
-                request.setAttribute("orders", allOrders);
-                RequestDispatcher view = request.getRequestDispatcher(Utils.USER_ORDERS);
-                view.forward(request, response);
             }
 
         } else {
