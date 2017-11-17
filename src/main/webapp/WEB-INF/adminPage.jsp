@@ -11,19 +11,20 @@
 <body>
 
 <header id="header">
- <h1 id="logo"><a href="#">TourAgenstvo <span>Java</span></a></h1>
+ <h1 id="logo"><a href="#"><% out.print(bundle.getString("global.touragency"));%>  <span>Java</span></a></h1>
     <nav id="nav">
         <ul>
             <li class="current"><a href="/"><% out.print(bundle.getString("global.tomainpage"));%> </a></li>
+         <% if ((!(request.getSession().getAttribute("role")==null))&&request.getSession().getAttribute("role").equals("admin")) { %>
             <li class="current"><a href="admin?action=discounts"><%out.print(bundle.getString("global.discounts"));%> </a></li>
             <li class="current"><a href="admin?action=users"><%out.print(bundle.getString("global.users"));%></a></li>
             <li><a href="/?action=signOut" class="button special"><%out.print(bundle.getString("global.sign_out"));%></a></li>
-
+         <% } %>
         </ul>
     </nav>
 </header>
 
-<% if (request.getSession().getAttribute("role").equals("admin")) { %>
+<% if ((!(request.getSession().getAttribute("role")==null))&&request.getSession().getAttribute("role").equals("admin")) { %>
 <article id="main">
     <header class="special container">
         <span class="icon fa-user-secret"></span>
@@ -67,14 +68,13 @@
 </section>
 </article>
 <% }  else {%>
-
 <article id="main">
-    <p align="right" ></p>
     <header class="special container">
+        <span class="icon fa-shield"></span>
         <h2><%out.print(bundle.getString("global.classified"));%></h2>
         <p><%out.print(bundle.getString("global.please_sign_in_as_admin"));%></p>
     </header>
-
+</article>
 <% } %>
 
 </body>

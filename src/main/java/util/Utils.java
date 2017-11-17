@@ -11,7 +11,7 @@ public class Utils {
     public static final String DISCOUNT_PAGE = "WEB-INF/discounts.jsp";
     public static final String EDIT_TOUR_PAGE = "WEB-INF/editTour.jsp";
     public static final String USERS_PAGE = "WEB-INF/users.jsp";
-
+    public static final String USER_ORDERS = "WEB-INF/userOrders.jsp";
     public static final String WELCOME_SERVLET = "";
     public static final String ADMIN_SERVLET = "admin";
 

@@ -62,6 +62,14 @@ public class AdminServlet extends HttpServlet {
                 request.setAttribute("discounts", allDiscounts);
                 RequestDispatcher view = request.getRequestDispatcher(Utils.DISCOUNT_PAGE);
                 view.forward(request, response);
+
+            } else if (request.getParameter("action").equals("myOrders")) {
+                OrderService orderService = StaticContextProvider.getOrderService();
+                Collection<Order> allOrders = orderService.getAllOrders();
+                //TODO put only currents user's orders in this request
+                request.setAttribute("orders", allOrders);
+                RequestDispatcher view = request.getRequestDispatcher(Utils.USER_ORDERS);
+                view.forward(request, response);
             }
 
         } else {
@@ -80,17 +88,17 @@ public class AdminServlet extends HttpServlet {
             OrderService orderService = StaticContextProvider.getOrderService();
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             if (request.getParameter("manage").equals(
-                    ((ResourceBundle)request.getSession().getAttribute("bundle")).getString("global.approve"))) {
+                    ((ResourceBundle) request.getSession().getAttribute("bundle")).getString("global.approve"))) {
                 orderService.acceptOrder(orderId);
                 response.sendRedirect(Utils.ADMIN_SERVLET);
             } else if (request.getParameter("manage").equals(
-                    ((ResourceBundle)request.getSession().getAttribute("bundle")).getString("global.disapprove"))){
+                    ((ResourceBundle) request.getSession().getAttribute("bundle")).getString("global.disapprove"))) {
                 orderService.deleteOrder(orderId);
                 response.sendRedirect(Utils.ADMIN_SERVLET);
             }
         } else if (request.getParameter("change") != null) {
             if (request.getParameter("change").equals(
-                    ((ResourceBundle)request.getSession().getAttribute("bundle")).getString("global.change"))) {
+                    ((ResourceBundle) request.getSession().getAttribute("bundle")).getString("global.change"))) {
 
                 DiscountService discountService = StaticContextProvider.getDiscountService();
 
