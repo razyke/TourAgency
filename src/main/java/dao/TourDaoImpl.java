@@ -35,16 +35,14 @@ public class TourDaoImpl implements TourDao {
 
     @Override
     public void createTour(Tour tour) {
-        String SQL = "INSERT INTO tours (is_hot, cost_seven, cost_ten) VALUES(?,?,?)";
-        jdbcTemplate.update(SQL, tour.isHot(), tour.getCostSevenDays(), tour.getCostTenDays());
+        String SQL = "INSERT INTO tours (is_hot, cost_seven, cost_ten, type) VALUES(?,?,?,?)";
+        jdbcTemplate.update(SQL, tour.isHot(), tour.getCostSevenDays(), tour.getCostTenDays(), tour.getType());
         SQL = "SELECT max(id) FROM tours";
         tour.setId(jdbcTemplate.queryForObject(SQL, int.class));
-        SQL = "INSERT INTO tour_details (tour_id, title, description, language, type, city) " +
-                "VALUES(?,?,?,?,?,?)";
-        jdbcTemplate.update(SQL, tour.getId(), tour.getTitle(), tour.getDescription(), "RU",
-                tour.getType(), tour.getCity());
-        jdbcTemplate.update(SQL, tour.getId(), tour.getTitle(),
-                tour.getDescription(), "EN", tour.getType(), tour.getCity());
+        SQL = "INSERT INTO tour_details (tour_id, title, description, language, city) " +
+                "VALUES(?,?,?,?,?)";
+        jdbcTemplate.update(SQL, tour.getId(), tour.getTitle(), tour.getDescription(), "RU", tour.getCity());
+        jdbcTemplate.update(SQL, tour.getId(), tour.getTitle(), tour.getDescription(), "EN", tour.getCity());
     }
 
     @Override
@@ -55,12 +53,13 @@ public class TourDaoImpl implements TourDao {
 
     @Override
     public void updateTour(Tour tour) {
-        String SQL = "UPDATE tours SET is_hot = ?, cost_seven = ?, cost_ten = ? WHERE id = ?";
-        jdbcTemplate.update(SQL, tour.isHot(), tour.getCostSevenDays(), tour.getCostTenDays(), tour.getId());
-        SQL = "UPDATE tour_details SET title = ?, description = ?, type = ?, city = ? " +
+        String SQL = "UPDATE tours SET is_hot = ?, cost_seven = ?, cost_ten = ? type = ? WHERE id = ?";
+        jdbcTemplate.update(SQL, tour.isHot(), tour.getCostSevenDays(),
+                tour.getCostTenDays(), tour.getType(), tour.getId());
+        SQL = "UPDATE tour_details SET title = ?, description = ?, city = ? " +
                 "WHERE tour_id = ? AND language = ?";
-        jdbcTemplate.update(SQL, tour.getTitle(), tour.getDescription(),tour.getType(), tour.getCity(),
-                tour.getId(), tour.getLanguage());
+        jdbcTemplate.update(SQL, tour.getTitle(), tour.getDescription(),
+                tour.getCity(), tour.getId(), tour.getLanguage());
     }
 
     @Override
