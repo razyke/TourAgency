@@ -1,5 +1,6 @@
 package servlets;
 
+import model.PartitionList;
 import model.Tour;
 import services.TourService;
 import spring.StaticContextProvider;
@@ -20,7 +21,7 @@ public class WelcomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        int pageOfTours = 1;
         //By default will be open on english language.
         if (request.getSession().getAttribute("language") == null) {
             HttpSession session = request.getSession();
@@ -39,6 +40,14 @@ public class WelcomeServlet extends HttpServlet {
                 String language = String.valueOf(request.getSession().getAttribute("language"));
                 request.getSession().setAttribute("language", language.equals("EN")?"RU":"EN");
             }
+
+            //-------------------FOR PAGINATION------------------------------
+            else if (request.getParameter("action").equals("list") || request.getParameter("page") != null) {
+                pageOfTours = Integer.valueOf(request.getParameter("page"));
+            }
+
+            //---------------------------------------------------------------
+
         }
 
         //Get values from redirect address and send as attribute, after delete this value.
@@ -62,9 +71,10 @@ public class WelcomeServlet extends HttpServlet {
             loyal = Boolean.valueOf(String.valueOf(request.getSession().getAttribute("loyal")));
         }
         TourService tourService = StaticContextProvider.getTourService();
-        Collection<Tour> tours = tourService.getAllTours(
+        PartitionList<Tour> tours = tourService.getAllTours(
                 language,
-                loyal
+                loyal,
+                pageOfTours
         );
         request.setAttribute("tours", tours);
         RequestDispatcher view = request.getRequestDispatcher(Utils.WELCOME_PAGE);

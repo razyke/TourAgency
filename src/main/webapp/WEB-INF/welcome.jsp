@@ -58,7 +58,7 @@
     <div class="wrapper">
         <ul class="properties_list">
             <%int i = 1; %>
-            <c:forEach items="${tours}" var="tour">
+            <c:forEach items="${tours.items}" var="tour">
             <li>
 
             <% if (request.getSession().getAttribute("role")==null||request.getSession().getAttribute("role").equals("user")) { %>
@@ -90,7 +90,7 @@
             </li>
         </ul>
         <div class="more_listing">
-            <a href="#" class="more_listing_btn"><%out.print(bundle.getString("global.view_more_tours"));%></a>
+            <a href="/?action=list&page=<c:out value="${tours.currentPage+1}"/>" class="more_listing_btn"><%out.print(bundle.getString("global.view_more_tours"));%></a>
         </div>
     </div>
 </section>
