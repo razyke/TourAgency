@@ -19,7 +19,7 @@ public class MockTourDaoImpl implements TourDao {
                 "description2", "RU", 2000, 4000));
         tours.put(3, new Tour(3, false, "tour3", "excursion", "msk",
                 "description3", "EN", 8000, 10000));
-        tours.put(4, new Tour(4, false, "åour4", "type", "city",
+        tours.put(4, new Tour(4, false, "tour4", "type", "city",
                 "description4", "RU",1500, 2000));
     }
 

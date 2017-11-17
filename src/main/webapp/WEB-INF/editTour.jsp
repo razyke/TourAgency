@@ -103,36 +103,36 @@
                             <c:when test="${tour.type eq ('excursion')}">
                                 <select id="type" name="typeId">
                                     <option selected
-                                            value="Excursion"><% out.print(bundle.getString("global.excursion"));%></option>
-                                    <option value="Shopping"><% out.print(bundle.getString("global.shopping"));%></option>
-                                    <option value="Rest"><% out.print(bundle.getString("global.rest"));%></option>
+                                            value="Excursion"><% out.print(bundle.getString("global.Excursion"));%></option>
+                                    <option value="Shopping"><% out.print(bundle.getString("global.Shopping"));%></option>
+                                    <option value="Rest"><% out.print(bundle.getString("global.Rest"));%></option>
                                 </select>
                                 <br/>
                             </c:when>
                             <c:when test="${tour.type eq ('rest')}">
                                 <select id="type" name="typeId">
                                     <option selected
-                                            value="Rest"><% out.print(bundle.getString("global.rest"));%></option>
-                                    <option value="Shopping"><% out.print(bundle.getString("global.shopping"));%></option>
-                                    <option value="Excursion"><% out.print(bundle.getString("global.excursion"));%></option>
+                                            value="Rest"><% out.print(bundle.getString("global.Rest"));%></option>
+                                    <option value="Shopping"><% out.print(bundle.getString("global.Shopping"));%></option>
+                                    <option value="Excursion"><% out.print(bundle.getString("global.Excursion"));%></option>
                                 </select>
                                 <br/>
                             </c:when>
                             <c:when test="${tour.type eq ('shopping')}">
                                 <select id="type" name="typeId">
                                     <option selected
-                                            value="Shopping"><% out.print(bundle.getString("global.shopping"));%></option>
-                                    <option value="Rest"><% out.print(bundle.getString("global.rest"));%></option>
-                                    <option value="Excursion"><% out.print(bundle.getString("global.excursion"));%></option>
+                                            value="Shopping"><% out.print(bundle.getString("global.Shopping"));%></option>
+                                    <option value="Rest"><% out.print(bundle.getString("global.Rest"));%></option>
+                                    <option value="Excursion"><% out.print(bundle.getString("global.Excursion"));%></option>
                                 </select>
                                 <br/>
                             </c:when>
                             <c:otherwise>
                                 <select id="type" name="typeId">
                                     <option selected
-                                            value="Excursion"><% out.print(bundle.getString("global.excursion"));%></option>
-                                    <option value="Shopping"><% out.print(bundle.getString("global.shopping"));%></option>
-                                    <option value="Rest"><% out.print(bundle.getString("global.rest"));%></option>
+                                            value="Excursion"><% out.print(bundle.getString("global.Excursion"));%></option>
+                                    <option value="Shopping"><% out.print(bundle.getString("global.Shopping"));%></option>
+                                    <option value="Rest"><% out.print(bundle.getString("global.Rest"));%></option>
                                 </select>
                                 <br/>
                             </c:otherwise>

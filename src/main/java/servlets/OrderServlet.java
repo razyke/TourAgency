@@ -17,11 +17,13 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession session = req.getSession();
         String language = String.valueOf(session.getAttribute("language"));
 
@@ -29,23 +31,13 @@ public class OrderServlet extends HttpServlet {
             if (req.getParameter("action").equals("order")) {
                 TourService tourService = StaticContextProvider.getTourService();
                 int tourId = Integer.parseInt(req.getParameter("tourId"));
-                Tour tour;
-                if (Boolean.valueOf(String.valueOf(req.getSession().getAttribute("loyal")))) {
-                    tour = tourService.getTourWithDiscount(
-                            tourId,
-                            language,
-                            true
-                    );
-                } else {
-                    tour = tourService.getTour(
-                            tourId,
-                            language
-                    );
-                }
+                Boolean loyal = Boolean.valueOf(String.valueOf(req.getSession().getAttribute("loyal")));
+
+                Tour tour = tourService.getTourWithDiscount(tourId, language, loyal);
+
                 req.setAttribute("tour", tour);
             }
         }
-
         RequestDispatcher view = req.getRequestDispatcher(Utils.TOUR_PAGE);
         view.forward(req, resp);
     }
@@ -68,6 +60,7 @@ public class OrderServlet extends HttpServlet {
                 } else {
                     order = null;
                     error = true;
+                    //TODO: LOG_IT
                 }
 
                 try {
@@ -76,18 +69,21 @@ public class OrderServlet extends HttpServlet {
                 } catch (ParseException e) {
                     e.printStackTrace();
                     error = true;
+                    //TODO: LOG_IT
                 }
-
 
                 int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
                 int tourId = Integer.parseInt(req.getParameter("tourId"));
 
+                ResourceBundle bundle = (ResourceBundle) req.getSession().getAttribute("bundle");
                 if (!error && orderService.createOrder(order, idUser, tourId)) {
-                    req.getSession().setAttribute("message","Ordered, please wait, our manager contact with you.");
+                    req.getSession().setAttribute("message",
+                            bundle.getString("global.order_servlet"));
                     resp.sendRedirect(Utils.WELCOME_SERVLET);
-
                 } else {
-                    req.getSession().setAttribute("errorMessage", "Tour has not been ordered");
+                    req.getSession().setAttribute("errorMessage",
+                            bundle.getString("global.err.order_servlet"));
+                    //TODO: LOG_IT
                     resp.sendRedirect(Utils.WELCOME_SERVLET);
                 }
             }

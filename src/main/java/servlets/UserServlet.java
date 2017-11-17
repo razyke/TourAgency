@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.ResourceBundle;
 
 public class UserServlet extends HttpServlet {
     @Override
@@ -22,14 +23,17 @@ public class UserServlet extends HttpServlet {
 
             OrderService orderService = StaticContextProvider.getOrderService();
             int idOrder = Integer.parseInt(req.getParameter("idOrder"));
+            ResourceBundle bundle = (ResourceBundle) req.getSession().getAttribute("bundle");
 
             if (req.getParameter("action").equals("pay")) {
                 //orderService.acceptOrder(idOrder); //TODO: NEED TO thing!!!!.
-                req.getSession().setAttribute("message","Payed, wait until our manager call you");
+                req.getSession().setAttribute("message",
+                        bundle.getString("global.payed"));
                 resp.sendRedirect(Utils.WELCOME_SERVLET);
             } else if (req.getParameter("action").equals("delete")) {
                 orderService.deleteOrder(idOrder);
-                req.getSession().setAttribute("message","Order has been deleted");
+                req.getSession().setAttribute("message",
+                        bundle.getString("global.deleted"));
                 resp.sendRedirect(Utils.WELCOME_SERVLET);
             }
         } else {
