@@ -17,4 +17,5 @@ public class Utils {
 
     public static final int TOURS_ON_PAGE = 3;
     public static final int USERS_ON_PAGE = 10;
+    public static final int ORDERS_ON_PAGE = 15;
 }

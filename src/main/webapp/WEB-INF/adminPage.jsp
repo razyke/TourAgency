@@ -45,7 +45,7 @@
         <th> <%out.print(bundle.getString("global.details"));%></th>
     </strong>
     </tr>
-    <c:forEach items="${orders}" var="order">
+    <c:forEach items="${orders.items}" var="order">
     <c:choose>
     <c:when test="${order.active eq ('true')}">
         <tr>
@@ -64,6 +64,9 @@
         </tr>
    </c:forEach>
 </table>
+<div class="more_listing">
+    <a href="/admin?page=<c:out value="${orders.currentPage+1}"/>" class="more_listing_btn"><%out.print(bundle.getString("global.view_more_tours"));%></a>
+</div>
 </section>
 </article>
 <% }  else {%>

@@ -2,6 +2,7 @@ package servlets;
 
 import model.Discount;
 import model.Order;
+import model.PartitionList;
 import model.User;
 import services.AuthService;
 import services.DiscountService;
@@ -23,7 +24,7 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+        int pageOfOrders = 1; //Parameter to method getAllOrdersByPages
         if (request.getParameter("action") != null) {
             AuthService authService = StaticContextProvider.getAuthService();
             if (request.getParameter("action").equals("detail")) {
@@ -64,8 +65,12 @@ public class AdminServlet extends HttpServlet {
             }
 
         } else {
+            //----------
+            if (request.getParameter("page") != null) {
+                pageOfOrders = Integer.valueOf(request.getParameter("page"));
+            }
             OrderService orderService = StaticContextProvider.getOrderService();
-            Collection<Order> allOrders = orderService.getAllOrders();
+            PartitionList<Order> allOrders = orderService.getAllOrdersByPages(pageOfOrders);
             request.setAttribute("orders", allOrders);
             RequestDispatcher view = request.getRequestDispatcher(Utils.ADMIN_PAGE);
             view.forward(request, response);
