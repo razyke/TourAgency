@@ -77,16 +77,15 @@
             </div>
                 <div class="more_listing">
                     <a href="/" class="more_listing_btn_small"><%
-                        out.print(bundle.getString("global.choose_tour"));%></a>
+                        out.print(bundle.getString("global.to_first_page"));%></a>
                     <a href="/" class="more_listing_btn_small"><%
-                        out.print(bundle.getString("global.choose_tour"));%></a>
+                        out.print(bundle.getString("global.back"));%></a>
                     <a href="/" class="more_listing_btn_small"><%
-                        out.print(bundle.getString("global.choose_tour"));%></a>
+                        out.print(bundle.getString("global.forward"));%></a>
                     <a href="/" class="more_listing_btn_small"><%
-                        out.print(bundle.getString("global.choose_tour"));%></a>
+                        out.print(bundle.getString("global.to_last_page"));%></a>
                 </div>
             </div>
-        </div>
     </section>
 </article>
 <% } else {%>

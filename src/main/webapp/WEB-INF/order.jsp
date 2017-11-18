@@ -53,6 +53,7 @@
 
             <div class="content">
                 <section>
+                    <img src="img/1_b.jpg" alt="" />
                     <header>
                         <h3><c:out value="${tour.title}"/></h3>
                     </header>
@@ -68,8 +69,8 @@
                         <p><strong><% out.print(bundle.getString("global.select_date"));%></strong></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="12u">
+                <div class="row 50%">
+                    <div class="2u">
                         <input type="text" name="Date"
                                value="<fmt:formatDate pattern="MM/dd/yyyy" value="${order.date}" />"/>
                     </div>
