@@ -4,7 +4,7 @@
 <html>
 <head>
     <% ResourceBundle bundle = (ResourceBundle) request.getSession().getAttribute("bundle"); %>
-    <title> <%out.print(bundle.getString("global.users"));%> </title>
+    <title><%out.print(bundle.getString("global.users"));%></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css"/>
 </head>
 
@@ -32,7 +32,9 @@
         <p><%out.print(bundle.getString("globla.list_of_all_users"));%></p>
 
     </header>
-    <section class="wrapper style3 ">
+
+    <section class="wrapper style4 special container 75%">
+        <div class="content">
         <table border=1 align="center">
 
             <thead>
@@ -79,6 +81,7 @@
             </c:forEach>
 
         </table>
+        </div>
     </section>
 </article>
 

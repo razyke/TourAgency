@@ -46,7 +46,6 @@
         <% } else {%>
 
     <article id="main">
-        <p align="right"></p>
         <header class="special container">
             <span class="icon fa-key"></span>
             <h2><% out.print(bundle.getString("global.login"));%></h2>
@@ -55,7 +54,7 @@
         </header>
 
 
-        <section class="wrapper style4 special container 75%">
+        <section class="wrapper style4 special container">
 
             <div class="content">
                 <form method="POST" action="login">

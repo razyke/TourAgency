@@ -1994,7 +1994,7 @@ ul.buttons.vertical li:first-child {
 	padding: 0;
 }
 .listings{
-	padding: 100px 0;
+	padding: 10px 0;
 }
 
 .listings ul.properties_list{
@@ -2089,7 +2089,8 @@ ul.buttons.vertical li:first-child {
 	display: block;
 	width: 100%;
 	text-align: center;
-	margin: 84px 0 22px 0;
+	margin: auto;
+	align: center;
 }
 
 .listings .more_listing_btn{
@@ -2111,6 +2112,30 @@ ul.buttons.vertical li:first-child {
 	-webkit-transition: all .2s linear;
 	-moz-transition: all .2s linear;
 	-o-transition: all .2s linear;
+}
+.listings .more_listing_btn_small{
+	text-decoration: none;
+	padding: 5px 20px;
+	border: 2px solid #bfd9f2 ;
+	border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	-o-border-radius: 30px;
+	color: #afcbe6 ;
+	font-family: "lato-regular", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	/*text-transform: uppercase;*/
+	letter-spacing: 1px;
+	text-align: center;
+	margin: 8px 10px 22px 10px;
+	transition: all .2s linear;
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-o-transition: all .2s linear;
+}
+.listings .more_listing_btn_small:hover{
+	color: #a0c3e5 ;
+	border: 2px solid #a0c3e5 ;
 }
 /* Table */
 
