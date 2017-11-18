@@ -23,8 +23,8 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if (request.getParameter("action") != null) {
 
+        if (request.getParameter("action") != null) {
             AuthService authService = StaticContextProvider.getAuthService();
             if (request.getParameter("action").equals("detail")) {
                 OrderService orderService = StaticContextProvider.getOrderService();
@@ -37,7 +37,8 @@ public class AdminServlet extends HttpServlet {
                 request.setAttribute("users", allUsers);
                 RequestDispatcher view = request.getRequestDispatcher(Utils.USERS_PAGE);
                 view.forward(request, response);
-            } else if (request.getParameter("action").equals("delete") || request.getParameter("action").equals("changeRole")) {
+            } else if (request.getParameter("action").equals("delete")
+                    || request.getParameter("action").equals("changeRole")) {
 
                 int id = Integer.parseInt(request.getParameter("userId"));
 
@@ -54,23 +55,19 @@ public class AdminServlet extends HttpServlet {
 
             } else if (request.getParameter("action").equals("discounts")) {
                 DiscountService discountService = StaticContextProvider.getDiscountService();
-                request.setAttribute("discounts", discountService.getAllDiscounts());
+                Collection<Discount> allDiscounts = discountService.getAllDiscounts();
+                for (Discount d : allDiscounts) {
+                    d.setAuthorLogin(authService.getUser(d.getAuthorId()).getLoginName());
+                }
+                request.setAttribute("discounts", allDiscounts);
                 RequestDispatcher view = request.getRequestDispatcher(Utils.DISCOUNT_PAGE);
                 view.forward(request, response);
 
-            } else if (request.getParameter("action").equals("myOrders")) {
-                OrderService orderService = StaticContextProvider.getOrderService();
-                Collection<Order> allOrders = orderService.getAllOrders();
-                //TODO put only currents user's orders in this request
-                request.setAttribute("orders", allOrders);
-                RequestDispatcher view = request.getRequestDispatcher(Utils.USER_ORDERS);
-                view.forward(request, response);
             }
 
         } else {
             OrderService orderService = StaticContextProvider.getOrderService();
             Collection<Order> allOrders = orderService.getAllOrders();
-
             request.setAttribute("orders", allOrders);
             RequestDispatcher view = request.getRequestDispatcher(Utils.ADMIN_PAGE);
             view.forward(request, response);
@@ -103,7 +100,6 @@ public class AdminServlet extends HttpServlet {
 
                 for (int i = 0; i < 2; i++) {
                     Discount discount = discountService.getDiscount(Integer.parseInt(discountIds[i]));
-                    //TODO: CLASS CAST EXCEPTION, ty bro
                     int newValue = Integer.parseInt(values[i]);
                     if (discount.getValue() != newValue) {
                         discountService.changeValue(discount.getId(),
@@ -116,7 +112,6 @@ public class AdminServlet extends HttpServlet {
             } else {
                 response.sendRedirect(Utils.ADMIN_SERVLET);
             }
-            //TODO: manage with discount.
 
         } else {
             RequestDispatcher view = request.getRequestDispatcher(Utils.ADMIN_PAGE);

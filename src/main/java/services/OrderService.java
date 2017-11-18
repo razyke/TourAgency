@@ -84,7 +84,7 @@ public class OrderService {
             orderDao.createOrder(order);
             return true;
         } else {
-            System.out.println("Invalid order: " + order);
+            //TODO: LOG_IT
             return false;
         }
     }

@@ -42,12 +42,13 @@ public class WelcomeServlet extends HttpServlet {
         }
 
         //Get values from redirect address and send as attribute, after delete this value.
-        checkUseAndDelete(request);
 
         boolean loyal = false;
 
 
         String language = String.valueOf(request.getSession().getAttribute("language"));
+
+        checkUseAndDelete(request);
 
         ResourceBundle bundle;
 
@@ -78,6 +79,7 @@ public class WelcomeServlet extends HttpServlet {
 
     private void checkUseAndDelete(HttpServletRequest request) {
         String[] values = {"registration","message","errorMessage"};
+
         for (String s : values) {
             if (request.getSession().getAttribute(s) != null) {
                 request.setAttribute(s, request.getSession().getAttribute(s));

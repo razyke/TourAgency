@@ -25,6 +25,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String language = String.valueOf(request.getSession().getAttribute("language"));
 
         User user = new User(
                 request.getParameter("userName").trim(),
@@ -34,7 +35,8 @@ public class RegisterServlet extends HttpServlet {
                 request.getParameter("middleName").trim(),
                 request.getParameter("phone").trim(),
                 request.getParameter("address").trim(),
-                request.getParameter("email").trim()
+                request.getParameter("email").trim(),
+                language
                 );
         //language add.
 

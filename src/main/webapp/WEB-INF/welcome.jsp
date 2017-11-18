@@ -31,7 +31,7 @@
                     <li><a href="admin"><%out.print(bundle.getString("global.to_admin_page"));%></a></li>
                     <li><a href="editTour?action=addTour"><%out.print(bundle.getString("global.add_tour"));%></a></li>
                     <% } else { %>
-                    <li><a href="admin?action=myOrders"><%out.print(bundle.getString("global.my_orders"));%></a></li>
+                    <li><a href="userOrders"><%out.print(bundle.getString("global.my_orders"));%></a></li>
                     <% } %>
                 </ul>
                 <% if (request.getSession().getAttribute("role") == null) { %>
@@ -86,8 +86,20 @@
                             </c:choose>
                         </h1>
 
-                        <h2><c:out value="${tour.type}"/><span class="property_size"></span></h2>
-
+                        <c:choose>
+                            <c:when test="${tour.type eq ('Excursion')}">
+                                <h2><%out.print(bundle.getString("global.Excursion"));%><span class="property_size"></span></h2>
+                            </c:when>
+                            <c:when test="${tour.type eq ('Shopping')}">
+                                <h2><%out.print(bundle.getString("global.Shopping"));%><span class="property_size"></span></h2>
+                            </c:when>
+                            <c:when test="${tour.type eq ('Rest')}">
+                                <h2><%out.print(bundle.getString("global.Rest"));%><span class="property_size"></span></h2>
+                            </c:when>
+                            <c:otherwise>
+                                <h2> =( </h2>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                     </c:forEach>
             </li>

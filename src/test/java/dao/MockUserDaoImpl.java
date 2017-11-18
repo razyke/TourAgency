@@ -22,7 +22,8 @@ public class MockUserDaoImpl implements UserDao  {
                         "Mop",
                         "3231321",
                         "Street of feet",
-                        "KLP@epam.com"));
+                        "KLP@epam.com",
+                "EN"));
         users.put(2, new User("razyke",
                         "8d969eef6ecad3c29a3a629280e686cfc3f5d5a86aff3ca122c923adc6c92",
                         "Daniil",
@@ -30,7 +31,8 @@ public class MockUserDaoImpl implements UserDao  {
                         "Victorovich",
                         "711133",
                         "Zastavskaya 22",
-                        "ds@epam.com"));
+                        "ds@epam.com",
+                "EN"));
     }
 
     @Override

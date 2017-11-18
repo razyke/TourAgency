@@ -55,10 +55,9 @@
             <td> <c:out value="${order.tour.discount}" /> </td>
             <c:choose>
                 <c:when test="${order.active eq ('true')}">
-                    <td> <input type="submit" class="small" name="manage"
-                                value="<%out.print(bundle.getString("global.pay"));%>"/> <br>
-                        <input type="submit" class="small" name="manage"
-                               value="<%out.print(bundle.getString("global.delete"));%>"/>
+                    <td>
+                        <a href="userOrders?action=pay&idOrder=<c:out value="${order.id}"/>"> <%out.print(bundle.getString("global.pay"));%></a></br>
+                        <a href="userOrders?action=delete&idOrder=<c:out value="${order.id}"/>"> <%out.print(bundle.getString("global.delete"));%></a>
                     </td>
                 </c:when>
                 <c:otherwise>

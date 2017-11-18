@@ -23,6 +23,7 @@ public class AuthServiceTest {
         user.setPassword("123456");
         user.setEmail("IUD@epam.com");
         user.setPhone("11112");
+        user.setLanguage("EN");
         user.setAdmin(true);
 
         List<String> strings = authService.ValidateAndSend(user,"123456");
@@ -40,6 +41,7 @@ public class AuthServiceTest {
         user.setLastName("Cartman");
         user.setPassword("123");
         user.setEmail("");
+        user.setLanguage("EN");
         user.setPhone("suckmywalls"); //here error of casting
         List<String> errorStrings = authService.ValidateAndSend(user,"123");
 
@@ -60,6 +62,7 @@ public class AuthServiceTest {
         user.setPassword("iamcool777");
         user.setEmail("vpv@emam.com");
         user.setPhone("5523232");
+        user.setLanguage("EN");
 
         List<String> errorStrings = authService.ValidateAndSend(user, "iamcool777");
 

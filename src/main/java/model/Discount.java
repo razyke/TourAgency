@@ -9,6 +9,15 @@ public class Discount {
     private int value;
     private int authorId;
     private Date lastUpdate;
+    private String authorLogin;
+
+    public String getAuthorLogin() {
+        return authorLogin;
+    }
+
+    public void setAuthorLogin(String authorLogin) {
+        this.authorLogin = authorLogin;
+    }
 
     public int getId() {
         return id;

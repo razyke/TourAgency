@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 
 public class LoginServlet extends HttpServlet {
@@ -36,7 +37,9 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher view;
 
         if (authUser == null) {
-            request.setAttribute("errorString", "Error!");
+            String error = ((ResourceBundle)session.getAttribute("bundle")).getString("global.err.error");
+            //TODO: LOG_IT
+            request.setAttribute("errorString", error);
             view = request.getRequestDispatcher(Utils.LOGIN_PAGE);
             view.forward(request, response);
         } else {
