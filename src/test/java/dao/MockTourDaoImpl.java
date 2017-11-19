@@ -13,14 +13,54 @@ public class MockTourDaoImpl implements TourDao {
 
     static {
         tours = new HashMap<Integer, Tour>();
-        tours.put(1, new Tour(1, false, "tour1", "excursion", "spb",
-                "description1", "EN", 1500, 2000));
-        tours.put(2, new Tour(2, true, "tour2", "rest", "msk",
-                "description2", "RU", 2000, 4000));
-        tours.put(3, new Tour(3, false, "tour3", "excursion", "msk",
-                "description3", "EN", 8000, 10000));
-        tours.put(4, new Tour(4, false, "tour4", "type", "city",
-                "description4", "RU",1500, 2000));
+        tours.put(1, Tour.builder()
+                .id(1)
+                .hot(false)
+                .title("tour1")
+                .type("excursion")
+                .city("spb")
+                .description("description2")
+                .language("EN")
+                .costSevenDays(1500)
+                .costTenDays(2000)
+                .build()
+        );
+        tours.put(2, Tour.builder()
+                .id(2)
+                .hot(true)
+                .title("tour2")
+                .type("rest")
+                .city("msk")
+                .description("description2")
+                .language("RU")
+                .costSevenDays(2000)
+                .costTenDays(4000)
+                .build()
+        );
+        tours.put(3, Tour.builder()
+                .id(3)
+                .hot(false)
+                .title("tour3")
+                .type("excursion")
+                .city("msk")
+                .description("description3")
+                .language("EN")
+                .costSevenDays(8000)
+                .costTenDays(10000)
+                .build()
+        );
+        tours.put(4, Tour.builder()
+                .id(4)
+                .hot(false)
+                .title("tour4")
+                .type("type")
+                .city("city")
+                .description("description4")
+                .language("RU")
+                .costSevenDays(1500)
+                .costTenDays(2000)
+                .build()
+        );
     }
 
 
@@ -28,8 +68,16 @@ public class MockTourDaoImpl implements TourDao {
     public Tour getTour(int id, String language) {
         Tour tour = tours.get(id);
         if (tour != null && tour.getLanguage().equals(language)) {
-            return new Tour(tour.getId(), tour.isHot(), tour.getTitle(), tour.getType(), tour.getCity(),
-                    tour.getDescription(), tour.getLanguage(), tour.getCostSevenDays(), tour.getCostTenDays());
+            return Tour.builder()
+                    .id(tour.getId())
+                    .hot(tour.isHot())
+                    .title(tour.getTitle())
+                    .city(tour.getCity())
+                    .description(tour.getDescription())
+                    .language(tour.getLanguage())
+                    .costSevenDays(tour.getCostSevenDays())
+                    .costTenDays(tour.getCostTenDays())
+                    .build();
         }
         return null;
     }
@@ -39,8 +87,17 @@ public class MockTourDaoImpl implements TourDao {
         Collection<Tour> out = new ArrayList<Tour>();
         for (Tour tour : tours.values()) {
             if (tour.getLanguage().equals(language)) {
-                Tour tour1 = new Tour(tour.getId(), tour.isHot(), tour.getTitle(), tour.getType(), tour.getCity(),
-                        tour.getDescription(), tour.getLanguage(), tour.getCostSevenDays(), tour.getCostTenDays());
+                Tour tour1 = Tour.builder()
+                        .id(tour.getId())
+                        .hot(tour.isHot())
+                        .title(tour.getTitle())
+                        .city(tour.getCity())
+                        .description(tour.getDescription())
+                        .language(tour.getLanguage())
+                        .costSevenDays(tour.getCostSevenDays())
+                        .costTenDays(tour.getCostTenDays())
+                        .build();
+
                 out.add(tour1);
             }
         }

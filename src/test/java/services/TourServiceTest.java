@@ -23,10 +23,18 @@ public class TourServiceTest {
 
     @Test
     public void addTour() throws Exception {
-        Tour tour = new Tour(
-                5, false, "Tour1", "type", "city", "desc", "en",
-                1500, 2000
-        );
+        Tour tour = Tour.builder()
+                .id(5)
+                .hot(false)
+                .title("Tour1")
+                .type("type")
+                .city("city")
+                .description("desc")
+                .language("en")
+                .costSevenDays(1500)
+                .costTenDays(2000)
+                .build();
+
         assertTrue(service.addTour(tour));
 
         assertFalse(service.addTour(tour));

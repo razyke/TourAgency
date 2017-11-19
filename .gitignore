@@ -6,3 +6,6 @@
 
 # Target directory #
 target/
+
+# Log file #
+log_file.log

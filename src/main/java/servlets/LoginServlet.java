@@ -1,5 +1,6 @@
 package servlets;
 
+import lombok.extern.log4j.Log4j;
 import model.User;
 import services.AuthService;
 import spring.StaticContextProvider;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+@Log4j
 
 public class LoginServlet extends HttpServlet {
 
@@ -31,14 +33,18 @@ public class LoginServlet extends HttpServlet {
 
         AuthService authService = StaticContextProvider.getAuthService();
 
-        User user = new User(request.getParameter("userName"), request.getParameter("password"));
+        User user = User.builder()
+                .loginName(request.getParameter("userName"))
+                .password(request.getParameter("password"))
+                .build();
+
         User authUser = authService.authUser(user);
         HttpSession session = request.getSession();
         RequestDispatcher view;
 
         if (authUser == null) {
             String error = ((ResourceBundle)session.getAttribute("bundle")).getString("global.err.error");
-            //TODO: LOG_IT
+            log.info("Authorization failed");
             request.setAttribute("errorString", error);
             view = request.getRequestDispatcher(Utils.LOGIN_PAGE);
             view.forward(request, response);

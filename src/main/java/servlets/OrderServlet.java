@@ -1,5 +1,6 @@
 package servlets;
 
+import lombok.extern.log4j.Log4j;
 import model.Order;
 import model.Tour;
 import services.OrderService;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+@Log4j
 public class OrderServlet extends HttpServlet {
 
     @Override
@@ -52,15 +54,21 @@ public class OrderServlet extends HttpServlet {
 
                 if (req.getParameter("days") != null) {
                     if (req.getParameter("days").equals("seven")) {
-                        order = new Order(Integer.parseInt(req.getParameter("cost7")), 7);
+                        order = Order.builder()
+                                .price(Integer.parseInt(req.getParameter("cost7")))
+                                .days(7)
+                                .build();
                     } else {
-                        order = new Order(Integer.parseInt(req.getParameter("cost10")),10);
+                        order = Order.builder()
+                                .price(Integer.parseInt(req.getParameter("cost10")))
+                                .days(10)
+                                .build();
                     }
 
                 } else {
                     order = null;
                     error = true;
-                    //TODO: LOG_IT
+                    log.error("Error to parse order from JSP page");
                 }
 
                 try {
@@ -69,7 +77,7 @@ public class OrderServlet extends HttpServlet {
                 } catch (ParseException e) {
                     e.printStackTrace();
                     error = true;
-                    //TODO: LOG_IT
+                    log.error("Error to parse date");
                 }
 
                 int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
@@ -83,7 +91,7 @@ public class OrderServlet extends HttpServlet {
                 } else {
                     req.getSession().setAttribute("errorMessage",
                             bundle.getString("global.err.order_servlet"));
-                    //TODO: LOG_IT
+                    log.error("Order has not been make");
                     resp.sendRedirect(Utils.WELCOME_SERVLET);
                 }
             }
