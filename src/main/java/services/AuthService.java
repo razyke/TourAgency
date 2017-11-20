@@ -112,7 +112,7 @@ public class AuthService {
         byte[] resultBytes = md.digest();
         StringBuffer hexString = new StringBuffer();
         for (byte current: resultBytes) {
-            hexString.append(Integer.toHexString(0xFF & current));
+            hexString.append(String.format("%02x",(0xFF & current)));
         }
         return hexString.toString();
     }

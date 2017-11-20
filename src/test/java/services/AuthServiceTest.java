@@ -69,30 +69,6 @@ public class AuthServiceTest {
         assertEquals(null, errorStrings);
     }
 
-    @Test
-    public void login() throws Exception {
 
-        AuthService service = StaticContextProvider.getAuthService();
-
-        User user1 = User.builder()
-                .loginName("razyke")
-                .password("123456")
-                .build();
-
-        User user2 = User.builder()
-                .loginName("User1")
-                .password("password")
-                .build();
-
-        User authUser1 = service.authUser(user1);
-        User authUser2 = service.authUser(user2);
-        boolean error = true;
-
-        if (authUser1 != null && authUser2 != null) {
-            error = false;
-        }
-
-        assertTrue(!error);
-    }
 
 }

@@ -1,6 +1,7 @@
 package servlets;
 
 import model.Order;
+import model.PartitionList;
 import services.OrderService;
 import spring.StaticContextProvider;
 import util.Utils;
@@ -26,7 +27,7 @@ public class UserServlet extends HttpServlet {
             ResourceBundle bundle = (ResourceBundle) req.getSession().getAttribute("bundle");
 
             if (req.getParameter("action").equals("pay")) {
-                //orderService.acceptOrder(idOrder); //TODO: NEED TO thing!!!!.
+                //Is not prepared.
                 req.getSession().setAttribute("message",
                         bundle.getString("global.payed"));
                 resp.sendRedirect(Utils.WELCOME_SERVLET);
@@ -38,9 +39,20 @@ public class UserServlet extends HttpServlet {
             }
         } else {
 
+            int pageOfOrders = 1;
+
+            if (req.getParameter("page") != null) {
+                pageOfOrders = Integer.valueOf(req.getParameter("page"));
+            }
             OrderService orderService = StaticContextProvider.getOrderService();
-            int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
-            Collection<Order> orders = orderService.getAllOrders(idUser);
+
+            int idUser = 0;
+
+            if (req.getSession().getAttribute("idUser") != null) {
+                idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
+            }
+            PartitionList<Order> orders = orderService.getAllOrdersByPages(idUser, pageOfOrders);
+
             req.setAttribute("orders", orders);
             RequestDispatcher view = req.getRequestDispatcher(Utils.USER_ORDERS_PAGE);
             view.forward(req, resp);

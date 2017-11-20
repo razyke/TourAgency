@@ -40,7 +40,6 @@
                 <thead>
 
                 <tr>
-
                     <th>Id</th>
                     <th><%out.print(bundle.getString("global.first_name"));%></th>
                     <th><%out.print(bundle.getString("global.middle_name"));%></th>
