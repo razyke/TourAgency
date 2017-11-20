@@ -3,13 +3,14 @@ package services;
 import dao.OrderDao;
 import dao.TourDao;
 import dao.UserDao;
+import lombok.extern.log4j.Log4j;
 import model.Order;
 import model.Tour;
 import model.User;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+@Log4j
 
 public class OrderService {
 
@@ -84,7 +85,7 @@ public class OrderService {
             orderDao.createOrder(order);
             return true;
         } else {
-            System.out.println("Invalid order: " + order);
+            log.error("Error to create order");
             return false;
         }
     }

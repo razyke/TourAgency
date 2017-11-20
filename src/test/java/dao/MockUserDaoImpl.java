@@ -15,24 +15,29 @@ public class MockUserDaoImpl implements UserDao  {
 
     static {
         users = new HashMap<Integer, User>();
-        users.put(1, new User("User1",
-                        "5e884898da2847151d0e56f8dc6292773603dd6aabbdd62a11ef721d1542d8",
-                        "Kip",
-                        "Lip",
-                        "Mop",
-                        "3231321",
-                        "Street of feet",
-                        "KLP@epam.com",
-                "EN"));
-        users.put(2, new User("razyke",
-                        "8d969eef6ecad3c29a3a629280e686cfc3f5d5a86aff3ca122c923adc6c92",
-                        "Daniil",
-                        "Smirnov",
-                        "Victorovich",
-                        "711133",
-                        "Zastavskaya 22",
-                        "ds@epam.com",
-                "EN"));
+        users.put(1, User.builder()
+                .loginName("User1")
+                .password("5e884898da2847151d0e56f8dc6292773603dd6aabbdd62a11ef721d1542d8")
+                .firstName("Kip")
+                .middleName("Lip")
+                .lastName("Mop")
+                .phone("3231321")
+                .address("Street of feet")
+                .email("KLP@epam.com")
+                .language("EN")
+                .build()
+        );
+        users.put(2, User.builder()
+                .loginName("razyke")
+                .password("8d969eef6ecad3c29a3a629280e686cfc3f5d5a86aff3ca122c923adc6c92")
+                .firstName("Daniil")
+                .middleName("Victorovich")
+                .lastName("Smirnov")
+                .phone("711133")
+                .address("Zastavskaya 22")
+                .email("ds@epam.com")
+                .language("EN")
+                .build());
     }
 
     @Override

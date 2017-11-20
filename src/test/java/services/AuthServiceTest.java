@@ -74,8 +74,15 @@ public class AuthServiceTest {
 
         AuthService service = StaticContextProvider.getAuthService();
 
-        User user1 = new User("razyke","123456");
-        User user2 = new User("User1", "password");
+        User user1 = User.builder()
+                .loginName("razyke")
+                .password("123456")
+                .build();
+
+        User user2 = User.builder()
+                .loginName("User1")
+                .password("password")
+                .build();
 
         User authUser1 = service.authUser(user1);
         User authUser2 = service.authUser(user2);

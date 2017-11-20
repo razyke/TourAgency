@@ -1,5 +1,6 @@
 package servlets;
 
+import lombok.extern.log4j.Log4j;
 import model.Order;
 import model.Tour;
 import services.OrderService;
@@ -17,11 +18,14 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ResourceBundle;
 
+@Log4j
 public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession session = req.getSession();
         String language = String.valueOf(session.getAttribute("language"));
 
@@ -29,23 +33,13 @@ public class OrderServlet extends HttpServlet {
             if (req.getParameter("action").equals("order")) {
                 TourService tourService = StaticContextProvider.getTourService();
                 int tourId = Integer.parseInt(req.getParameter("tourId"));
-                Tour tour;
-                if (Boolean.valueOf(String.valueOf(req.getSession().getAttribute("loyal")))) {
-                    tour = tourService.getTourWithDiscount(
-                            tourId,
-                            language,
-                            true
-                    );
-                } else {
-                    tour = tourService.getTour(
-                            tourId,
-                            language
-                    );
-                }
+                Boolean loyal = Boolean.valueOf(String.valueOf(req.getSession().getAttribute("loyal")));
+
+                Tour tour = tourService.getTourWithDiscount(tourId, language, loyal);
+
                 req.setAttribute("tour", tour);
             }
         }
-
         RequestDispatcher view = req.getRequestDispatcher(Utils.TOUR_PAGE);
         view.forward(req, resp);
     }
@@ -60,14 +54,21 @@ public class OrderServlet extends HttpServlet {
 
                 if (req.getParameter("days") != null) {
                     if (req.getParameter("days").equals("seven")) {
-                        order = new Order(Integer.parseInt(req.getParameter("cost7")), 7);
+                        order = Order.builder()
+                                .price(Integer.parseInt(req.getParameter("cost7")))
+                                .days(7)
+                                .build();
                     } else {
-                        order = new Order(Integer.parseInt(req.getParameter("cost10")),10);
+                        order = Order.builder()
+                                .price(Integer.parseInt(req.getParameter("cost10")))
+                                .days(10)
+                                .build();
                     }
 
                 } else {
                     order = null;
                     error = true;
+                    log.error("Error to parse order from JSP page");
                 }
 
                 try {
@@ -76,18 +77,21 @@ public class OrderServlet extends HttpServlet {
                 } catch (ParseException e) {
                     e.printStackTrace();
                     error = true;
+                    log.error("Error to parse date");
                 }
-
 
                 int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
                 int tourId = Integer.parseInt(req.getParameter("tourId"));
 
+                ResourceBundle bundle = (ResourceBundle) req.getSession().getAttribute("bundle");
                 if (!error && orderService.createOrder(order, idUser, tourId)) {
-                    req.getSession().setAttribute("message","Ordered, please wait, our manager contact with you.");
+                    req.getSession().setAttribute("message",
+                            bundle.getString("global.order_servlet"));
                     resp.sendRedirect(Utils.WELCOME_SERVLET);
-
                 } else {
-                    req.getSession().setAttribute("errorMessage", "Tour has not been ordered");
+                    req.getSession().setAttribute("errorMessage",
+                            bundle.getString("global.err.order_servlet"));
+                    log.error("Order has not been make");
                     resp.sendRedirect(Utils.WELCOME_SERVLET);
                 }
             }

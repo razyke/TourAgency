@@ -27,18 +27,18 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         String language = String.valueOf(request.getSession().getAttribute("language"));
 
-        User user = new User(
-                request.getParameter("userName").trim(),
-                request.getParameter("password"),
-                request.getParameter("firstName").trim(),
-                request.getParameter("lastName").trim(),
-                request.getParameter("middleName").trim(),
-                request.getParameter("phone").trim(),
-                request.getParameter("address").trim(),
-                request.getParameter("email").trim(),
-                language
-                );
-        //language add.
+        User user = User.builder()
+                .loginName(request.getParameter("userName").trim())
+                .password(request.getParameter("password"))
+                .firstName(request.getParameter("firstName").trim())
+                .lastName(request.getParameter("lastName").trim())
+                .middleName(request.getParameter("middleName").trim())
+                .phone(request.getParameter("phone").trim())
+                .address(request.getParameter("address").trim())
+                .email(request.getParameter("email").trim())
+                .language(language)
+                .build();
+
 
         AuthService authService = StaticContextProvider.getAuthService();
 
@@ -49,8 +49,7 @@ public class RegisterServlet extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher(Utils.WELCOME_PAGE);
             request.getSession().setAttribute("registration","Registration success!");
             response.sendRedirect(Utils.WELCOME_SERVLET);
-            /*request.setAttribute("registration", "Registration success!");
-            view.forward(request, response);*/
+
         } else {
             RequestDispatcher view = request.getRequestDispatcher(Utils.REGISTER_PAGE);
             request.setAttribute("registration", errorStrings);

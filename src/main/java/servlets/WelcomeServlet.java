@@ -90,7 +90,6 @@ public class WelcomeServlet extends HttpServlet {
     private void checkUseAndDelete(HttpServletRequest request) {
         String[] values = {"registration","message","errorMessage"};
 
-        //TODO: add from bundles errors.
         for (String s : values) {
             if (request.getSession().getAttribute(s) != null) {
                 request.setAttribute(s, request.getSession().getAttribute(s));

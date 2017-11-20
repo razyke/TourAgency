@@ -32,8 +32,17 @@ public class DiscountServiceTest {
     @Test
     public void calculateDiscountAndPrice() throws Exception {
         service.loadDiscounts();
-        Tour tour = new Tour(1, true, "tour", "excoursion", "Spb",
-                "desc", "EN", 1000, 2000);
+        Tour tour = Tour.builder()
+                .id(1)
+                .hot(true)
+                .title("tour")
+                .type("excoursion")
+                .city("Spb")
+                .description("desc")
+                .language("EN")
+                .costSevenDays(1000)
+                .costTenDays(2000)
+                .build();
         service.calculateDiscountAndPrice(tour, false);
         assertEquals(800, tour.getCostSevenDays());
     }

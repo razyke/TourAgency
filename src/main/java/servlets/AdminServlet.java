@@ -37,7 +37,8 @@ public class AdminServlet extends HttpServlet {
                 request.setAttribute("users", allUsers);
                 RequestDispatcher view = request.getRequestDispatcher(Utils.USERS_PAGE);
                 view.forward(request, response);
-            } else if (request.getParameter("action").equals("delete") || request.getParameter("action").equals("changeRole")) {
+            } else if (request.getParameter("action").equals("delete")
+                    || request.getParameter("action").equals("changeRole")) {
 
                 int id = Integer.parseInt(request.getParameter("userId"));
 
@@ -61,6 +62,7 @@ public class AdminServlet extends HttpServlet {
                 request.setAttribute("discounts", allDiscounts);
                 RequestDispatcher view = request.getRequestDispatcher(Utils.DISCOUNT_PAGE);
                 view.forward(request, response);
+
             }
 
         } else {
@@ -79,17 +81,17 @@ public class AdminServlet extends HttpServlet {
             OrderService orderService = StaticContextProvider.getOrderService();
             int orderId = Integer.parseInt(request.getParameter("orderId"));
             if (request.getParameter("manage").equals(
-                    ((ResourceBundle)request.getSession().getAttribute("bundle")).getString("global.approve"))) {
+                    ((ResourceBundle) request.getSession().getAttribute("bundle")).getString("global.approve"))) {
                 orderService.acceptOrder(orderId);
                 response.sendRedirect(Utils.ADMIN_SERVLET);
             } else if (request.getParameter("manage").equals(
-                    ((ResourceBundle)request.getSession().getAttribute("bundle")).getString("global.disapprove"))){
+                    ((ResourceBundle) request.getSession().getAttribute("bundle")).getString("global.disapprove"))) {
                 orderService.deleteOrder(orderId);
                 response.sendRedirect(Utils.ADMIN_SERVLET);
             }
         } else if (request.getParameter("change") != null) {
             if (request.getParameter("change").equals(
-                    ((ResourceBundle)request.getSession().getAttribute("bundle")).getString("global.change"))) {
+                    ((ResourceBundle) request.getSession().getAttribute("bundle")).getString("global.change"))) {
 
                 DiscountService discountService = StaticContextProvider.getDiscountService();
 

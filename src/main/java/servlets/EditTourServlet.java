@@ -50,16 +50,17 @@ public class EditTourServlet extends HttpServlet {
                 if (req.getParameter("isHot") != null) {
                     hot = req.getParameter("isHot").equals("true");
                 }
-                Tour tour = new Tour(
-                        hot,
-                        req.getParameter("title"),
-                        req.getParameter("typeId"),
-                        req.getParameter("city"),
-                        req.getParameter("description"),
-                        language,
-                        Integer.parseInt(req.getParameter("price7")),
-                        Integer.parseInt(req.getParameter("price10"))
-                );
+                Tour tour = Tour.builder()
+                        .hot(hot)
+                        .title(req.getParameter("title"))
+                        .type(req.getParameter("typeId"))
+                        .city(req.getParameter("city"))
+                        .description(req.getParameter("description"))
+                        .language(language)
+                        .costSevenDays(Integer.parseInt(req.getParameter("price7")))
+                        .costTenDays(Integer.parseInt(req.getParameter("price10")))
+                        .build();
+
                 int tourid = Integer.parseInt(req.getParameter("tourid"));
                 tour.setId(tourid);
 
@@ -83,16 +84,16 @@ public class EditTourServlet extends HttpServlet {
                 if (req.getParameter("isHot") != null) {
                     hot = req.getParameter("isHot").equals("true");
                 }
-                Tour tour = new Tour(
-                        hot,
-                        req.getParameter("title"),
-                        req.getParameter("typeId"),
-                        req.getParameter("city"),
-                        req.getParameter("description"),
-                        language,
-                        Integer.parseInt(req.getParameter("price7")),
-                        Integer.parseInt(req.getParameter("price10"))
-                );
+                Tour tour = Tour.builder()
+                        .hot(hot)
+                        .title(req.getParameter("title"))
+                        .type(req.getParameter("typeId"))
+                        .city(req.getParameter("city"))
+                        .description(req.getParameter("description"))
+                        .language(language)
+                        .costSevenDays(Integer.parseInt(req.getParameter("price7")))
+                        .costTenDays(Integer.parseInt(req.getParameter("price10")))
+                        .build();
 
                 if (tourService.addTour(tour)) {
                     req.getSession().setAttribute(message,"Tour has been added");
