@@ -42,7 +42,7 @@ public class WelcomeServlet extends HttpServlet {
             }
 
             //-------------------FOR PAGINATION------------------------------
-            else if (request.getParameter("action").equals("list") || request.getParameter("page") != null) {
+            else if (request.getParameter("page") != null) {
                 pageOfTours = Integer.valueOf(request.getParameter("page"));
             }
 

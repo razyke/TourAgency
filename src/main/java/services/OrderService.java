@@ -5,11 +5,15 @@ import dao.TourDao;
 import dao.UserDao;
 import lombok.extern.log4j.Log4j;
 import model.Order;
+import model.PartitionList;
 import model.Tour;
 import model.User;
+import util.Utils;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 @Log4j
 
 public class OrderService {
@@ -50,6 +54,16 @@ public class OrderService {
             }
         }
         return ordersFromUser;
+    }
+
+    public PartitionList<Order> getAllOrdersByPages(int page) {
+        Collection<Order> allOrders = getAllOrders();
+        return new PartitionList<Order>((List<Order>) allOrders, Utils.ORDERS_ON_PAGE, page);
+    }
+
+    public PartitionList<Order> getAllOrdersByPages(int userId, int page) {
+        Collection<Order> allOrders = getAllOrders(userId);
+        return new PartitionList<Order>((List<Order>) allOrders, Utils.ORDERS_ON_PAGE, page);
     }
 
     /**

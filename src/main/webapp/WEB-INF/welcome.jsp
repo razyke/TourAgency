@@ -105,7 +105,7 @@
             </li>
         </ul>
         <div class="more_listing">
-            <a href="/?action=list&page=<c:out value="${tours.currentPage+1}"/>" class="more_listing_btn"><%out.print(bundle.getString("global.view_more_tours"));%></a>
+            <a href="/?page=<c:out value="${tours.currentPage+1}"/>" class="more_listing_btn"><%out.print(bundle.getString("global.view_more_tours"));%></a>
         </div>
     </div>
 </section>
