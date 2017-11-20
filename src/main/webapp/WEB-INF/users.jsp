@@ -82,14 +82,30 @@
             </table>
 
         <div class="more_listing">
-            <a href="/" class="more_listing_btn_small"><%
-                out.print(bundle.getString("global.to_first_page"));%></a>
-            <a href="/" class="more_listing_btn_small"><%
-                out.print(bundle.getString("global.back"));%></a>
-            <a href="/" class="more_listing_btn_small"><%
-                out.print(bundle.getString("global.forward"));%></a>
-            <a href="/" class="more_listing_btn_small"><%
-                out.print(bundle.getString("global.to_last_page"));%></a>
+            <c:choose>
+                <c:when test="${users.currentPage != 1}">
+                    <a href="/admin?action=users&page=1" class="more_listing_btn_small">
+                        <%out.print(bundle.getString("global.to_first_page"));%></a>
+                </c:when>
+            </c:choose>
+            <c:choose>
+                <c:when test="${users.currentPage != 1}">
+                    <a href="/admin?action=users&page=<c:out value="${users.currentPage-1}"/>" class="more_listing_btn_small">
+                        <%out.print(bundle.getString("global.back"));%></a>
+                </c:when>
+            </c:choose>
+            <c:choose>
+                <c:when test="${users.currentPage != users.totalPages}">
+                    <a href="/admin?action=users&page=<c:out value="${users.currentPage+1}"/>" class="more_listing_btn_small">
+                        <%out.print(bundle.getString("global.forward"));%></a>
+                </c:when>
+            </c:choose>
+            <c:choose>
+                <c:when test="${users.currentPage != users.totalPages}">
+                    <a href="/admin?action=users&page=<c:out value="${users.totalPages}"/>" class="more_listing_btn_small">
+                        <%out.print(bundle.getString("global.to_last_page"));%></a>
+                </c:when>
+            </c:choose>
         </div>
         </div>
     </section>

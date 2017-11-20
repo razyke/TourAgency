@@ -16,7 +16,7 @@ public class Utils {
     public static final String WELCOME_SERVLET = "";
     public static final String ADMIN_SERVLET = "admin";
 
-    public static final int TOURS_ON_PAGE = 1;
+    public static final int TOURS_ON_PAGE = 3;
     public static final int USERS_ON_PAGE = 1;
-    public static final int ORDERS_ON_PAGE = 1;
+    public static final int ORDERS_ON_PAGE = 5;
 }
