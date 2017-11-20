@@ -1,5 +1,6 @@
 package servlets;
 
+import lombok.extern.log4j.Log4j;
 import model.Order;
 import model.PartitionList;
 import services.OrderService;
@@ -13,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.ResourceBundle;
+@Log4j
 
 public class UserServlet extends HttpServlet {
     @Override
@@ -28,6 +29,8 @@ public class UserServlet extends HttpServlet {
 
             if (req.getParameter("action").equals("pay")) {
                 //Is not prepared.
+                log.info("User with id = " + idOrder + " has been payed");
+
                 req.getSession().setAttribute("message",
                         bundle.getString("global.payed"));
                 resp.sendRedirect(Utils.WELCOME_SERVLET);

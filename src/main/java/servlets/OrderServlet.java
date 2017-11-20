@@ -57,11 +57,13 @@ public class OrderServlet extends HttpServlet {
                         order = Order.builder()
                                 .price(Integer.parseInt(req.getParameter("cost7")))
                                 .days(7)
+                                .active(true)
                                 .build();
                     } else {
                         order = Order.builder()
                                 .price(Integer.parseInt(req.getParameter("cost10")))
                                 .days(10)
+                                .active(true)
                                 .build();
                     }
 

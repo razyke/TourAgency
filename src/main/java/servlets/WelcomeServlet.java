@@ -38,17 +38,18 @@ public class WelcomeServlet extends HttpServlet {
                 newSession.setAttribute("language", language);
             } else if (request.getParameter("action").equals("changeLanguage")) {
                 String language = String.valueOf(request.getSession().getAttribute("language"));
-                request.getSession().setAttribute("language", language.equals("EN")?"RU":"EN");
+                request.getSession().setAttribute("language", language.equals("EN") ? "RU" : "EN");
             }
+        }
 
             //-------------------FOR PAGINATION------------------------------
-            else if (request.getParameter("page") != null) {
+            if (request.getParameter("page") != null) {
                 pageOfTours = Integer.valueOf(request.getParameter("page"));
             }
 
             //---------------------------------------------------------------
 
-        }
+
 
         //Get values from redirect address and send as attribute, after delete this value.
 
