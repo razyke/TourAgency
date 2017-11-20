@@ -39,7 +39,7 @@
                 <th> <%out.print(bundle.getString("global.manage"));%></th>
             </strong>
         </tr>
-        <c:forEach items="${orders}" var="order">
+        <c:forEach items="${orders.items}" var="order">
             <c:choose>
                 <c:when test="${order.active eq ('true')}">
                     <tr>

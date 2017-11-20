@@ -12,7 +12,7 @@ public class PartitionList<T> {
         int totalPages = (int) Math.ceil(allItems.size() / (double) itemsOnPage);
 
         if (requestedPage < 1 || requestedPage > totalPages) {
-            requestedPage = 1; //TODO: ???
+            requestedPage = 1;
         }
 
         int fromIndex = (requestedPage - 1) * itemsOnPage;
