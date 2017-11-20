@@ -1,9 +1,12 @@
 package services;
 
 import dao.TourDao;
+import model.PartitionList;
 import model.Tour;
+import util.Utils;
 
 import java.util.Collection;
+import java.util.List;
 
 public class TourService {
     private DiscountService discountService;
@@ -19,7 +22,7 @@ public class TourService {
     private boolean validateForUpdate(Tour tour) {
         return tour.getLanguage() != null
                 && tour.getCostSevenDays() > 1000
-                && tour.getCostTenDays() > 1000 ;
+                && tour.getCostTenDays() > 1000;
     }
 
     /**
@@ -39,6 +42,18 @@ public class TourService {
             discountService.calculateDiscountAndPrice(tour, isLoyal);
         }
         return tours;
+    }
+
+    /**
+     * Get tours from DB with selected language (using pagination).
+     * @param language is language
+     * @param isLoyal if user loyal
+     * @param page - requested page
+     * @return collection of tours on selected language for requested page
+     */
+    public PartitionList<Tour> getAllTours(String language, boolean isLoyal, int page) {
+        Collection<Tour> allTours = getAllTours(language, isLoyal);
+        return new PartitionList<Tour>((List<Tour>) allTours, Utils.TOURS_ON_PAGE, page);
     }
 
     /**

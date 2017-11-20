@@ -1,7 +1,9 @@
 package services;
 
 import dao.UserDao;
+import model.PartitionList;
 import model.User;
+import util.Utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -150,6 +152,12 @@ public class AuthService {
     public Collection<User> getAllUsers() {
         return dao.getAllUsers();
     }
+
+    public PartitionList<User> getAllUsers(int page) {
+        Collection<User> allUsers = getAllUsers();
+        return  new PartitionList<User>((List<User>) allUsers, Utils.USERS_ON_PAGE, page);
+    }
+
     public boolean isLoyalCustomer(User user) {
         if (user.getLastOrderDate() != null) {
             Date lastOrderDate = user.getLastOrderDate();
