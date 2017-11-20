@@ -21,7 +21,6 @@ public class WelcomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int pageOfTours = 1;
         //By default will be open on english language.
         if (request.getSession().getAttribute("language") == null) {
             HttpSession session = request.getSession();
@@ -40,15 +39,14 @@ public class WelcomeServlet extends HttpServlet {
                 String language = String.valueOf(request.getSession().getAttribute("language"));
                 request.getSession().setAttribute("language", language.equals("EN")?"RU":"EN");
             }
-
-            //-------------------FOR PAGINATION------------------------------
-            else if (request.getParameter("page") != null) {
-                pageOfTours = Integer.valueOf(request.getParameter("page"));
-            }
-
-            //---------------------------------------------------------------
-
         }
+
+        //-------------------FOR PAGINATION------------------------------
+        int pageOfTours = 1;
+        if (request.getParameter("page") != null) {
+            pageOfTours = Integer.valueOf(request.getParameter("page"));
+        }
+        //---------------------------------------------------------------
 
         //Get values from redirect address and send as attribute, after delete this value.
 
