@@ -1,6 +1,7 @@
 package servlets;
 
 import model.Order;
+import model.PartitionList;
 import services.OrderService;
 import spring.StaticContextProvider;
 import util.Utils;
@@ -18,6 +19,7 @@ import java.util.ResourceBundle;
 public class UserServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 
         if (req.getParameter("action") != null) {
 
@@ -38,9 +40,14 @@ public class UserServlet extends HttpServlet {
             }
         } else {
 
+            int pageOfOrders = 1;
+
             OrderService orderService = StaticContextProvider.getOrderService();
             int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("idUser")));
-            Collection<Order> orders = orderService.getAllOrders(idUser);
+            if (req.getParameter("page") != null) {
+                pageOfOrders = Integer.valueOf(req.getParameter("page"));
+            }
+            PartitionList<Order> orders = orderService.getAllOrdersByPages(pageOfOrders);
             req.setAttribute("orders", orders);
             RequestDispatcher view = req.getRequestDispatcher(Utils.USER_ORDERS_PAGE);
             view.forward(req, resp);

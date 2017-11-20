@@ -18,7 +18,7 @@
     </ul>
 </nav>
 </header>
-<% if (request.getSession().getAttribute("role") != null) { %>
+<% if ((request.getAttribute("idUser")==null)&&(request.getSession().getAttribute("role") != null)) { %>
 <article id="main">
 <header class="special container">
     <span class="icon fa-tags"></span>
@@ -26,7 +26,10 @@
     <p> <%out.print(bundle.getString("global.list_of_orders"));%> </p>
 </header>
 
-<section class="wrapper style3 special container 75%">
+<section class="listings">
+        <div class="wrapper style4 special container 75%">
+            <div class="row">
+                <div class="12u">
     <form method="post" name="manage">
     <table align = "center" border = "1">
         <tr>
@@ -69,6 +72,35 @@
         </c:forEach>
     </table>
         </form>
+        </div>
+        </div>
+        <div class="more_listing">
+                            <c:choose>
+                                <c:when test="${orders.currentPage != 1}">
+                                    <a href="/admin?page=1" class="more_listing_btn_small">
+                                        <%out.print(bundle.getString("global.to_first_page"));%></a>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${orders.currentPage != 1}">
+                                    <a href="/admin?page=<c:out value="${orders.currentPage-1}"/>" class="more_listing_btn_small">
+                                        <%out.print(bundle.getString("global.back"));%></a>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${orders.currentPage != orders.totalPages}">
+                                    <a href="/admin?page=<c:out value="${orders.currentPage+1}"/>" class="more_listing_btn_small">
+                                        <%out.print(bundle.getString("global.forward"));%></a>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${orders.currentPage != orders.totalPages}">
+                                    <a href="/admin?page=<c:out value="${orders.totalPages}"/>" class="more_listing_btn_small">
+                                        <%out.print(bundle.getString("global.to_last_page"));%></a>
+                                </c:when>
+                            </c:choose>
+                        </div>
+                        </div>
 </section>
 </article>
 <% } else {%>

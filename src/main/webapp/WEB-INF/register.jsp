@@ -98,7 +98,7 @@
                 <div class="row">
                     <div class="12u">
                         <input type="text" name="phone" value="${user.phone}"
-                               placeholder="<% out.print(bundle.getString("global.first_name"));%>*"/>
+                               placeholder="<% out.print(bundle.getString("global.phone"));%>*"/>
                     </div>
                 </div>
 
