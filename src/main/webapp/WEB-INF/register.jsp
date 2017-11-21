@@ -1,108 +1,151 @@
-<%@ page contentType="text/html" pageEncoding = "UTF-8" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title> Registration </title>
-    </head>
+<head>
+    <% ResourceBundle bundle = (ResourceBundle) request.getSession().getAttribute("bundle"); %>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css"/>
 
-    <body>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <a href="/TourAgency/"> To main page </a>
+    <title> <% out.print(bundle.getString("global.registration"));%> </title>
 
-    <% if (request.getSession().getAttribute("role")!=null) { %>
+</head>
 
-    <p align="center"> Hello, ${userName}! </p>
+<body>
 
-    <p align="center"> You signed as  ${role}. </p>
+<header id="header">
 
-    <form method="post" action="signOut">
-        <p align="right">
-            <button type = "submit" value="signOut"> Sign out </button>
-        </p>
-    </form>
+    <h1 id="logo"><a href="#"><% out.print(bundle.getString("global.touragency"));%> <span> Java </span> </a></h1>
+    <nav id="nav">
+        <ul>
+            <li class="current"><a href="/"><% out.print(bundle.getString("global.tomainpage"));%></a></li>
+            </li>
+            <% if (request.getSession().getAttribute("role") != null) { %>
+            <li><a href="/?action=signOut" class="button special"><%
+                out.print(bundle.getString("global.sign_out"));%></a></li>
 
-    <% } else {%>
+            <% } else {%>
 
-     <c:forEach items="${registration}" var="reg">
+            <li><a href="login" class="button special"><% out.print(bundle.getString("global.sign_in"));%></a></li>
 
-         <p align="center" style="color: red">${reg}<br> </p>
+            <% } %>
 
-      </c:forEach>
+        </ul>
+    </nav>
+</header>
 
-        <form method="post" action="register">
+<% if (request.getSession().getAttribute("role") != null) { %>
+<article id="main">
+    <header class="special container">
+        <span class="icon fa-envelope"></span>
+        <h2><a href="/"><% out.print(bundle.getString("global.hello"));%>, ${userName}!</h2>
+        <p><% out.print(bundle.getString("global.y_s_a"));%>  ${role}. </p>
+    </header>
+</article>
 
-            <table border="1" width="30%" cellpadding="5" align="center">
-                <thead>
-                    <tr>
-                        <th colspan="2">Enter Information Here</th>
-                    </tr>
-                </thead>
+<% } else {%>
 
-                <tbody>
+<article id="main">
 
-                    <tr>
-                        <td>First Name*</td>
-                        <td><input type="text" name="firstName" value="${user.firstName}" /></td>
-                    </tr>
+    <header class="special container">
+        <span class="icon fa-user-plus"> </span>
 
-                    <tr>
-                         <td>Middle name</td>
-                         <td><input type="text" name="middleName" value="${user.middleName}" /></td>
-                     </tr>
+        <h2><% out.print(bundle.getString("global.registration"));%></h2>
 
-                    <tr>
-                        <td>Last Name*</td>
-                        <td><input type="text" name="lastName" value="${user.lastName}" /></td>
-                    </tr>
+        <p align="center"><% out.print(bundle.getString("global.mandatory"));%></p>
 
-                    <tr>
-                        <td>Email*</td>
-                        <td><input type="text" name="email" value="${user.email}" /></td>
-                    </tr>
+        <c:forEach items="${registration}" var="reg">
+            <p align="center" style="color: red">${reg}<br></p>
+        </c:forEach>
+    </header>
 
-                     <tr>
-                         <td>Phone*</td>
-                         <td><input type="phone" name="phone" value="${user.phone}" /></td>
-                         </tr>
-                    <tr>
+    <section class="wrapper style4 special container 75%">
 
-                     <tr>
-                     <td>Address</td>
-                     <td><input type="text" name="address" value="${user.address}" /></td>
-                     </tr>
+        <div class="content">
 
-                        <td>User Name*</td>
-                        <td><input type="text" name="userName" value="${user.loginName}" /></td>
-                     </tr>
+            <form method="POST" action="register">
 
-                     <tr>
-                        <td>Password*</td>
-                        <td><input type="password" name="password" value="${user.password}" /></td>
-                     </tr>
+                <div class="row">
+                    <div class="12u">
+                        <input type="text" name="firstName" value="${user.firstName}"
+                               placeholder="<% out.print(bundle.getString("global.first_name"));%>*"/>
+                    </div>
+                </div>
 
-                     <tr>
-                        <td>Repeat Password*</td>
-                        <td><input type="password" name="password2" value="${user.password2}" /></td>
-                     </tr>
+                <div class="row">
+                    <div class="12u">
+                        <input type="text" name="middleName" value="${user.middleName}"
+                               placeholder="<% out.print(bundle.getString("global.middle_name"));%>"/>
+                    </div>
+                </div>
 
-                     <tr>
-                        <td><input type="submit" value="Submit" /></td>
-                        <td><input type="reset" value="Reset" /></td>
-                    </tr>
+                <div class="row">
+                    <div class="12u">
+                        <input type="text" name="lastName" value="${user.lastName}"
+                               placeholder="<% out.print(bundle.getString("global.last_name"));%>*"/>
+                    </div>
+                </div>
 
-                    <tr>
-                        <td colspan="2">Already registered? sign in <a href="login">here</a></td>
-                    </tr>
+                <div class="row">
+                    <div class="12u">
+                        <input type="text" name="email" value="${user.email}"
+                               placeholder="<% out.print(bundle.getString("global.email"));%>*"/>
+                    </div>
+                </div>
 
-                </tbody>
+                <div class="row">
+                    <div class="12u">
+                        <input type="text" name="phone" value="${user.phone}"
+                               placeholder="<% out.print(bundle.getString("global.phone"));%>*"/>
+                    </div>
+                </div>
 
-            </table>
+                <div class="row">
+                    <div class="12u">
+                        <input type="text" name="address" value="${user.address}"
+                               placeholder="<% out.print(bundle.getString("global.address"));%>"/>
+                    </div>
+                </div>
 
-        </form>
+                <div class="row">
+                    <div class="12u">
+                        <input type="text" name="userName" value="${user.loginName}"
+                               placeholder="<% out.print(bundle.getString("global.login"));%>*"/>
+                    </div>
+                </div>
 
-        <p align = "center">  *Mandatory fields </p>
+                <div class="row">
+                    <div class="12u">
+                        <input type="password" name="password" value="${user.password}"
+                               placeholder="<% out.print(bundle.getString("global.password"));%>*"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="12u">
+                        <input type="password" name="password2" value="${user.password2}"
+                               placeholder="<% out.print(bundle.getString("global.repeat_pass"));%>*"/>
+                    </div>
+                </div>
 
-    <% } %>
-    </body>
+                <div class="row">
+                    <div class="12u">
+                        <ul class="buttons">
+                            <li><input type="submit" class="special"
+                                       value="<% out.print(bundle.getString("global.register"));%>"/></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </section>
+
+</article>
+
+<% } %>
+
+</body>
 </html>

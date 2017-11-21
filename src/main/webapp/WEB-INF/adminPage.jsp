@@ -1,59 +1,119 @@
-<%@ page  contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+    <% ResourceBundle bundle = (ResourceBundle) request.getSession().getAttribute("bundle"); %>
     <title>Admin Page</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/m2.css"/>
 </head>
 
-<body>
+<body class="contact">
 
-<h3 align="center">Admin Page</h3>
+<header id="header">
+    <h1 id="logo"><a href="#"><% out.print(bundle.getString("global.touragency"));%> <span>Java</span></a></h1>
+    <nav id="nav">
+        <ul>
+            <li class="current"><a href="/"><% out.print(bundle.getString("global.tomainpage"));%></a></li>
+            <% if ((!(request.getSession().getAttribute("role") == null)) && request.getSession().getAttribute("role").equals("admin")) { %>
+            <li class="current"><a href="admin?action=discounts"><%
+                out.print(bundle.getString("global.discounts"));%></a></li>
+            <li class="current"><a href="admin?action=users"><%out.print(bundle.getString("global.users"));%></a></li>
+            <li><a href="/?action=signOut" class="button special"><%
+                out.print(bundle.getString("global.sign_out"));%></a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
 
-<a href="/TourAgency/"> To main page </a>
+<% if ((!(request.getSession().getAttribute("role") == null)) && request.getSession().getAttribute("role").equals("admin")) { %>
+<article id="main">
+    <header class="special container">
+        <span class="icon fa-user-secret"></span>
+        <h2><%out.print(bundle.getString("global.hello_admin"));%></h2>
+        <p><%out.print(bundle.getString("global.time_to_work"));%></p>
 
-<% if (request.getSession().getAttribute("role").equals("admin")) { %>
+    </header>
 
-<p align="center"> Hello, admin! </p>
+    <section class="listings">
+        <div class="wrapper style4 special container 75%">
+            <div class="row">
+                <div class="12u">
 
-<a href="welcome?action=signOut"> sign out </a>
+                <table>
+                    <tr>
+                        <strong>
+                            <th> Id</th>
+                            <th><%out.print(bundle.getString("global.tour"));%></th>
+                            <th><%out.print(bundle.getString("global.price"));%></th>
+                            <th><%out.print(bundle.getString("global.language_after"));%></th>
+                            <th><%out.print(bundle.getString("global.client"));%></th>
+                            <th><%out.print(bundle.getString("global.phone"));%></th>
+                            <th><%out.print(bundle.getString("global.details"));%></th>
+                        </strong>
+                    </tr>
+                    <c:forEach items="${orders.items}" var="order">
+                        <c:choose>
+                            <c:when test="${order.active eq ('true')}">
+                                <tr>
+                            </c:when>
+                            <c:otherwise>
+                                <tr style="color: silver">
+                            </c:otherwise>
+                        </c:choose>
+                        <td><c:out value="${order.id}"/></td>
+                        <td><c:out value="${order.tour.title}"/></td>
+                        <td><c:out value="${order.price}"/></td>
+                        <td><c:out value="${order.user.language}"/></td>
+                        <td><c:out value="${order.user.firstName}"/> <c:out value="${order.user.lastName}"/></td>
+                        <td><c:out value="${order.user.phone}"/></td>
+                        <td>
+                            <a href="admin?action=detail&idOrder=<c:out value="${order.id}"/>"><%out.print(bundle.getString("global.details"));%></a>
+                        </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+                </div>
+            </div>
+                <div class="more_listing">
+                    <c:choose>
+                        <c:when test="${orders.currentPage != 1}">
+                            <a href="/admin?page=1" class="more_listing_btn_small">
+                                <%out.print(bundle.getString("global.to_first_page"));%></a>
+                        </c:when>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${orders.currentPage != 1}">
+                            <a href="/admin?page=<c:out value="${orders.currentPage-1}"/>" class="more_listing_btn_small">
+                                <%out.print(bundle.getString("global.back"));%></a>
+                        </c:when>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${orders.currentPage != orders.totalPages}">
+                            <a href="/admin?page=<c:out value="${orders.currentPage+1}"/>" class="more_listing_btn_small">
+                                <%out.print(bundle.getString("global.forward"));%></a>
+                        </c:when>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${orders.currentPage != orders.totalPages}">
+                            <a href="/admin?page=<c:out value="${orders.totalPages}"/>" class="more_listing_btn_small">
+                                <%out.print(bundle.getString("global.to_last_page"));%></a>
+                        </c:when>
+                    </c:choose>
+                </div>
+            </div>
+    </section>
+</article>
+<% } else {%>
+<article id="main">
+    <header class="special container">
+        <span class="icon fa-shield"></span>
+        <h2><%out.print(bundle.getString("global.classified"));%></h2>
+        <p><%out.print(bundle.getString("global.please_sign_in_as_admin"));%></p>
+    </header>
 
-<a href="admin?action=tours"> Tours </a>
-<a href="admin?action=users"> Users </a>
-<table align = "center" border = "1">
 
- <thead>
-    <tr>
-        <th> Id</th>
-        <th> Tour </th>
-        <th> Price </th>
-        <th>Language</th>
-        <th>Client</th>
-        <th>Phone</th>
-        <th> Details </th>
-    </tr>
-    </thead>
-<%--
- <tbody>
-    <c:forEach items="${orders}" var="order">
-        <tr>
-            <td> <c:out value="${order.id}" /> </td>
-            <td> <c:out value="${order.tour.title}" /> </td>
-            <td> <c:out value="${order.price}" /> </td>
-            <td> <c:out value="${order.user.language}"/> </td>
-            <td> <c:out value="${order.user.firstName  ${order.user.lastName}}" /> </td>
-            <td> <c:out value="${order.user.phone}" /></td>
-            <td> <a href="admin?action=detail&idOrder=<c:out value="${order.idOrder}"/>"> Details </a> </td>
- <%-- Thread to create  detail
-        </tr>
-   </c:forEach
-</tbody>
---%>
-</table>
-
-<% }  else {%>
-
-<p> Please sign in as administrator </p>
-
+</article>
 <% } %>
 
 </body>

@@ -8,7 +8,7 @@
     <bean id="dataSource"
           class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name = "driverClassName" value = "com.mysql.jdbc.Driver"/>
-        <property name = "url" value = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11203717"/>
+        <property name = "url" value = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11203717?useUnicode=true&amp;characterEncoding=utf8"/>
         <property name = "username" value = "sql11203717"/>
         <property name = "password" value = "UDUCVRcm7r"/>
     </bean>
@@ -25,6 +25,18 @@
         <property name = "dataSource" ref = "dataSource" />
     </bean>
 
+    <!-- Definition for OrderDao bean -->
+    <bean id = "OrderDao"
+          class = "dao.OrderDaoImpl">
+        <property name = "dataSource" ref = "dataSource" />
+    </bean>
+
+    <!-- Definition for DiscountDao bean -->
+    <bean id = "DiscountDao"
+          class = "dao.DiscountDaoImpl">
+        <property name = "dataSource" ref = "dataSource" />
+    </bean>
+
     <!-- Definition for AuthService bean-->
     <bean id = "authService"
           class="services.AuthService">
@@ -35,6 +47,20 @@
     <bean id = "tourService"
           class="services.TourService">
         <property name="dao" ref="TourDao"/>
+        <property name="discountService" ref="discountService"/>
     </bean>
 
+    <!-- Definition for OrderService bean-->
+    <bean id = "orderService"
+          class="services.OrderService">
+        <property name="orderDao" ref="OrderDao"/>
+        <property name="tourDao" ref="TourDao"/>
+        <property name="userDao" ref="UserDao"/>
+    </bean>
+
+    <!-- Definition for DiscountService bean-->
+    <bean id = "discountService"
+          class="services.DiscountService">
+        <property name="dao" ref="DiscountDao"/>
+    </bean>
 </beans>

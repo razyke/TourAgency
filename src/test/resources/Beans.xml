@@ -9,10 +9,33 @@
           class = "dao.MockUserDaoImpl">
     </bean>
 
+    <!-- Definition for TourDao bean -->
+    <bean id = "TourDao"
+          class = "dao.MockTourDaoImpl">
+    </bean>
+
+    <!-- Definition for DiscountDao bean -->
+    <bean id = "DiscountDao"
+          class = "dao.MockDiscountDaoImpl">
+    </bean>
+
     <!-- Definition for RegistrationService bean-->
     <bean id = "authService"
           class="services.AuthService">
         <property name="dao" ref="UserDao"/>
+    </bean>
+
+    <!-- Definition for RegistrationService bean-->
+    <bean id = "tourService"
+          class="services.TourService">
+        <property name="dao" ref="TourDao"/>
+        <property name="discountService" ref="discountService"/>
+    </bean>
+
+    <!-- Definition for DiscountService bean-->
+    <bean id = "discountService"
+          class="services.DiscountService">
+        <property name="dao" ref="DiscountDao"/>
     </bean>
 
 </beans>
